@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:767844610321:android:f0ace6fdca929fa9d8dcb0",
+        "mobilesdk_app_id": "1:767844610321:android:658988b14bfcbb19d8dcb0",
         "android_client_info": {
-          "package_name": "com.ifam.Brainlity"
+          "package_name": "com.example.brainlity"
         }
       },
       "oauth_client": [
