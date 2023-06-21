@@ -31,32 +31,32 @@
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_cadastro"
-        app:layout_constraintVertical_bias="0.466" />
+        app:layout_constraintVertical_bias="0.472" />
 
     <Button
-        android:background="@color/black"
         android:id="@+id/buttonCadastrar"
         android:layout_width="157dp"
-        android:layout_height="46dp"
+        android:layout_height="50dp"
+        android:background="@color/black"
         android:text="Cadastrar"
         app:layout_constraintBottom_toBottomOf="@+id/viewCadastro"
         app:layout_constraintEnd_toEndOf="@+id/viewCadastro"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/viewCadastro"
         app:layout_constraintTop_toBottomOf="@+id/editText_cadastroSenha"
-        app:layout_constraintVertical_bias="0.110000014" />
+        app:layout_constraintVertical_bias="0.225" />
 
     <EditText
-        android:paddingLeft="10dp"
-        android:background="@drawable/edit_background"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
         android:id="@+id/editText_cadastroNome"
         android:layout_width="290dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/edit_background"
         android:ems="10"
         android:hint="Nome do Usuario"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/viewCadastro"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@+id/viewCadastro"
@@ -69,7 +69,7 @@
         android:textColorHint="@color/black"
         android:id="@+id/editText_cadastroEmail"
         android:layout_width="290dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Email"
@@ -86,7 +86,7 @@
         android:textColorHint="@color/black"
         android:id="@+id/editText_cadastroSenha"
         android:layout_width="290dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Senha"
@@ -114,12 +114,13 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/viewCadastro"
         app:layout_constraintEnd_toEndOf="@+id/viewCadastro"
         app:layout_constraintStart_toStartOf="@+id/viewCadastro"
         app:layout_constraintTop_toBottomOf="@+id/textView_hasCount"
-        app:layout_constraintVertical_bias="0.067"
+        app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,11 +23,17 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         binding.textViewNotCount.setOnClickListener(view ->{
+            finish();
             startActivity(new Intent(this, CadastroActivity.class));
         });
 
         binding.buttonLogin.setOnClickListener(v ->{
             validaDados();
+        });
+
+        binding.textViewRecuperarSenha.setOnClickListener(view ->{
+            finish();
+            startActivity(new Intent(this, RecuperarSenhaActivity.class));
         });
     }
 
@@ -49,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     public void acessarContaFirebase(String email, String senha){
         mAuth.signInWithEmailAndPassword(email,senha).addOnCompleteListener(task ->{
             if(task.isSuccessful()){
+                finish();
                 startActivity(new Intent(this, MainActivity.class));
             }else{
                 Toast.makeText(this, "Deu merda", Toast.LENGTH_SHORT).show();
