@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         binding.textViewNotCount.setOnClickListener(view ->{
-            finish();
             startActivity(new Intent(this, CadastroActivity.class));
+            finish();
         });
 
         binding.buttonLogin.setOnClickListener(v ->{
@@ -32,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.textViewRecuperarSenha.setOnClickListener(view ->{
-            finish();
             startActivity(new Intent(this, RecuperarSenhaActivity.class));
         });
     }
@@ -51,14 +50,16 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Informe seu email", Toast.LENGTH_SHORT).show();
             }
+        binding.progressBarLogin.setVisibility(View.GONE);
     }
     public void acessarContaFirebase(String email, String senha){
+
         mAuth.signInWithEmailAndPassword(email,senha).addOnCompleteListener(task ->{
+
             if(task.isSuccessful()){
-                finish();
                 startActivity(new Intent(this, MainActivity.class));
             }else{
-                Toast.makeText(this, "Deu merda", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ocorreu Um erro", Toast.LENGTH_SHORT).show();
             }
         });
     }
