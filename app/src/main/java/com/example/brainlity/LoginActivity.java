@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email,senha).addOnCompleteListener(task ->{
 
             if(task.isSuccessful()){
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, MenuActivity.class));
             }else{
                 Toast.makeText(this, "Ocorreu Um erro", Toast.LENGTH_SHORT).show();
             }

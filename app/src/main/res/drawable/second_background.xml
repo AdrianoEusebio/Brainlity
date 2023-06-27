@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/white"/>
-    <corners android:radius="20dp"/>
-    <padding android:top="5dp" android:bottom="10dp"
-        android:left="10dp" android:right="10dp"/>
-    <stroke android:color="@color/cardview_shadow_start_color" android:width="1dp"/>
+    <gradient android:startColor="@color/cor_principal"
+        android:centerColor="@color/cor_principal"
+        android:endColor="@color/cor_segundaria"
+        android:angle="60"/>
 </shape>
