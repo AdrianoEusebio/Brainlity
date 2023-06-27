@@ -7,24 +7,51 @@
     tools:context=".SplashMenuActivity"
     android:background="@drawable/first_background">
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:text="Login"
+    <View
+        android:id="@+id/view_cadastro"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="548dp"
+        android:background="@drawable/view_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button_cadastro"
+    <View
+        android:id="@+id/view_login"
+        android:layout_width="355dp"
+        android:layout_height="70dp"
+        android:background="@drawable/view_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view_cadastro"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view_cadastro"
+        app:layout_constraintTop_toBottomOf="@+id/view_cadastro"
+        app:layout_constraintVertical_bias="0.285" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
         android:text="Cadastro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_login"
-        app:layout_constraintVertical_bias="0.112" />
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_cadastro"
+        app:layout_constraintEnd_toEndOf="@+id/view_cadastro"
+        app:layout_constraintStart_toStartOf="@+id/view_cadastro"
+        app:layout_constraintTop_toTopOf="@+id/view_cadastro" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_login"
+        app:layout_constraintEnd_toEndOf="@+id/view_login"
+        app:layout_constraintStart_toStartOf="@+id/view_login"
+        app:layout_constraintTop_toTopOf="@+id/view_login" />
 </androidx.constraintlayout.widget.ConstraintLayout>

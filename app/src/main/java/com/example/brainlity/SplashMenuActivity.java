@@ -18,15 +18,12 @@ public class SplashMenuActivity extends AppCompatActivity {
         binding = ActivitySplashMenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-        binding.buttonLogin.setOnClickListener(view ->{
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
+        binding.viewCadastro.setOnClickListener(view ->{
+            startActivity(new Intent(this, CadastroActivity.class));
         });
 
-        binding.buttonCadastro.setOnClickListener(view ->{
-            startActivity(new Intent(this, CadastroActivity.class));
-            finish();
+        binding.viewLogin.setOnClickListener(view ->{
+            startActivity(new Intent(this, LoginActivity.class));
         });
     }
 }
