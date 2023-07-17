@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void gotoSplashMenuActivity() {
-        Intent intent = new Intent(getApplicationContext(), SplashMenuActivity.class);
+        Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

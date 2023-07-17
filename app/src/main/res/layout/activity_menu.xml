@@ -3,108 +3,146 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/cor_segundaria"
+    android:background="@color/background_fundo"
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_questionario"
+        android:layout_width="113dp"
+        android:layout_height="115dp"
+        android:layout_marginEnd="60dp"
+        android:background="@drawable/edit_background"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_exercicios"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button_exercicios"
+        app:layout_constraintTop_toTopOf="@+id/button_exercicios"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="80dp"
+            android:layout_height="71dp"
+            android:elevation="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/avaliacao" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout> <!--Botão_Questionário-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_exercicios"
+        android:layout_width="113dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/edit_background"
+        android:elevation="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/view6">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="76dp"
+            android:layout_height="83dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mente" />
+    </androidx.constraintlayout.widget.ConstraintLayout> <!--Botão_Exercicio-->
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/second_background"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:title="Brainlity"
-                app:titleTextColor="@color/black" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_anotacoes"
+        android:layout_width="113dp"
+        android:layout_height="115dp"
+        android:background="@drawable/edit_background"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/button_midia"
+        app:layout_constraintEnd_toEndOf="@+id/button_questionario"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/button_midia"
+        app:layout_constraintTop_toTopOf="@+id/button_midia">
 
-            <ImageView
-                android:id="@+id/configuracao"
-                android:layout_width="43dp"
-                android:layout_height="38dp"
-                android:src="@drawable/settings"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/toolbar3"
-                app:layout_constraintHorizontal_bias="0.958"
-                app:layout_constraintStart_toStartOf="@+id/toolbar3"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="78dp"
+            android:layout_height="74dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.63"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.488"
+            app:srcCompat="@drawable/bloco_de_anotacoes" />
+    </androidx.constraintlayout.widget.ConstraintLayout> <!--Botão_Anotações-->
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:name="androidx.navigation.fragment.Navigation"
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/cor_principal"
-        app:itemTextColor="@color/black"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_midia"
+        android:layout_width="113dp"
+        android:layout_height="115dp"
+        android:layout_marginBottom="432dp"
+        android:background="@drawable/edit_background"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_navigation_menu"
-        tools:layout_editor_absoluteX="0dp"
-        app:itemIconTint="@color/black"
-        app:itemRippleColor="@color/cor_segundaria"
-        app:labelVisibilityMode="labeled" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button_exercicios"
+        app:layout_constraintTop_toBottomOf="@+id/button_exercicios"
+        app:layout_constraintVertical_bias="0.722">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="84dp"
+            android:layout_height="77dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/midia" />
+    </androidx.constraintlayout.widget.ConstraintLayout> <!--Botão_Mídia-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="420dp"
+        android:layout_height="428dp"
+        android:background="@color/background_fundo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="434dp"
+            android:layout_height="486dp"
+            android:background="@drawable/areia_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/areia" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
-        android:id="@+id/view3"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
+        android:id="@+id/view6"
+        android:layout_width="429dp"
+        android:layout_height="81dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.061" />
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exercícios de Respiração"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PodCasts"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view3"
-        app:layout_constraintEnd_toEndOf="@+id/view3"
-        app:layout_constraintStart_toStartOf="@+id/view3"
-        app:layout_constraintTop_toTopOf="@+id/view3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
