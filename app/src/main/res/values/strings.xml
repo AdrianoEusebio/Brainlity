@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name">Brainlity</string>
-    <string name="menu_exercicio">Exercícios</string>
-    <string name="menu_questionario">Questionário</string>
-    <string name="menu_social">Social</string>
-    <string name="menu_anotacao">Anotações</string>
-
+  
 </resources>

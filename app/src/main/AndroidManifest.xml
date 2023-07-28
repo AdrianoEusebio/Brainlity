@@ -13,9 +13,8 @@
         android:theme="@style/Theme.Brainlity"
         tools:targetApi="31">
 
-
         <activity
-            android:name=".SplashActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,12 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
