@@ -1,27 +1,26 @@
 package com.example.brainlity;
 
-import com.google.firebase.database.FirebaseDatabase;
-
 public class Questionario {
-    FirebaseDatabase database;
     private String titulo;
     private int perguntas;
 
-    public Questionario(){
-
+    public Questionario(String a) {
+        titulo = a;
     }
 
-    public String getTitulo(){return titulo;}
-
-    public int getPerguntas(){
-        return this.perguntas;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTitulo(String e){
-        titulo = e;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public void setPerguntas(int e){
-        perguntas = e;
+    public int getPerguntas() {
+        return perguntas;
+    }
+
+    public void setPerguntas(int perguntas) {
+        this.perguntas = perguntas;
     }
 }

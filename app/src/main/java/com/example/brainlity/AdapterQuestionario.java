@@ -1,34 +1,30 @@
 package com.example.brainlity;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.List;
+
 
 public class AdapterQuestionario extends RecyclerView.Adapter<AdapterQuestionario.MyViewHolder>{
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    private List<Questionario> itemList;
+    private Context context;
 
-        private TextView nomeQuestionario, perguntas;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            nomeQuestionario = itemView.findViewById(R.id.textView_nomeQuestionario);
-            perguntas = itemView.findViewById(R.id.textView_quantidadePerguntas);
-        }
+    private int count;
+    public AdapterQuestionario(Context context, List<Questionario> itemList) {
+        this.context = context;
+        this.itemList = itemList;
     }
 
     @NonNull
@@ -40,34 +36,29 @@ public class AdapterQuestionario extends RecyclerView.Adapter<AdapterQuestionari
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ArrayList<String> arrayList = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Questionarios").child("Questionario1");
         holder.itemView.setOnClickListener(v -> {
             Toast.makeText(v.getContext(), "Sucesso", Toast.LENGTH_SHORT).show();
         });
 
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String titulo = snapshot.child("Titulo").getValue(String.class);
-                arrayList.add(titulo);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        holder.nomeQuestionario.setText("a");
-        holder.perguntas.setText("5");
-
+        Questionario questionario = itemList.get(position);
+        holder.nomeQuestionario.setText(questionario.getTitulo());
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return count ;
+    }
+
+    public void setCount(int a){
+        this.count = a;
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        private TextView nomeQuestionario;
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nomeQuestionario = itemView.findViewById(R.id.textView_nomeQuestionario);
+        }
     }
 }
 
