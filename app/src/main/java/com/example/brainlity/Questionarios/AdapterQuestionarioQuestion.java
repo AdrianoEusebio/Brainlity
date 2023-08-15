@@ -1,6 +1,7 @@
 package com.example.brainlity.Questionarios;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,63 +13,59 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.brainlity.R;
+import com.google.android.play.integrity.internal.c;
 
 import java.util.List;
 
-public class AdapterQuestionarioQuestion extends RecyclerView.Adapter<AdapterQuestionarioQuestion.MyViewHolder> {
+public class AdapterQuestionarioQuestion extends RecyclerView.Adapter<AdapterQuestionarioQuestion.MyViewHolder>{
 
-    private List<Questionario.Perguntas> listaDePerguntas;
     private Context context;
+    private int count;
+    private List<Perguntas> perguntasList;
+    SharedPreferences sharedPreferences;
 
-    public AdapterQuestionarioQuestion(Context context /*, List<Questionario.Perguntas> listaDePerguntas*/){
+    public AdapterQuestionarioQuestion(Context context, List<Perguntas> a){
         this.context = context;
-        //this.listaDePerguntas = listaDePerguntas;
+        this.perguntasList = a;
+        sharedPreferences = context.getSharedPreferences("Questionario", Context.MODE_PRIVATE);
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_questionario_question,parent,false);
-        return new MyViewHolder(itemLista);
+        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_questionario_question,parent, false);
+        return new AdapterQuestionarioQuestion.MyViewHolder(itemLista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        //Questionario.Perguntas perguntas = listaDePerguntas.get(position);
-        //holder.enuciado.setText(perguntas.getEnunciado());
-        holder.enuciado.setText("Testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-        holder.grupoQuestion.removeAllViews();
-
-       /* for (String alternativa : perguntas.getAlternativas()) {
-            RadioButton radioButton = new RadioButton(context);
-            radioButton.setText("a");
-            holder.grupoQuestion.addView(radioButton);
-        }*/
+        holder.enunciado.setText( "teste");
 
     }
 
-    public List<Questionario.Perguntas> getListaDePerguntas() {
-        return listaDePerguntas;
-    }
-
-    public void setListaDePerguntas(List<Questionario.Perguntas> listaDePerguntas) {
-        this.listaDePerguntas = listaDePerguntas;
-    }
-
+    @Override
     public int getItemCount() {
-        //return listaDePerguntas.size();
-        return 5;
+        return sharedPreferences.getInt("Card",0);
+    }
+
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView enuciado;
-        RadioGroup grupoQuestion;
+        private TextView enunciado;
+        private RadioGroup radioGroup;
+        private RadioButton alternativa1,alternativa2,alternativa3,alternativa4;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            enuciado = itemView.findViewById(R.id.enuciado);
-            grupoQuestion = itemView.findViewById(R.id.radiogroup_question);
+            enunciado = itemView.findViewById(R.id.enuciado);
+            radioGroup = itemView.findViewById(R.id.radiogroup_question);
+            alternativa1 = itemView.findViewById(R.id.alternativa_1);
+            alternativa2 = itemView.findViewById(R.id.alternativa_2);
+            alternativa3 = itemView.findViewById(R.id.alternativa_3);
+            alternativa4 = itemView.findViewById(R.id.alternativa_4);
         }
     }
 }

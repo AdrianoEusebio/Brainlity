@@ -5,14 +5,12 @@ import java.util.List;
 
 public class Questionario {
     private String titulo;
-    private long perguntasCount;
-    private ArrayList<Perguntas> perguntas;
+    private int perguntasCount;
 
-    public Questionario(String a, long b) {
+    public Questionario(String a, int b) {
         titulo = a;
         perguntasCount = b;
     }
-
     public String getTitulo() {
         return titulo;
     }
@@ -21,7 +19,7 @@ public class Questionario {
         this.titulo = titulo;
     }
 
-    public long getPerguntas() {
+    public int getPerguntas() {
         return perguntasCount;
     }
 
@@ -29,31 +27,4 @@ public class Questionario {
         this.perguntasCount = perguntas;
     }
 
-    public static class Perguntas{
-
-        private String enunciado;
-        private List<String> alternativas;
-
-
-        public Perguntas(String a, List<String> b){
-            this.enunciado = a;
-            this.alternativas = b;
-        }
-
-        public String getEnunciado() {
-            return enunciado;
-        }
-
-        public void setEnnuciado(String enuciado) {
-            this.enunciado = enuciado;
-        }
-
-        public List<String> getAlternativas() {
-            return alternativas;
-        }
-
-        public void setAlternativas(List<String> alternativas) {
-            this.alternativas = alternativas;
-        }
-    }
 }

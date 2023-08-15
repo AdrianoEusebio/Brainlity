@@ -28,12 +28,37 @@
     <RadioGroup
         android:id="@+id/radiogroup_question"
         android:layout_width="359dp"
-        android:layout_height="50dp"
+        android:layout_height="200dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/background_item_question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enuciado" />
+        app:layout_constraintTop_toBottomOf="@+id/enuciado" >
+
+        <RadioButton
+            android:id="@+id/alternativa_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/alternativa_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/alternativa_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/alternativa_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RadioButton" />
+    </RadioGroup>
 
     <ImageView
         android:id="@+id/imageView"

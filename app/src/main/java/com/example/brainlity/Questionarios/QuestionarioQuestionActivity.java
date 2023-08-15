@@ -5,10 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.brainlity.DAO.FirebaseHelper;
 import com.example.brainlity.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,26 +18,31 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionarioActivity extends AppCompatActivity {
+public class QuestionarioQuestionActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private FirebaseHelper firebaseHelper;
     private AdapterQuestionarioQuestion adapter;
-    private List<Questionario.Perguntas> listaDePerguntas = new ArrayList<>();
-
+    private SharedPreferences sharedPreferences;
+    private List<Perguntas> itemList;
+    List<String> alternativas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_questionario_question);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Questionarios");
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_questionario);
-        adapter = new AdapterQuestionarioQuestion(this);
+
+        sharedPreferences = getSharedPreferences("Questionario", MODE_PRIVATE);
+
+        itemList = new ArrayList<>();
+        alternativas = new ArrayList<>();
+        adapter = new AdapterQuestionarioQuestion(this,itemList);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView = findViewById(R.id.recyclerView_questionario_questions);
+        recyclerView = findViewById(R.id.recyclerView_questions);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
