@@ -1,39 +1,33 @@
 package com.example.brainlity;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.brainlity.Questionarios.AdapterQuestionarioCard;
-import com.example.brainlity.Questionarios.Questionario;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+public class SplashActivity extends AppCompatActivity {
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
-public class SplashExemploActivity extends AppCompatActivity {
-
-    AdapterQuestionarioCard adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_exemplo);
+        setContentView(R.layout.activity_splash);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.background_item1)); // Substitua pela cor desejada
+        }
+
         checkInternetConnectivity();
     }
 
@@ -57,7 +51,7 @@ public class SplashExemploActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashExemploActivity.this, MenuExemploActivity.class);
+                Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
                 startActivity(intent);
                 finish();
             }
