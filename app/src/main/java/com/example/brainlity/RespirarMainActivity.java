@@ -31,8 +31,6 @@ public class RespirarMainActivity extends AppCompatActivity {
 
         minutesPicker = findViewById(R.id.minutesPicker);
         secondsPicker = findViewById(R.id.secondsPicker);
-        info = findViewById(R.id.text_info);
-        info.setText("Esse exercicio serve para exercitar sua respiração em momentos de estresse.");
 
         configureMinutesPicker();
         configureSecondsPicker();

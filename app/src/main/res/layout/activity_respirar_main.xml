@@ -9,29 +9,30 @@
     tools:layout_editor_absoluteX="-14dp"
     tools:layout_editor_absoluteY="244dp">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="300dp"
+        android:id="@+id/resp_layout2"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@color/background_item2"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/background_item_card"
         android:elevation="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/resp_layout">
 
         <NumberPicker
             android:id="@+id/minutesPicker"
             android:layout_width="100dp"
             android:layout_height="240dp"
             android:layout_gravity="center"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="24dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <NumberPicker
             android:id="@+id/secondsPicker"
@@ -45,6 +46,45 @@
             app:layout_constraintStart_toEndOf="@+id/minutesPicker"
             app:layout_constraintTop_toTopOf="@+id/minutesPicker"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/text_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_extrabold"
+            android:text="Min"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/minutesPicker"
+            app:layout_constraintTop_toTopOf="@+id/minutesPicker"
+            app:layout_constraintVertical_bias="0.32" />
+
+        <TextView
+            android:id="@+id/text_sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_extrabold"
+            android:text="Sec"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/secondsPicker"
+            app:layout_constraintStart_toEndOf="@+id/minutesPicker"
+            app:layout_constraintTop_toTopOf="@+id/secondsPicker"
+            app:layout_constraintVertical_bias="0.321" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_extrabold"
+            android:text=":"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/secondsPicker"
+            app:layout_constraintStart_toStartOf="@+id/minutesPicker"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
@@ -57,46 +97,54 @@
         android:textColor="@color/white"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintEnd_toEndOf="@+id/resp_layout2"
+        app:layout_constraintStart_toStartOf="@+id/resp_layout2"
+        app:layout_constraintTop_toBottomOf="@+id/resp_layout2"
+        app:layout_constraintVertical_bias="0.131" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/resp_layout"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@color/background_item4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Exercicio de Respiração"
-            android:textColor="@color/white"
-            android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="46dp"
+        android:background="@drawable/background_item_1"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/titulo_respiracao"
+        app:layout_constraintStart_toStartOf="@+id/titulo_respiracao"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_respiracao">
 
         <TextView
             android:id="@+id/text_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_extrabold"
+            android:paddingLeft="15dp"
+            android:paddingTop="8dp"
+            android:lineSpacingExtra="5dp"
+            android:paddingBottom="10dp"
+            android:text="Esse exercicio serve para praticar sua respiração profunda em situações de estresse ou ansiosas."
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.098"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.163" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/titulo_respiracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:text="Exercicio de Respiração"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
