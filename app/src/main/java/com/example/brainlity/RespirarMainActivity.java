@@ -1,41 +1,41 @@
 package com.example.brainlity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class RespirarMainActivity extends AppCompatActivity {
 
+
     private NumberPicker minutesPicker;
     private NumberPicker secondsPicker;
-    private TextView info;
+    private Button comecar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_respirar_main);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.background_item1)); // Substitua pela cor desejada
-        }
+
+        Standard standard = new Standard();
+        standard.actionColorDefault(this);
 
         minutesPicker = findViewById(R.id.minutesPicker);
         secondsPicker = findViewById(R.id.secondsPicker);
+        comecar = findViewById(R.id.button_comecar);
+        TextView a = findViewById(R.id.text_help);
+
 
         configureMinutesPicker();
         configureSecondsPicker();
-
-
+        configureComecar();
     }
 
     private void configureMinutesPicker() {
@@ -58,5 +58,20 @@ public class RespirarMainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             secondsPicker.setTextSize(40);
         }
+    }
+    private void configureComecar() {
+        comecar.setOnClickListener(view -> {
+                int selectedMinutes = minutesPicker.getValue();
+                int selectedSeconds = secondsPicker.getValue() * 15;
+
+                if(!(selectedMinutes == 0 && selectedSeconds == 0)){
+                    Intent intent = new Intent(RespirarMainActivity.this, RespirarActivity.class);
+                    intent.putExtra("selectedMinutes", selectedMinutes);
+                    intent.putExtra("selectedSeconds", selectedSeconds);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(RespirarMainActivity.this, "Colo alguma coisa ai namoral", Toast.LENGTH_SHORT).show();
+                }
+        });
     }
 }

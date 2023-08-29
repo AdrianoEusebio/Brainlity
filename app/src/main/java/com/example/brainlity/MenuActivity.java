@@ -18,11 +18,8 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.background_item1)); // Substitua pela cor desejada
-        }
+        Standard standard = new Standard();
+        standard.actionColorDefault(this);
 
         exercicios = findViewById(R.id.Exercicios_button);
 

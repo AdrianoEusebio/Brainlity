@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 public class SplashActivity extends AppCompatActivity {
+    Standard standard = new Standard();
 
 
     @Override
@@ -22,20 +23,14 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(getResources().getColor(R.color.background_item1)); // Substitua pela cor desejada
-        }
 
+        standard.actionColorDefault(this);
         checkInternetConnectivity();
     }
 
     private void checkInternetConnectivity() {
 
-        NetworkUtils networkUtils = new NetworkUtils();
-
-        if(networkUtils.isNetworkAvailable(this)){
+        if(standard.avaliarConexao(this)){
             navigateToNextActivity();
             Toast.makeText(this, "Voce esta conectado a internet", Toast.LENGTH_SHORT).show();
 
