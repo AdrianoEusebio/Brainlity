@@ -1,16 +1,22 @@
-package com.example.brainlity;
+package com.example.brainlity.Exercicios;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.LightingColorFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.brainlity.R;
+import com.example.brainlity.Standard;
 
 public class RespirarMainActivity extends AppCompatActivity {
 
@@ -31,7 +37,6 @@ public class RespirarMainActivity extends AppCompatActivity {
         secondsPicker = findViewById(R.id.secondsPicker);
         comecar = findViewById(R.id.button_comecar);
         TextView a = findViewById(R.id.text_help);
-
 
         configureMinutesPicker();
         configureSecondsPicker();
@@ -70,7 +75,7 @@ public class RespirarMainActivity extends AppCompatActivity {
                     intent.putExtra("selectedSeconds", selectedSeconds);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(RespirarMainActivity.this, "Colo alguma coisa ai namoral", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RespirarMainActivity.this, "Coloque uma contagem no cronometro", Toast.LENGTH_SHORT).show();
                 }
         });
     }

@@ -4,14 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
+
+import com.example.brainlity.Exercicios.RespirarMainActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
-    ConstraintLayout exercicios;
+    ConstraintLayout exercicios, shorts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +21,15 @@ public class MenuActivity extends AppCompatActivity {
         standard.actionColorDefault(this);
 
         exercicios = findViewById(R.id.Exercicios_button);
+        shorts = findViewById(R.id.Exercicios_button2);
+
+        shorts.setOnClickListener(view ->{
+            Intent intent = new Intent(this, ShortsActivity.class);
+            startActivity(intent);
+        });
 
         exercicios.setOnClickListener(view ->{
-            Intent intent = new Intent(this,RespirarMainActivity.class);
+            Intent intent = new Intent(this, RespirarMainActivity.class);
             startActivity(intent);
 
         });

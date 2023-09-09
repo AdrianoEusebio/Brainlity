@@ -13,10 +13,13 @@
         android:theme="@style/Theme.Brainlity"
         tools:targetApi="31">
         <activity
-            android:name=".RespirarActivity"
+            android:name=".ShortsActivity"
             android:exported="false" />
         <activity
-            android:name=".RespirarMainActivity"
+            android:name=".Exercicios.RespirarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Exercicios.RespirarMainActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

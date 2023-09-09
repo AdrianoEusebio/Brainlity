@@ -1,15 +1,22 @@
-package com.example.brainlity;
+package com.example.brainlity.Exercicios;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.brainlity.MenuActivity;
+import com.example.brainlity.R;
+import com.example.brainlity.Standard;
 
 public class RespirarActivity extends AppCompatActivity {
 
     TextView cronometro;
+    ImageView rollback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,14 @@ public class RespirarActivity extends AppCompatActivity {
                 startCountdown(totalMilliseconds);
             }
         }, 2000);
+
+
+        rollback = findViewById(R.id.image_rollback_respirar);
+        rollback.setOnClickListener(view ->{
+            Intent intent = new Intent(this, RespirarMainActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void startCountdown(long milliseconds) {

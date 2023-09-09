@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_degrade"
-    tools:context=".RespirarMainActivity"
+    android:background="@color/background_item3"
+    tools:context=".Exercicios.RespirarMainActivity"
     tools:layout_editor_absoluteX="-14dp"
     tools:layout_editor_absoluteY="244dp">
 
@@ -107,7 +107,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
-        android:background="@drawable/background_item_1"
+        android:background="@color/background_item1"
         android:elevation="8dp"
         app:layout_constraintEnd_toEndOf="@+id/titulo_respiracao"
         app:layout_constraintStart_toStartOf="@+id/titulo_respiracao"
