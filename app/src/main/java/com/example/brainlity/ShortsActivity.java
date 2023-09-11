@@ -27,7 +27,6 @@ public class ShortsActivity extends AppCompatActivity {
         standard.actionColorDefault(this);
 
 
-
         adapterShorts = new AdapterShorts();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

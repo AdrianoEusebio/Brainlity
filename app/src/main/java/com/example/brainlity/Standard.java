@@ -13,7 +13,6 @@ import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Standard {
-
     public boolean avaliarConexao(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager != null) {

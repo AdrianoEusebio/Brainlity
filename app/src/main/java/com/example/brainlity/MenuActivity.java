@@ -31,8 +31,6 @@ public class MenuActivity extends AppCompatActivity {
         exercicios.setOnClickListener(view ->{
             Intent intent = new Intent(this, RespirarMainActivity.class);
             startActivity(intent);
-
-
         });
 
     }
