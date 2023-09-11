@@ -30,7 +30,6 @@ public class RespirarActivity extends AppCompatActivity {
         int selectedMinutes = getIntent().getIntExtra("selectedMinutes", 0);
         int selectedSeconds = getIntent().getIntExtra("selectedSeconds", 0);
         long totalMilliseconds = (selectedMinutes * 60 + selectedSeconds) * 1000;
-
         cronometro.setText(String.format("%02d:%02d",selectedMinutes,selectedSeconds));
 
         new Handler().postDelayed(new Runnable() {

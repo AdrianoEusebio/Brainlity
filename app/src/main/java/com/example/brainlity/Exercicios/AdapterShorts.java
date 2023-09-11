@@ -11,7 +11,6 @@ import com.example.brainlity.R;
 
 public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHolder> {
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -66,6 +66,7 @@ public class RespirarMainActivity extends AppCompatActivity {
     }
     private void configureComecar() {
         comecar.setOnClickListener(view -> {
+
                 int selectedMinutes = minutesPicker.getValue();
                 int selectedSeconds = secondsPicker.getValue() * 15;
 
