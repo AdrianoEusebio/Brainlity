@@ -37,7 +37,7 @@
         android:layout_marginTop="250dp"
         android:elevation="5dp"
         android:fontFamily="serif"
-        android:text="Teste"
+        android:text="a"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
