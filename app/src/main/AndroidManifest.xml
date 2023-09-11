@@ -24,28 +24,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ConfiguracaoActivity"
-            android:exported="false" />
 
-        <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SplashMenuActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CadastroPasso2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".RecuperarSenhaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CadastroActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
