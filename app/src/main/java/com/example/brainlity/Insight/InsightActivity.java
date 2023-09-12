@@ -1,21 +1,28 @@
-package com.example.brainlity;
+package com.example.brainlity.Insight;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
 import android.os.Bundle;
-import android.widget.ImageView;
 
-import com.example.brainlity.Exercicios.AdapterShorts;
+import com.example.brainlity.DAO.MyDataSource;
+import com.example.brainlity.Insight.AdapterShorts;
+import com.example.brainlity.R;
+import com.example.brainlity.Standard;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class ShortsActivity extends AppCompatActivity {
+import java.util.List;
+
+public class InsightActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     AdapterShorts adapterShorts;
 
@@ -23,12 +30,14 @@ public class ShortsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shorts);
-        Standard standard = new Standard();
-        standard.actionColorDefault(this);
-
+        FirebaseApp.initializeApp(this);
 
 
         adapterShorts = new AdapterShorts();
+
+        Standard standard = new Standard();
+        standard.actionColorDefault(this);
+
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView = findViewById(R.id.recyclerview_shorts);

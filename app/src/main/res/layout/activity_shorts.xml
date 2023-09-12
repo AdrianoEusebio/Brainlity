@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/background_item1"
     android:layout_height="match_parent"
-    tools:context=".ShortsActivity">
+    tools:context=".Insight.InsightActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_shorts"
@@ -19,6 +19,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.491" />
+
+    <TextView
+        android:id="@+id/text_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/itim"
+        android:text="B r a i n l i t y"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerview_shorts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView4"

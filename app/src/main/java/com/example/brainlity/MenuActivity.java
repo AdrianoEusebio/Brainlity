@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.brainlity.Exercicios.RespirarMainActivity;
+import com.example.brainlity.Insight.InsightActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class MenuActivity extends AppCompatActivity {
         shorts = findViewById(R.id.Exercicios_button2);
 
         shorts.setOnClickListener(view ->{
-            Intent intent = new Intent(this, ShortsActivity.class);
+            Intent intent = new Intent(this, InsightActivity.class);
             startActivity(intent);
         });
 

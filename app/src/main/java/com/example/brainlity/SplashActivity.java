@@ -14,6 +14,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+
 public class SplashActivity extends AppCompatActivity {
     Standard standard = new Standard();
 
@@ -22,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
 
 
         standard.actionColorDefault(this);

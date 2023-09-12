@@ -1,12 +1,15 @@
-package com.example.brainlity.Exercicios;
+package com.example.brainlity.Insight;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.brainlity.DAO.MyDataSource;
 import com.example.brainlity.R;
 
 public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHolder> {
@@ -30,9 +33,12 @@ public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        TextView textView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.imageView_shorts1);
         }
     }
 }
