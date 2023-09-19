@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.brainlity.DAO.MyDataSource;
 import com.example.brainlity.R;
 
 public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHolder> {
