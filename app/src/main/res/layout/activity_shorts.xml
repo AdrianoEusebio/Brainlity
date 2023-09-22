@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/shorts_back"
         android:layout_width="33dp"
         android:layout_height="33dp"
         android:layout_marginStart="10dp"

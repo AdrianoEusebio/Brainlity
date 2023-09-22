@@ -1,7 +1,10 @@
 package com.example.brainlity.Insight;
 
+import android.graphics.drawable.Drawable;
+
+import com.example.brainlity.R;
+
 public class Insight {
-    private long id;
     private String text;
     private String author;
     private int backgroundResId;
@@ -13,14 +16,6 @@ public class Insight {
         this.text = text;
         this.author = author;
         this.backgroundResId = backgroundResId;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getText() {

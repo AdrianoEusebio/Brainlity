@@ -27,12 +27,13 @@ public class MenuActivity extends AppCompatActivity {
         shorts.setOnClickListener(view ->{
             Intent intent = new Intent(this, InsightActivity.class);
             startActivity(intent);
+            finish();
         });
 
         exercicios.setOnClickListener(view ->{
             Intent intent = new Intent(this, RespirarMainActivity.class);
             startActivity(intent);
-
+            finish();
         });
 
     }
