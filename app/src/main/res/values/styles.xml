@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="NumberPickerTextStyle">
+        <item name="android:textSize">20sp</item> <!-- Ajuste o tamanho do texto conforme necessário -->
+        <item name="android:textColor">@color/white</item> <!-- Cor do texto -->
+    </style>
 
 
 </resources>

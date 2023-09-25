@@ -36,7 +36,6 @@ public class RespirarMainActivity extends AppCompatActivity {
         minutesPicker = findViewById(R.id.minutesPicker);
         secondsPicker = findViewById(R.id.secondsPicker);
         comecar = findViewById(R.id.button_comecar);
-        TextView a = findViewById(R.id.text_help);
 
         configureMinutesPicker();
         configureSecondsPicker();

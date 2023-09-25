@@ -90,9 +90,6 @@ public class InsightActivity extends AppCompatActivity {
                         case 4:
                             imageId = R.drawable.image_shorts4;
                             break;
-                        case 5:
-                            imageId = R.drawable.image_shorts5;
-                            break;
                         default:
                             imageId = R.drawable.ic_launcher_background;
                     }

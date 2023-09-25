@@ -27,7 +27,9 @@ public class Standard {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = appCompatActivity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(appCompatActivity.getResources().getColor(R.color.background_item1)); // Substitua pela cor desejada
+            window.setStatusBarColor(appCompatActivity.getResources().getColor(R.color.background_item2)); // Substitua pela cor desejada
         }
     }
+
+
 }

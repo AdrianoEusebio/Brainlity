@@ -2,39 +2,50 @@ package com.example.brainlity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.brainlity.Exercicios.RespirarMainActivity;
-import com.example.brainlity.Insight.InsightActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
 
     ConstraintLayout exercicios, shorts;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        replaceFragment(new MenuFragment());
         Standard standard = new Standard();
         standard.actionColorDefault(this);
 
-        exercicios = findViewById(R.id.Exercicios_button);
-        shorts = findViewById(R.id.Exercicios_button2);
+        bottomNavigationView = findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
 
-        shorts.setOnClickListener(view ->{
-            Intent intent = new Intent(this, InsightActivity.class);
-            startActivity(intent);
-            finish();
+            if(item.getItemId() == R.id.menu_nav){
+                replaceFragment(new MenuFragment());
+            } else if (item.getItemId() == R.id.diario_nav) {
+                replaceFragment(new DiarioFragment());
+            } else if (item.getItemId() == R.id.insight_nav) {
+                replaceFragment(new InsightFragment());
+            } else if(item.getItemId() == R.id.exercicio_nav){
+                replaceFragment(new ExercicioFragment());
+            } else if(item.getItemId() == R.id.perfil_nav){
+                replaceFragment(new PerfilFragment());
+            }
+           
+            return true;
         });
-
-        exercicios.setOnClickListener(view ->{
-            Intent intent = new Intent(this, RespirarMainActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
+    }
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.commit();
     }
 }

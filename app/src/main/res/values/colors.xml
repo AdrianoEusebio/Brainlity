@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background_item1">#052251</color>
     <color name="background_item2">#06264F</color>
-    <color name="background_item3">#1C538B</color>
-    <color name="background_item4">#549AD5</color>
+    <color name="background_item3">#12477C</color>
+    <color name="background_item4">#1C538B</color>
+    <color name="background_item5">#549AD5</color>
     </resources>
