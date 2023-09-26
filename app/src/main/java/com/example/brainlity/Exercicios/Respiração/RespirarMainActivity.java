@@ -1,22 +1,16 @@
-package com.example.brainlity.Exercicios;
+package com.example.brainlity.Exercicios.Respiração;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.brainlity.R;
-import com.example.brainlity.Standard;
+import com.example.brainlity.utils.Standard;
 
 public class RespirarMainActivity extends AppCompatActivity {
 

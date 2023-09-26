@@ -1,9 +1,10 @@
-package com.example.brainlity;
+package com.example.brainlity.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.brainlity.R;
 
 public class Standard {
 
@@ -31,5 +34,14 @@ public class Standard {
         }
     }
 
+    public void vibrator(Context context){
+        Vibrator vibrator = (Vibrator) context.getSystemService(context.VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            // Defina a duração da vibração em milissegundos (1000 ms = 1 segundo)
+            long tempoDeVibracao = 1000; // 1 segundo
+            // Faça o dispositivo vibrar
+            vibrator.vibrate(tempoDeVibracao);
+        }
+    }
 
 }

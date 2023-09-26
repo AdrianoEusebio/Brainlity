@@ -12,31 +12,22 @@ public class Musica {
 
     public Musica(Context context){
         this.context = context;
-        this.mediaPlayer =(MediaPlayer) MediaPlayer.create(context, R.raw.relax_music);
+        this.mediaPlayer = MediaPlayer.create(context, R.raw.relax_music);
     }
     public void startMusic(){
-        mediaPlayer = (MediaPlayer) MediaPlayer.create(context, R.raw.relax_music);
-        if(mediaPlayer.isPlaying() == false){
-            mediaPlayer.start();
-        }
-    }
-
-
-    public Boolean startPause(){
-        if(mediaPlayer.isPlaying() == true){
-            pauseMusic();
-            return true;
-        } else {
-            startMusic();
-            return false;
-        }
+        mediaPlayer.start();
     }
     public void pauseMusic(){
-
-        if(mediaPlayer.isPlaying()== true){
             mediaPlayer.release();
             mediaPlayer = null;
-            mediaPlayer = (MediaPlayer) MediaPlayer.create(context, R.raw.relax_music);
+            mediaPlayer = MediaPlayer.create(context, R.raw.relax_music);
+    }
+
+    public boolean isPlaying(){
+        if(mediaPlayer.isPlaying()){
+            return true;
+        } else {
+            return false;
         }
     }
 }

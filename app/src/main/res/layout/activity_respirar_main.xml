@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_item2"
-    tools:context=".Exercicios.RespirarMainActivity"
+    tools:context=".Exercicios.Respiração.RespirarMainActivity"
     tools:layout_editor_absoluteX="-14dp"
     tools:layout_editor_absoluteY="244dp">
 

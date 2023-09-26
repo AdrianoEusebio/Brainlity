@@ -10,8 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.brainlity.Exercicios.RespirarActivity;
-import com.example.brainlity.Exercicios.RespirarMainActivity;
+import com.example.brainlity.Exercicios.Respiração.RespirarMainActivity;
 
 
 public class ExercicioFragment extends Fragment {

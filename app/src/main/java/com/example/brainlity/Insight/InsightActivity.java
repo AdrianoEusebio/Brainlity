@@ -7,18 +7,14 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.brainlity.Insight.AdapterShorts;
 import com.example.brainlity.MenuActivity;
 import com.example.brainlity.R;
-import com.example.brainlity.Standard;
+import com.example.brainlity.utils.Standard;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
