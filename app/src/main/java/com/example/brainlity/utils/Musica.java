@@ -9,10 +9,12 @@ public class Musica {
 
     Context context;
     public static MediaPlayer mediaPlayer;
+    private int id;
 
-    public Musica(Context context){
+    public Musica(Context context, int id){
+        this.id = id;
         this.context = context;
-        this.mediaPlayer = MediaPlayer.create(context, R.raw.relax_music);
+        this.mediaPlayer = MediaPlayer.create(context,this.id);
     }
     public void startMusic(){
         mediaPlayer.start();
@@ -20,7 +22,7 @@ public class Musica {
     public void pauseMusic(){
             mediaPlayer.release();
             mediaPlayer = null;
-            mediaPlayer = MediaPlayer.create(context, R.raw.relax_music);
+            mediaPlayer = MediaPlayer.create(context, this.id);
     }
 
     public boolean isPlaying(){

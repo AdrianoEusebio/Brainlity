@@ -1,6 +1,5 @@
 package com.example.brainlity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,6 @@ import android.widget.Toast;
 
 import com.example.brainlity.Insight.AdapterShorts;
 import com.example.brainlity.Insight.Insight;
-import com.example.brainlity.Insight.InsightActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

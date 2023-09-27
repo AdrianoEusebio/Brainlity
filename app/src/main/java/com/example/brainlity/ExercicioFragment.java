@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.brainlity.Exercicios.Relaxar.RelaxarActivity;
 import com.example.brainlity.Exercicios.Respiração.RespirarMainActivity;
 
 
@@ -17,7 +18,7 @@ public class ExercicioFragment extends Fragment {
 
 
     View view;
-    ConstraintLayout bottomRespirar;
+    ConstraintLayout bottomRespirar, bottomRelaxar;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,12 @@ public class ExercicioFragment extends Fragment {
         bottomRespirar = view.findViewById(R.id.bottom_respirar);
         bottomRespirar.setOnClickListener(view ->{
             Intent intent = new Intent(getActivity(), RespirarMainActivity.class);
+            startActivity(intent);
+        });
+
+        bottomRelaxar = view.findViewById(R.id.bottom_relaxar);
+        bottomRelaxar.setOnClickListener(view ->{
+            Intent intent = new Intent(getActivity(), RelaxarActivity.class);
             startActivity(intent);
         });
         return view;

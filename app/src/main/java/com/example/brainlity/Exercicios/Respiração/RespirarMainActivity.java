@@ -39,8 +39,8 @@ public class RespirarMainActivity extends AppCompatActivity {
     private void configureMinutesPicker() {
         minutesPicker.setOrientation(NumberPicker.VERTICAL);
         minutesPicker.setMinValue(0);
-        minutesPicker.setMaxValue(5);
-        minutesPicker.setDisplayedValues(new String[]{"0", "1", "2", "3", "4", "5"});
+        minutesPicker.setMaxValue(3);
+        minutesPicker.setDisplayedValues(new String[]{"0", "1", "2", "3"});
         minutesPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             minutesPicker.setTextSize(40);
@@ -51,7 +51,7 @@ public class RespirarMainActivity extends AppCompatActivity {
         secondsPicker.setOrientation(NumberPicker.VERTICAL);
         secondsPicker.setMinValue(0);
         secondsPicker.setMaxValue(3);
-        secondsPicker.setDisplayedValues(new String[]{"00", "15", "30", "45"});
+        secondsPicker.setDisplayedValues(new String[]{"00", "15", "30","45"});
         secondsPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             secondsPicker.setTextSize(40);

@@ -12,6 +12,7 @@ import com.example.brainlity.R;
 import com.example.brainlity.utils.Standard;
 import com.example.brainlity.utils.Musica;
 
+import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
 public class RespirarActivity extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class RespirarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_respirar);
 
-        musica = new Musica(this);
+        musica = new Musica(this,R.raw.relax_music);
         standard.actionColorDefault(this);
         cronometro = findViewById(R.id.textView_cronometro);
         button = findViewById(R.id.button2);
@@ -44,6 +45,15 @@ public class RespirarActivity extends AppCompatActivity {
         selectedSeconds = getIntent().getIntExtra("selectedSeconds", 0);
         totalMilliseconds = (selectedMinutes * 60 + selectedSeconds) * 1000;
         cronometro.setText(String.format("%02d:%02d",selectedMinutes,selectedSeconds));
+
+       /* try{
+            GifDrawable gifDrawable = new GifDrawable(getResources(), R.drawable.gif_ansiedade_respiracao);
+            gifDrawable.setSpeed(2.0f);
+            gifImageView.setImageDrawable(gifDrawable);
+        }catch (Exception e){
+            e.printStackTrace();
+        }*/
+
 
         rollback.setOnClickListener(view ->{
             onBackPressed();
