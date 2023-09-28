@@ -5,9 +5,11 @@ import android.graphics.drawable.Drawable;
 import com.example.brainlity.R;
 
 public class Insight {
+
+    private long id;
     private String text;
     private String author;
-    private int backgroundResId;
+    private int fundo;
 
     public Insight() {
     }
@@ -15,9 +17,16 @@ public class Insight {
     public Insight(String text, String author, int backgroundResId) {
         this.text = text;
         this.author = author;
-        this.backgroundResId = backgroundResId;
+        this.fundo = backgroundResId;
     }
 
+    public long getId(){
+        return id;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
     public String getText() {
         return text;
     }
@@ -34,11 +43,11 @@ public class Insight {
         this.author = author;
     }
 
-    public int getBackgroundResId() {
-        return backgroundResId;
+    public int getFundo() {
+        return fundo;
     }
 
-    public void setBackgroundResId(int backgroundResId) {
-        this.backgroundResId = backgroundResId;
+    public void setFundo(int backgroundResId) {
+        this.fundo = backgroundResId;
     }
 }

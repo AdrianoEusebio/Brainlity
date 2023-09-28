@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import com.example.brainlity.DAO.FirebaseSync;
+import com.example.brainlity.DAO.SyncManager;
 import com.example.brainlity.utils.Standard;
 
 public class SplashActivity extends AppCompatActivity {
@@ -22,25 +24,23 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
-
         standard.actionColorDefault(this);
-        checkInternetConnectivity();
-    }
-
-    private void checkInternetConnectivity() {
-
-        if(standard.avaliarConexao(this)){
-            navigateToNextActivity();
-            Toast.makeText(this, "Voce esta conectado a internet", Toast.LENGTH_SHORT).show();
-
-        }else{
-            navigateToNextActivity();
-            Toast.makeText(this, "Voce esta no modo offline", Toast.LENGTH_SHORT).show();
+        if (SyncManager.getInstance().isSyncNeeded()) {
+            realizarSincronizacao();
         }
-
     }
 
+
+    private void realizarSincronizacao() {
+        FirebaseSync firebaseSync = new FirebaseSync(getApplicationContext());
+        if (standard.avaliarConexao(this)) {
+            firebaseSync.syncFirebaseDataToLocalDatabase();
+            navigateToNextActivity();
+        } else {
+            navigateToNextActivity();
+            showToast("Sincronização não é possível sem uma conexão de rede.");
+        }
+    }
 
     private void navigateToNextActivity() {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
@@ -51,5 +51,9 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 2000); // Delay for 2 seconds
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

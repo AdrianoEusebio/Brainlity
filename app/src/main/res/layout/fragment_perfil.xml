@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilFragment"
+    tools:context=".fragment.PerfilFragment"
     android:background="@color/background_item2">
 
     <!-- TODO: Update blank fragment layout -->

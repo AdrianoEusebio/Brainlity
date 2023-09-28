@@ -33,9 +33,27 @@ public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Insight item = dataSet.get(position);
+
         holder.autorTextView.setText(item.getAuthor());
         holder.textoTextView.setText(item.getText());
-        holder.imageView.setImageResource(item.getBackgroundResId());
+        int id = item.getFundo();
+        switch (id){
+            case 1:
+                holder.imageView.setImageResource(R.drawable.image_shorts1);
+                break;
+            case 2:
+                holder.imageView.setImageResource(R.drawable.image_shorts2);
+                break;
+            case 3:
+                holder.imageView.setImageResource(R.drawable.image_shorts3);
+                break;
+            case 4:
+                holder.imageView.setImageResource(R.drawable.image_shorts4);
+                break;
+            default:
+                holder.imageView.setImageResource(R.drawable.ic_launcher_background);
+        }
+
     }
 
     @Override

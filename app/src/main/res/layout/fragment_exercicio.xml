@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_item2"
-    tools:context=".ExercicioFragment">
+    tools:context=".fragment.ExercicioFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="44sp"
             android:fontFamily="@font/itim"
             android:text="Exercicios práticos"
             android:textColor="@color/white"

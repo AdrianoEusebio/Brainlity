@@ -1,4 +1,4 @@
-package com.example.brainlity;
+package com.example.brainlity.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.brainlity.Exercicios.Relaxar.RelaxarActivity;
 import com.example.brainlity.Exercicios.Respiração.RespirarMainActivity;
+import com.example.brainlity.R;
 
 
 public class ExercicioFragment extends Fragment {

@@ -8,6 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.brainlity.fragment.DiarioFragment;
+import com.example.brainlity.fragment.ExercicioFragment;
+import com.example.brainlity.fragment.InsightFragment;
+import com.example.brainlity.fragment.MenuFragment;
+import com.example.brainlity.fragment.PerfilFragment;
 import com.example.brainlity.utils.Standard;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
