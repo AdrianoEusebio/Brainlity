@@ -1,5 +1,6 @@
 package com.example.brainlity.Insight;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,7 @@ public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
+        public View view;
         public TextView autorTextView;
         public TextView textoTextView;
 
@@ -70,7 +72,11 @@ public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHold
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView_shorts1);
             autorTextView = itemView.findViewById(R.id.textView_author);
+            view = itemView.findViewById(R.id.view);
             textoTextView = itemView.findViewById(R.id.textView_itemCard);
+
+            int corEscura = Color.argb(100, 0, 0, 0);
+            view.setBackgroundColor(corEscura);
 
         }
     }

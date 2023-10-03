@@ -46,15 +46,6 @@ public class RespirarActivity extends AppCompatActivity {
         totalMilliseconds = (selectedMinutes * 60 + selectedSeconds) * 1000;
         cronometro.setText(String.format("%02d:%02d",selectedMinutes,selectedSeconds));
 
-       /* try{
-            GifDrawable gifDrawable = new GifDrawable(getResources(), R.drawable.gif_ansiedade_respiracao);
-            gifDrawable.setSpeed(2.0f);
-            gifImageView.setImageDrawable(gifDrawable);
-        }catch (Exception e){
-            e.printStackTrace();
-        }*/
-
-
         rollback.setOnClickListener(view ->{
             onBackPressed();
         });

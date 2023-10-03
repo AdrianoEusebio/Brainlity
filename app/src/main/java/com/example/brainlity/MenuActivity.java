@@ -18,18 +18,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
 
-    ConstraintLayout exercicios, shorts;
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        replaceFragment(new MenuFragment());
         Standard standard = new Standard();
         standard.actionColorDefault(this);
 
+        replaceFragment(new MenuFragment());
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -44,7 +42,6 @@ public class MenuActivity extends AppCompatActivity {
             } else if(item.getItemId() == R.id.perfil_nav){
                 replaceFragment(new PerfilFragment());
             }
-           
             return true;
         });
     }
