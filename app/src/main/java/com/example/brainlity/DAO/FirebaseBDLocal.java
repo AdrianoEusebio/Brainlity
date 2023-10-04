@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.annotation.NonNull;
 
 import com.example.brainlity.Insight.Insight;
+import com.example.brainlity.Usuario;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,18 +21,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FirebaseSync {
+public class FirebaseBDLocal {
 
     private DatabaseReference databaseReference;
     private DataBaseDBHelper dbHelper;
     private Context context;
 
-    public FirebaseSync(Context context) {
+    public FirebaseBDLocal(Context context) {
         this.context = context;
         dbHelper = new DataBaseDBHelper(context);
         // Inicialize o DatabaseReference com a referência ao nó "Frases" do Firebase Realtime Database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Frases");
     }
+
+
 
     public void syncFirebaseDataToLocalDatabase() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -39,10 +43,9 @@ public class FirebaseSync {
                 deleteAllFrases();
                 int i = 1;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-
-                    int image = snapshot.child("frase"+i).child("fundo").getValue(int.class);
-                    String texto = snapshot.child("frase"+i).child("texto").getValue(String.class);
-                    String autor = snapshot.child("frase"+i).child("autor").getValue(String.class);
+                    int image = dataSnapshot.child("frase"+i).child("fundo").getValue(int.class);
+                    String texto = dataSnapshot.child("frase"+i).child("texto").getValue(String.class);
+                    String autor = dataSnapshot.child("frase"+i).child("autor").getValue(String.class);
                     Insight insight = new Insight(texto,autor,image);
                     inserirFrase(insight);
                     i++;
@@ -56,6 +59,7 @@ public class FirebaseSync {
         });
     }
 
+    //METODOS DA TABELA FRASE -----------------------------------------------------------------------------------------------
     public long inserirFrase(Insight insight) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long idInserido = -1; // Valor padrão se a inserção falhar
@@ -113,4 +117,36 @@ public class FirebaseSync {
 
         return insights;
     }
+
+    //METODOS DA TABELA USUARIO -----------------------------------------------------------------------------------------------
+
+    public long inserirUsuario(Usuario usuario) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        long idInserido = -1; // Valor padrão se a inserção falhar
+        try {
+            ContentValues values = new ContentValues();
+            values.put(dbHelper.KEY_EMAIL, usuario.getEmail());
+            values.put(dbHelper.KEY_NOME, usuario.getNome());
+            values.put(dbHelper.KEY_SENHA, usuario.getSenha());
+
+            idInserido = db.insert(dbHelper.TABLE_USUARIO, null, values);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+        return idInserido;
+    }
+
+    public void deleteAllUsuarios() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+            db.delete(dbHelper.TABLE_USUARIO, null, null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+    }
+
 }

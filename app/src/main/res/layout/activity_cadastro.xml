@@ -32,7 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cadastro_bemvindo"
-        tools:srcCompat="@drawable/baseline_account_circle" />
+        tools:srcCompat="@drawable/baseline_account_box" />
 
     <EditText
         android:id="@+id/editText_CadastroNome"
@@ -100,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText_CadastroEmail" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_cadastrar"
         android:layout_width="125dp"
         android:layout_height="65dp"
         android:layout_marginTop="35dp"

@@ -10,7 +10,8 @@
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="168dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="710dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/titulo_info2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,12 +54,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:paddingTop="10dp"
-        android:paddingLeft="15dp"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="725dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="162dp"
         android:background="@color/background_item3"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

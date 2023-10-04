@@ -9,16 +9,20 @@ import androidx.annotation.Nullable;
 public class DataBaseDBHelper extends SQLiteOpenHelper {
 
     private static String NAME = "DATABASE";
-    private static int VERSION = 1;
+    private static int VERSION = 2;
 
-    // Nome da tabela
+    // TABELA FRASE
     public static final String TABLE_FRASE = "Frase";
-
-    // Colunas da tabela
     public static final String KEY_ID = "id";
     public static final String KEY_TEXTO = "texto";
     public static final String KEY_FUNDO = "fundo";
     public static final String KEY_AUTOR = "autor";
+
+    //TABELA USUARIO
+    public static final String TABLE_USUARIO = "Usuario";
+    public static final String KEY_NOME = "Nome";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_SENHA = "Senha";
 
     public DataBaseDBHelper(Context context) {
         super(context, NAME, null, VERSION);
@@ -32,15 +36,24 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
                 + KEY_FUNDO + " TEXT,"
                 + KEY_AUTOR + " TEXT"
                 + ")";
-
         db.execSQL(sql);
+
+        String sql2 = "CREATE TABLE " + TABLE_USUARIO + "("
+                + KEY_EMAIL + " TEXT PRIMARY KEY,"
+                + KEY_SENHA + " TEXT NOT NULL,"
+                + KEY_NOME + " TEXT NOT NULL" + ")";
+        db.execSQL(sql2);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FRASE);
-        onCreate(db);
 
+        if(oldVersion < 2){
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_USUARIO + "("
+                    + KEY_EMAIL + " TEXT PRIMARY KEY,"
+                    + KEY_SENHA + " TEXT NOT NULL,"
+                    + KEY_NOME + " TEXT NOT NULL" + ")");
+        }
     }
 }

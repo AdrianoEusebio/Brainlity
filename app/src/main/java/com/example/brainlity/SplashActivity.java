@@ -11,7 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.example.brainlity.DAO.FirebaseSync;
+import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.DAO.SyncManager;
 import com.example.brainlity.utils.Standard;
 
@@ -32,9 +32,9 @@ public class SplashActivity extends AppCompatActivity {
 
 
     private void realizarSincronizacao() {
-        FirebaseSync firebaseSync = new FirebaseSync(getApplicationContext());
+        FirebaseBDLocal firebaseBDLocal = new FirebaseBDLocal(getApplicationContext());
         if (standard.avaliarConexao(this)) {
-            firebaseSync.syncFirebaseDataToLocalDatabase();
+            firebaseBDLocal.syncFirebaseDataToLocalDatabase();
             navigateToNextActivity();
         } else {
             navigateToNextActivity();
