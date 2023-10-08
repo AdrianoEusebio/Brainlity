@@ -16,13 +16,9 @@ import java.util.List;
 public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHolder> {
     private List<Insight> dataSet;
 
-
     public AdapterShorts(List<Insight> dataSet) {
         this.dataSet = dataSet;
     }
-
-
-
 
     @NonNull
     @Override

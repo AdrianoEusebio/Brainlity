@@ -22,24 +22,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView_cadastroImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/background_item_card"
-        android:elevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cadastro_bemvindo"
-        tools:srcCompat="@drawable/baseline_account_box" />
-
     <EditText
         android:id="@+id/editText_CadastroNome"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="20dp"
         android:autofillHints="name"
         android:background="@color/background_item4"
@@ -54,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_cadastroImage" />
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_bemvindo" />
 
     <EditText
         android:id="@+id/editText_CadastroEmail"
@@ -99,21 +87,59 @@
         app:layout_constraintStart_toStartOf="@+id/editText_CadastroEmail"
         app:layout_constraintTop_toBottomOf="@+id/editText_CadastroEmail" />
 
+    <TextView
+        android:id="@+id/textLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/itim"
+        android:text="Já tem conta? Faça o login aqui!"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/editText_CadastroSenha"
+        app:layout_constraintHorizontal_bias="0.363"
+        app:layout_constraintStart_toStartOf="@+id/editText_CadastroSenha"
+        app:layout_constraintTop_toBottomOf="@+id/editText_CadastroSenha" />
+
     <Button
         android:id="@+id/button_cadastrar"
         android:layout_width="125dp"
         android:layout_height="65dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/background_item5"
         android:fontFamily="@font/itim"
         android:text="Cadastrar"
-        android:textSize="17dp"
         android:textColor="@color/white"
+        android:textSize="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText_CadastroSenha"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="@+id/editText_CadastroSenha"
-        app:layout_constraintTop_toBottomOf="@+id/editText_CadastroSenha"
+        app:layout_constraintEnd_toEndOf="@+id/textLogin"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/textLogin"
+        app:layout_constraintTop_toBottomOf="@+id/textLogin"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toEndOf="@+id/cadastro_bemvindo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:elevation="8dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_CadastroSenha"
+        app:layout_constraintEnd_toEndOf="@+id/editText_CadastroSenha"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="@+id/editText_CadastroSenha"
+        app:layout_constraintTop_toTopOf="@+id/editText_CadastroSenha"
+        app:srcCompat="@drawable/baseline_visibility" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

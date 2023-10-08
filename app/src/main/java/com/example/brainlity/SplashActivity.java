@@ -38,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
             navigateToNextActivity();
         } else {
             navigateToNextActivity();
-            showToast("Sincronização não é possível sem uma conexão de rede.");
+            standard.toast(SplashActivity.this, "Você está no modo offline", 1);
         }
     }
 
@@ -46,14 +46,11 @@ public class SplashActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
         }, 2000); // Delay for 2 seconds
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
 }

@@ -1,6 +1,10 @@
 package com.example.brainlity.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.shapes.Shape;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -10,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,4 +51,34 @@ public class Standard {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
+    public void toast(AppCompatActivity activity, String msg, int icon){
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast, activity.findViewById(R.id.custom_toast_container));
+
+// Configurar o texto da mensagem personalizada
+        TextView text = layout.findViewById(R.id.custom_toast_text);
+        ImageView imageView = layout.findViewById(R.id.imageView8);
+        switch (icon){
+            case 1:
+                layout.setBackgroundColor(activity.getResources().getColor(R.color.background_item5));
+                imageView.setImageResource(R.drawable.baseline_check);
+                break;
+            case 2:
+                layout.setBackgroundColor(activity.getResources().getColor(R.color.background_red));
+                imageView.setImageResource(R.drawable.baseline_error);
+                break;
+            default:
+                imageView.setImageResource(R.drawable.baseline_disabled_by_default);
+        }
+        text.setText(msg);
+
+// Criar o Toast personalizado
+        Toast toast = new Toast(activity.getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT); // Defina a duração do Toast
+        toast.setView(layout); // Defina o layout personalizado
+
+// Mostrar o Toast
+        toast.show();
+    }
 }
