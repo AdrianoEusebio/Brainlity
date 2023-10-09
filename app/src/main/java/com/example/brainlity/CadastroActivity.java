@@ -143,10 +143,10 @@ public class CadastroActivity extends AppCompatActivity {
 
                 // Sucesso ao criar a conta. O usuário será automaticamente logado.
                 standard.toast(CadastroActivity.this, "Conta criada com Sucesso", 1);
-                FirebaseUser user = mAuth.getCurrentUser();
-
-                // Enviar e-mail de verificação
-                checkUtilits.checkEmailInvite(user,CadastroActivity.this);
+                Intent intent = new Intent(CadastroActivity.this,VerificacaoActivity.class);
+                intent.putExtra("Email",email);
+                startActivity(intent);
+                finish();
 
             } else {
                 // Falha ao criar a conta. Trate o erro aqui.
