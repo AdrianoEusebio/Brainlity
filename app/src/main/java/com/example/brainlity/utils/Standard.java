@@ -21,6 +21,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.brainlity.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Standard {
 
@@ -81,4 +85,32 @@ public class Standard {
 // Mostrar o Toast
         toast.show();
     }
+
+    public void emailVerification(FirebaseAuth mAuth, FirebaseUser user, AppCompatActivity activity){
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        if (user != null) {
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        // E-mail de verificação enviado com sucesso
+                        toast(activity,"Email de Verificação Enviado, Verifique seu email.",1);
+                        // Instrua o usuário a verificar seu e-mail
+                        // Pode ser exibida uma mensagem ou redirecionar o usuário para uma tela de verificação
+                    } else {
+                        // Falha ao enviar o e-mail de verificação
+                        toast(activity,"Falha ao mandar o email de verificação.",2);
+                        // Lide com o erro aqui
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            // Trate o erro aqui
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+
 }

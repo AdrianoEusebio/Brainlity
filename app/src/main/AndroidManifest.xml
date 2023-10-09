@@ -15,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Brainlity"
         tools:targetApi="31">
+
         <activity
             android:name=".CadastroActivity"
             android:exported="false"
@@ -44,6 +45,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
+            tools:node="replace"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

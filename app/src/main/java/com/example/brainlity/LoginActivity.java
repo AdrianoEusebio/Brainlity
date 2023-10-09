@@ -19,10 +19,11 @@ import com.example.brainlity.DAO.CheckUtilits;
 import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.utils.Standard;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
@@ -54,21 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         CheckUtilits checkUtilits = new CheckUtilits(LoginActivity.this);
         buttonLogin.setOnClickListener(view -> {
             String email = editTextEmail.getText().toString();
-            String senha =editTextPassword.getText().toString();
-
-            if(!email.equals("") && !senha.equals("")){
-                if(checkUtilits.checkUser(email,senha) != null){
-                    standard.toast(LoginActivity.this,"Login feito com sucesso", 1);
-                    Usuario usuario = checkUtilits.checkUser(email,senha);
-                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                    intent.putExtra("usuario", usuario);
-                    startActivity(intent);
-                    finish();
-                } else{
-                    standard.toast(LoginActivity.this,"Login Invalido", 2);
-                }
-            } else{
-                standard.toast(LoginActivity.this,"Alguns campos não foram preenchidos", 2);
+            String senha = editTextPassword.getText().toString();
+            if(!email.equals("") || !senha.equals("")){
             }
 
         });

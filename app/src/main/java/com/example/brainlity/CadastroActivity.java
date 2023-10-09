@@ -1,18 +1,27 @@
 package com.example.brainlity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.brainlity.DAO.CheckUtilits;
 import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.utils.Standard;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -24,6 +33,8 @@ public class CadastroActivity extends AppCompatActivity {
     private Standard standard;
     private ImageView visibility;
     private boolean passwordVisible = false;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private CheckUtilits checkUtilits = new CheckUtilits(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,7 @@ public class CadastroActivity extends AppCompatActivity {
         textLogin = findViewById(R.id.textLogin);
         cadastrar = findViewById(R.id.button_cadastrar);
         button = findViewById(R.id.button);
+
         buttonCadastrarClick();
         textLoginClick();
         buttonClick();
@@ -54,32 +66,41 @@ public class CadastroActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    //Tem um usuario com nome = "", email = "" e senha = ""
     public void buttonCadastrarClick(){
         cadastrar.setOnClickListener(view ->{
             CheckUtilits checkUtilits = new CheckUtilits(CadastroActivity.this);
-            FirebaseBDLocal firebaseDatabase = new FirebaseBDLocal(CadastroActivity.this);
             String nome = editTextName.getText().toString();
             String email = editTextEmail.getText().toString();
             String senha = editTextPassword.getText().toString();
 
-            if(!nome.equals("") && !email.equals("") && !senha.equals("")){
-                if(!checkUtilits.checkEmailExist(email)){
-                    Usuario usuario = new Usuario(nome, senha, email);
-                    if(firebaseDatabase.inserirUsuario(usuario) != -1){
-                        editTextName.setText(null);
-                        editTextPassword.setText(null);
-                        editTextEmail.setText(null);
-                        standard.toast(CadastroActivity.this,"Cadastro Realizado com sucesso.", 1);
+            if(checkUtilits.checkFieldsVoid(nome,email,senha)){
+                mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        if(task.isSuccessful()){
+                            SignInMethodQueryResult result = task.getResult();
+
+                            if(result.getSignInMethods().isEmpty()){
+                               if(checkUtilits.checkPasswordChar(senha)){
+                                   createUser(email,senha);
+
+                               } else {
+                                   standard.toast(CadastroActivity.this,"A senha precisa ter 6 ou mais caracteres.",2);}
+
+                            } else {
+
+                                standard.toast(CadastroActivity.this,"Email já está sendo utilizado",2);}
+
+                        } else {
+                            Exception exception = task.getException();
+                            if(exception != null){
+                                standard.toast(CadastroActivity.this,"Email Invalido",2);
+                            }
+                        }
                     }
-
-                } else {
-                    standard.toast(CadastroActivity.this,"Esse Email já está sendo utilizado", 2);
-                }
-
-            } else{
-                standard.toast(CadastroActivity.this,"Você deixou alguns campos vazios", 2);
-            }
+                });
+            } else {
+                standard.toast(CadastroActivity.this,"Falta preencher alguns campos de texto.",2);}
         });
     }
 
@@ -116,4 +137,20 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
+    public void createUser(String email, String senha) {
+        mAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+
+                // Sucesso ao criar a conta. O usuário será automaticamente logado.
+                standard.toast(CadastroActivity.this, "Conta criada com Sucesso", 1);
+                FirebaseUser user = mAuth.getCurrentUser();
+
+                // Enviar e-mail de verificação
+                checkUtilits.checkEmailInvite(user,CadastroActivity.this);
+
+            } else {
+                // Falha ao criar a conta. Trate o erro aqui.
+            }
+        });
+    }
 }

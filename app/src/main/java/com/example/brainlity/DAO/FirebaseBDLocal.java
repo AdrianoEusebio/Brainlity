@@ -7,12 +7,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.brainlity.Insight.Insight;
 import com.example.brainlity.R;
 import com.example.brainlity.Usuario;
+import com.example.brainlity.utils.Standard;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +36,7 @@ public class FirebaseBDLocal {
     public FirebaseBDLocal(Context context) {
         this.context = context;
         dbHelper = new DataBaseDBHelper(context);
-        // Inicialize o DatabaseReference com a referência ao nó "Frases" do Firebase Realtime Database
+        //fixme Inicialize o DatabaseReference com a referência ao nó "Frases" do Firebase Realtime Database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Frases");
     }
 
@@ -44,10 +48,11 @@ public class FirebaseBDLocal {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 deleteAllFrases();
                 int i = 1;
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    int image = dataSnapshot.child("frase"+i).child("fundo").getValue(int.class);
-                    String texto = dataSnapshot.child("frase"+i).child("texto").getValue(String.class);
-                    String autor = dataSnapshot.child("frase"+i).child("autor").getValue(String.class);
+
+                for ( DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Integer image = snapshot.child("frase"+i).child("fundo").getValue(Integer.class);
+                    String texto = snapshot.child("frase"+i).child("texto").getValue(String.class);
+                    String autor = snapshot.child("frase"+i).child("autor").getValue(String.class);
                     Insight insight = new Insight(texto,autor,image);
                     inserirFrase(insight);
                     i++;

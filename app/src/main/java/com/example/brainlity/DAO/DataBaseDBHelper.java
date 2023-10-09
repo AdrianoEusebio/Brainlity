@@ -36,6 +36,7 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
         String sql = "CREATE TABLE " + TABLE_FRASE + "("
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_TEXTO + " TEXT,"
+                + KEY_AUTOR + " TEXT,"
                 + KEY_FUNDO + " TEXT"
                 + ")";
         db.execSQL(sql);
@@ -58,27 +59,5 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
                     + KEY_NOME + " TEXT NOT NULL"
                     + ")");
         }
-    }
-
-    public Usuario checkUser(String email, String password){
-        Usuario usuario = new Usuario();
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.query(TABLE_USUARIO, new String[]{KEY_EMAIL, KEY_SENHA, KEY_NOME},
-                KEY_EMAIL + "= ? " + "AND " + KEY_SENHA + "= ?", new String[]{email,password}, null, null, null, null);
-
-        if(cursor!=null){
-            cursor.moveToFirst();
-            if (cursor.getCount() > 0) {
-                usuario.setEmail(cursor.getString(0));
-                usuario.setSenha(cursor.getString(1));
-                usuario.setNome(cursor.getString(2));
-            } else {
-                // caso não retornar nenhum usuario do cursor, o retorno da função será nula
-                return null;
-            }
-        }
-        // finaliza o SQLiteDatabase
-        db.close();
-        return usuario;
     }
 }

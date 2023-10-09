@@ -5,65 +5,69 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.brainlity.CadastroActivity;
 import com.example.brainlity.Usuario;
 import com.example.brainlity.utils.Standard;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class CheckUtilits {
     private DataBaseDBHelper dbHelper;
     private Context context;
-
-    private AppCompatActivity appCompatActivity;
+    private Standard standard = new Standard();
 
     public CheckUtilits(Context context){
         this.context = context;
         dbHelper = new DataBaseDBHelper(context);
     }
-    public Usuario checkUser(String email, String password){
-        Usuario usuario = new Usuario();
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String[] colluns = {dbHelper.KEY_EMAIL, dbHelper.KEY_SENHA, dbHelper.KEY_NOME};
-        String selection = dbHelper.KEY_EMAIL + "= ? " + "AND " + dbHelper.KEY_SENHA + "= ?";
-        String[] selectionArgs = {email, password};
-        Cursor cursor = db.query(dbHelper.TABLE_USUARIO, colluns, selection,selectionArgs, null, null, null, null);
 
-        if(cursor!=null){
-            cursor.moveToFirst();
-            if (cursor.getCount() > 0) {
-                usuario.setEmail(cursor.getString(0));
-                usuario.setSenha(cursor.getString(1));
-                usuario.setNome(cursor.getString(2));
-            } else {
-                // caso não retornar nenhum usuario do cursor, o retorno da função será nula
-                return null;
-            }
+    /*todo Checar se o email existe ------------------------------------------------ */
+    public void checkEmailInvite(FirebaseUser user, AppCompatActivity activity){
+
+        if (user != null) {
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        // E-mail de verificação enviado com sucesso
+                        standard.toast(activity, "Email enviado, verifique seus emails.",1);
+                    } else {
+                        // Falha ao enviar o e-mail de verificação
+                        standard.toast(activity, "Falha ao enviar o email",1);
+
+                        // Lide com o erro aqui
+                        Exception exception = task.getException();
+                        if (exception != null) {
+                            // Trate o erro aqui
+                        }
+                    }
+                }
+            });
         }
-
-        //finalizar o cursor
-        cursor.close();
-
-        // finalizar o SQLiteDatabase
-        db.close();
-        return usuario;
     }
 
-    public boolean checkEmailExist(String email){
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String[] colluns = {dbHelper.KEY_EMAIL};
-        String selection = dbHelper.KEY_EMAIL + "= ? ";
-        String[] selectionArgs = {email};
-        Cursor cursor = db.query(dbHelper.TABLE_USUARIO, colluns, selection,selectionArgs, null, null, null, null);
-        int cursorCount = cursor.getCount();
 
-        //finalizar o cursor
-        cursor.close();
-
-        // finalizar o SQLiteDatabase
-        db.close();
-
-        // Se o cursorCount for maior que 0, isso significa que o usuário com as credenciais fornecidas existe
-        return cursorCount > 0;
+    //todo Check campo vazio -------------------------
+    public boolean checkFieldsVoid(String nome, String email, String password){
+        if(nome.equals("") || email.equals("") || password.equals("")){
+            return false;
+        } else {
+            return true;
+        }
     }
 
+    //todo Check de senha tem que ter 6 caracteres
+    public boolean checkPasswordChar(String password){
+        if(password.length() < 6){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }
