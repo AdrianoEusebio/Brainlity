@@ -11,37 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:textSize="30dp"
-            android:fontFamily="@font/itim"
-            android:id="@+id/textView_userNome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:text="AAAAAAAAAAAA"
-            android:background="@color/background_item4"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.077"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView_userEmail"
+            android:background="@drawable/background_item_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:background="@color/background_item4"
+            android:text="TextView"
             android:fontFamily="@font/itim"
-            android:text="AAAAAAAAAA"
+            android:textSize="20dp"
+            android:paddingLeft="10dp"
             android:textColor="@color/white"
-            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textView_userNome"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView_userNome"
-            app:layout_constraintTop_toBottomOf="@+id/textView_userNome"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.088" />
 
+        <TextView
+            android:id="@+id/textView_userSenha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView_userEmail"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView_userEmail"
+            app:layout_constraintTop_toBottomOf="@+id/textView_userEmail"
+            app:layout_constraintVertical_bias="0.058" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -18,16 +18,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class CheckUtilits {
+
+    // todo - Atributos
     private DataBaseDBHelper dbHelper;
     private Context context;
     private Standard standard = new Standard();
 
+    // todo - Construtor
     public CheckUtilits(Context context){
         this.context = context;
         dbHelper = new DataBaseDBHelper(context);
     }
 
-    /*todo Checar se o email existe ------------------------------------------------ */
+    /*todo metodo para checar se o */
     public void checkEmailInvite(FirebaseUser user, AppCompatActivity activity){
 
         if (user != null) {
@@ -52,17 +55,7 @@ public class CheckUtilits {
         }
     }
 
-
-    //todo Check campo vazio -------------------------
-    public boolean checkFieldsVoid(String nome, String email, String password){
-        if(nome.equals("") || email.equals("") || password.equals("")){
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    //todo Check de senha tem que ter 6 caracteres
+    //todo - metodo para checar se a senha tem que ter 6 ou mais caracteres
     public boolean checkPasswordChar(String password){
         if(password.length() < 6){
             return false;
@@ -70,4 +63,5 @@ public class CheckUtilits {
             return true;
         }
     }
+
 }

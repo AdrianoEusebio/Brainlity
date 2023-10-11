@@ -34,12 +34,6 @@ public class VerificacaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verificacao);
 
-        FirebaseUser user = mAuth.getCurrentUser();
-        CheckUtilits checkUtilits = new CheckUtilits(this);
-        checkUtilits.checkEmailInvite(user,this);
-        editText = findViewById(R.id.editText_Codigo);
-
-        String email = getIntent().getStringExtra("Email");
     }
 
     private String gerarCodigoVerificacao() {

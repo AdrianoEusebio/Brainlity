@@ -25,6 +25,7 @@ import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class CadastroActivity extends AppCompatActivity {
 
+    // todo - Atributos
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextName;
@@ -40,9 +41,9 @@ public class CadastroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
-        standard = new Standard();
-        standard.actionColorDefault(this);
 
+        // todo - Declaração dos atributos
+        standard = new Standard();
         editTextEmail = findViewById(R.id.editText_CadastroEmail);
         editTextName = findViewById(R.id.editText_CadastroNome);
         editTextPassword = findViewById(R.id.editText_CadastroSenha);
@@ -51,13 +52,20 @@ public class CadastroActivity extends AppCompatActivity {
         cadastrar = findViewById(R.id.button_cadastrar);
         button = findViewById(R.id.button);
 
+        // todo - metodo para trocar a cor da barra de notificações
+        standard.actionColorDefault(this);
+
+        // todo - 1 metodo de ação do botão Cadastrar onde irá fazer as devidas verificações e checagens para a criação do usuario
         buttonCadastrarClick();
+
+        // todo - 2 metodo de ação do textLogin, ao apertar o usuario será redirecionado para a tela de LoginActivity
         textLoginClick();
-        buttonClick();
+
+        // todo - 3 metodo para deixar a senha visivel e mascarada
         togglePasswordVisibility();
     }
 
-
+    // todo - metodo padrão back do celular
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(CadastroActivity.this,LoginActivity.class);
@@ -66,22 +74,33 @@ public class CadastroActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    // todo - Metodo 1
     public void buttonCadastrarClick(){
         cadastrar.setOnClickListener(view ->{
+
+            // todo - Declaração das devidas variaveis
             CheckUtilits checkUtilits = new CheckUtilits(CadastroActivity.this);
             String nome = editTextName.getText().toString();
             String email = editTextEmail.getText().toString();
             String senha = editTextPassword.getText().toString();
 
-            if(checkUtilits.checkFieldsVoid(nome,email,senha)){
+            // todo - 1 Verificação, saber se os editText estão vazio ou não
+            if(!nome.equals("") || !email.equals("") || !senha.equals("")){
                 mAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                     @Override
                     public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+
+                        // todo - 2 Verificação, saber se o Email é valido
                         if(task.isSuccessful()){
                             SignInMethodQueryResult result = task.getResult();
 
+                            // todo - 3 Verificação, saber se o email já esta sendo utilizado
                             if(result.getSignInMethods().isEmpty()){
+
+                               // todo - 4 Verificação, saber se a senha tem 6 ou mais caracteres
                                if(checkUtilits.checkPasswordChar(senha)){
+
+                                   //todo - Metodo responsavel por criar um novo usuario
                                    createUser(email,senha);
 
                                } else {
@@ -104,6 +123,7 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
+    // todo - Metodo 2
     public void textLoginClick(){
         textLogin.setOnClickListener(view -> {
             Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
@@ -112,14 +132,7 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
-    public void buttonClick(){
-        button.setOnClickListener(view ->{
-            FirebaseBDLocal firebaseDatabase = new FirebaseBDLocal(CadastroActivity.this);
-            firebaseDatabase.deleteAllUsuarios();
-            Toast.makeText(this, "Delete users ", Toast.LENGTH_SHORT).show();
-        });
-    }
-
+    // todo - Metodo 3
     public void togglePasswordVisibility() {
         visibility.setOnClickListener(view -> {
             passwordVisible = !passwordVisible;
@@ -137,19 +150,25 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
+    // todo - Metodo para criar uma conta no Firebase
     public void createUser(String email, String senha) {
         mAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(this, task -> {
+
+            // todo - Verificação para saber se a conta foi criada
             if (task.isSuccessful()) {
 
-                // Sucesso ao criar a conta. O usuário será automaticamente logado.
+                // todo - MSG de Sucesso
                 standard.toast(CadastroActivity.this, "Conta criada com Sucesso", 1);
+
+                // todo - Intent resultante na tela de verificação para saber se o email existe.
                 Intent intent = new Intent(CadastroActivity.this,VerificacaoActivity.class);
-                intent.putExtra("Email",email);
                 startActivity(intent);
                 finish();
 
             } else {
-                // Falha ao criar a conta. Trate o erro aqui.
+
+                // todo - MSG de Falha
+                standard.toast(CadastroActivity.this, "Falha ao criar a conta, tente novamente mais tarde", 2);
             }
         });
     }

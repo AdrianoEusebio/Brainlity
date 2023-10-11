@@ -1,6 +1,7 @@
 package com.example.brainlity.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,8 +17,9 @@ import com.example.brainlity.Usuario;
 
 public class PerfilFragment extends Fragment {
 
-    View view;
-    TextView textNome, textEmail;
+    private View view;
+    private TextView textSenha, textEmail;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
@@ -25,20 +27,19 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.fragment_perfil, container, false);
-        textNome = view.findViewById(R.id.textView_userNome);
+        textSenha = view.findViewById(R.id.textView_userSenha);
         textEmail = view.findViewById(R.id.textView_userEmail);
+        sharedPreferences = getActivity().getSharedPreferences("Usuario", getContext().MODE_PRIVATE);
 
-        Intent intent = getActivity().getIntent();
-        if (intent.hasExtra("usuario")) {
-            Usuario usuario = (Usuario) intent.getSerializableExtra("usuario");
+        String email = sharedPreferences.getString("email", "");
+        String senha = sharedPreferences.getString("senha","");
 
-            // Agora você pode usar o objeto Usuario
-            String nome = usuario.getNome();
-            String email = usuario.getEmail();
-            textNome.setText(nome);
-            textEmail.setText(email);
-        }
+        textEmail.setText(email);
+        textSenha.setText(senha);
+
+
 
 
         return view;

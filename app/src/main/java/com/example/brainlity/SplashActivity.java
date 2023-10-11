@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -16,7 +17,10 @@ import com.example.brainlity.DAO.SyncManager;
 import com.example.brainlity.utils.Standard;
 
 public class SplashActivity extends AppCompatActivity {
-    Standard standard = new Standard();
+
+    // todo - Atributos
+    private Standard standard;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -24,10 +28,18 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        // todo - declaração dos atributos
+        standard = new Standard();
+        sharedPreferences = getSharedPreferences("Usuario",MODE_PRIVATE);
+
         standard.actionColorDefault(this);
         if (SyncManager.getInstance().isSyncNeeded()) {
             realizarSincronizacao();
         }
+
+
+
+
     }
 
 
@@ -46,9 +58,16 @@ public class SplashActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if(!sharedPreferences.getString("email","").equals("") && !sharedPreferences.getString("senha","").equals("")){
+                    Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         }, 2000); // Delay for 2 seconds
     }
