@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.brainlity.DAO.CheckUtilits;
 import com.example.brainlity.DAO.FirebaseBDLocal;
+import com.example.brainlity.entidade.Usuario;
 import com.example.brainlity.utils.Standard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,12 +31,14 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextName;
-    private Button cadastrar, button;
+    private Button cadastrar;
+    private ProgressBar progressBar;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private TextView textLogin;
     private Standard standard;
     private ImageView visibility;
     private boolean passwordVisible = false;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     private CheckUtilits checkUtilits = new CheckUtilits(this);
 
     @Override
@@ -44,13 +48,13 @@ public class CadastroActivity extends AppCompatActivity {
 
         // todo - Declaração dos atributos
         standard = new Standard();
+        progressBar = findViewById(R.id.progressBar);
         editTextEmail = findViewById(R.id.editText_CadastroEmail);
         editTextName = findViewById(R.id.editText_CadastroNome);
         editTextPassword = findViewById(R.id.editText_CadastroSenha);
         visibility = findViewById(R.id.imageView9);
         textLogin = findViewById(R.id.textLogin);
         cadastrar = findViewById(R.id.button_cadastrar);
-        button = findViewById(R.id.button);
 
         // todo - metodo para trocar a cor da barra de notificações
         standard.actionColorDefault(this);
@@ -79,7 +83,6 @@ public class CadastroActivity extends AppCompatActivity {
         cadastrar.setOnClickListener(view ->{
 
             // todo - Declaração das devidas variaveis
-            CheckUtilits checkUtilits = new CheckUtilits(CadastroActivity.this);
             String nome = editTextName.getText().toString();
             String email = editTextEmail.getText().toString();
             String senha = editTextPassword.getText().toString();
@@ -99,10 +102,8 @@ public class CadastroActivity extends AppCompatActivity {
 
                                // todo - 4 Verificação, saber se a senha tem 6 ou mais caracteres
                                if(checkUtilits.checkPasswordChar(senha)){
-
-                                   //todo - Metodo responsavel por criar um novo usuario
-                                   createUser(email,senha);
-
+                                   Usuario usuario = new Usuario(nome,email,senha);
+                                   checkUtilits.createUsers(CadastroActivity.this,usuario);
                                } else {
                                    standard.toast(CadastroActivity.this,"A senha precisa ter 6 ou mais caracteres.",2);}
 
@@ -147,29 +148,6 @@ public class CadastroActivity extends AppCompatActivity {
             }
             // Mover o cursor para o final do texto
             editTextPassword.setSelection(editTextPassword.getText().length());
-        });
-    }
-
-    // todo - Metodo para criar uma conta no Firebase
-    public void createUser(String email, String senha) {
-        mAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener(this, task -> {
-
-            // todo - Verificação para saber se a conta foi criada
-            if (task.isSuccessful()) {
-
-                // todo - MSG de Sucesso
-                standard.toast(CadastroActivity.this, "Conta criada com Sucesso", 1);
-
-                // todo - Intent resultante na tela de verificação para saber se o email existe.
-                Intent intent = new Intent(CadastroActivity.this,VerificacaoActivity.class);
-                startActivity(intent);
-                finish();
-
-            } else {
-
-                // todo - MSG de Falha
-                standard.toast(CadastroActivity.this, "Falha ao criar a conta, tente novamente mais tarde", 2);
-            }
         });
     }
 }

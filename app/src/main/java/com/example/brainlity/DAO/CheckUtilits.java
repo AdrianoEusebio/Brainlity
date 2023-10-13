@@ -1,26 +1,39 @@
 package com.example.brainlity.DAO;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.widget.EditText;
+import android.content.SharedPreferences;
+import android.nfc.Tag;
+import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.brainlity.CadastroActivity;
-import com.example.brainlity.Usuario;
+import com.example.brainlity.entidade.Usuario;
 import com.example.brainlity.utils.Standard;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.SignInMethodQueryResult;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CheckUtilits {
 
     // todo - Atributos
     private DataBaseDBHelper dbHelper;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Context context;
     private Standard standard = new Standard();
 
@@ -31,31 +44,7 @@ public class CheckUtilits {
     }
 
     /*todo metodo para checar se o */
-    public void checkEmailInvite(FirebaseUser user, AppCompatActivity activity){
 
-        if (user != null) {
-            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        // E-mail de verificação enviado com sucesso
-                        standard.toast(activity, "Email enviado, verifique seus emails.",1);
-                    } else {
-                        // Falha ao enviar o e-mail de verificação
-                        standard.toast(activity, "Falha ao enviar o email",1);
-
-                        // Lide com o erro aqui
-                        Exception exception = task.getException();
-                        if (exception != null) {
-                            // Trate o erro aqui
-                        }
-                    }
-                }
-            });
-        }
-    }
-
-    //todo - metodo para checar se a senha tem que ter 6 ou mais caracteres
     public boolean checkPasswordChar(String password){
         if(password.length() < 6){
             return false;
@@ -64,4 +53,32 @@ public class CheckUtilits {
         }
     }
 
+    public void createUsers(AppCompatActivity activity, Usuario user) {
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                Map<String, Object> userData = new HashMap<>();
+                userData.put("nome", user.getNome());
+                userData.put("email", user.getEmail());
+                CollectionReference usersCollection = db.collection("Users");
+                DocumentReference newUserDocRef = usersCollection.document();
+                newUserDocRef.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        standard.toast(activity,"Cadastro Concluido",1);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        standard.toast(activity,"Error: " + e.getMessage() + " tente mais tarde",2);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                standard.toast(activity,"Error: " + e.getMessage() + " tente mais tarde",2);
+            }
+        });
+    }
 }

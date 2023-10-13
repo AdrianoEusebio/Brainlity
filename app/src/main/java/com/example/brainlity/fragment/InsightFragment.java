@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.Insight.AdapterShorts;
-import com.example.brainlity.Insight.Insight;
+import com.example.brainlity.entidade.Insight;
 import com.example.brainlity.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;

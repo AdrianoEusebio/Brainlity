@@ -1,4 +1,4 @@
-package com.example.brainlity;
+package com.example.brainlity.entidade;
 
 import java.io.Serializable;
 
@@ -6,23 +6,19 @@ public class Usuario implements Serializable {
 
     private String nome, senha, email;
 
-    public Usuario(String nome, String senha, String email) {
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
-        this.senha = senha;
         this.email = email;
+        this.senha = senha;
     }
-
     public Usuario(){
-
     }
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getSenha() {
         return senha;
     }

@@ -1,4 +1,4 @@
-package com.example.brainlity.Insight;
+package com.example.brainlity.entidade;
 
 import android.graphics.drawable.Drawable;
 
@@ -30,7 +30,6 @@ public class Insight {
     public String getText() {
         return text;
     }
-
     public void setText(String text) {
         this.text = text;
     }

@@ -1,6 +1,5 @@
 package com.example.brainlity.fragment;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.brainlity.R;
-import com.example.brainlity.Usuario;
 
 
 public class PerfilFragment extends Fragment {

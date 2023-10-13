@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // todo - Declaraçãos dos atributos
         standard = new Standard();
-        sharedPreferences = getSharedPreferences("Usuario", LoginActivity.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Usuario", MODE_PRIVATE);
         editTextEmail = findViewById(R.id.editText_LoginEmail);
         editTextPassword = findViewById(R.id.editText_loginSenha);
         buttonLogin = findViewById(R.id.button_LoginEntrar);
