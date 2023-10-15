@@ -15,13 +15,20 @@ import android.widget.Toast;
 import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.DAO.SyncManager;
 import com.example.brainlity.utils.Standard;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class SplashActivity extends AppCompatActivity {
 
     // todo - Atributos
     private Standard standard;
     private SharedPreferences sharedPreferences;
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference usersCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,47 +36,68 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         // todo - declaração dos atributos
+        FirebaseApp.initializeApp(this);
         standard = new Standard();
-        sharedPreferences = getSharedPreferences("Usuario",MODE_PRIVATE);
-
+        usersCollection = db.getInstance().collection("Users");
+        sharedPreferences = getSharedPreferences("Usuario", MODE_PRIVATE);
         standard.actionColorDefault(this);
-        if (SyncManager.getInstance().isSyncNeeded()) {
-            realizarSincronizacao();
-        }
 
-
-
-
-    }
-
-
-    private void realizarSincronizacao() {
-        FirebaseBDLocal firebaseBDLocal = new FirebaseBDLocal(getApplicationContext());
         if (standard.avaliarConexao(this)) {
-            firebaseBDLocal.syncFirebaseDataToLocalDatabase();
+            realizarSincronizacaoInsight();
+            realizarSincronizacaoFirestore();
             navigateToNextActivity();
         } else {
             navigateToNextActivity();
-            standard.toast(SplashActivity.this, "Você está no modo offline", 1);
+        }
+
+    }
+
+    public void realizarSincronizacaoInsight() {
+        FirebaseBDLocal firebaseBDLocal = new FirebaseBDLocal(getApplicationContext());
+        firebaseBDLocal.syncFirebaseDataToLocalDatabaseInsight();
+    }
+
+    public void realizarSincronizacaoFirestore() {
+        String emailToSearch = sharedPreferences.getString("email", "");
+        String nomeUpdate = sharedPreferences.getString("nome","");
+        Query query = usersCollection.whereEqualTo("email", emailToSearch);
+        if(verificacaoCount()){
+            query.get().addOnCompleteListener(task -> {
+               if(task.isSuccessful()){
+                    QuerySnapshot queryDocument = task.getResult();
+                   if (queryDocument != null && !queryDocument.isEmpty()) {
+                        for(DocumentSnapshot documentSnapshot: queryDocument.getDocuments()){
+                           if(documentSnapshot.getReference().update("nome",nomeUpdate).isSuccessful()){
+
+                           }
+                        }
+                    }
+               }
+            });
         }
     }
 
-    private void navigateToNextActivity() {
+    public boolean verificacaoCount() {
+        if (!sharedPreferences.getString("email", "").equals("") &&
+                !sharedPreferences.getString("senha", "").equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    private void navigateToNextActivity(){
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(!sharedPreferences.getString("email","").equals("") && !sharedPreferences.getString("senha","").equals("")){
+                if (verificacaoCount()) {
                     Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
                     startActivity(intent);
                     finish();
-                } else{
+                } else {
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }
-
-            }
-        }, 2000); // Delay for 2 seconds
+            }}, 2000); // Delay for 2 seconds
+        }
     }
-
-}

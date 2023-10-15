@@ -35,7 +35,7 @@ public class FirebaseBDLocal {
 
 
 
-    public void syncFirebaseDataToLocalDatabase() {
+    public void syncFirebaseDataToLocalDatabaseInsight() {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

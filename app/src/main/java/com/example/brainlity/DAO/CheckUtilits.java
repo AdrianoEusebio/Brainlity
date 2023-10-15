@@ -1,6 +1,7 @@
 package com.example.brainlity.DAO;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.util.Log;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.brainlity.CadastroActivity;
+import com.example.brainlity.LoginActivity;
+import com.example.brainlity.MenuActivity;
 import com.example.brainlity.entidade.Usuario;
 import com.example.brainlity.utils.Standard;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,34 +57,5 @@ public class CheckUtilits {
         }else {
             return true;
         }
-    }
-
-    public void createUsers(AppCompatActivity activity, Usuario user) {
-        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                Map<String, Object> userData = new HashMap<>();
-                userData.put("nome", user.getNome());
-                userData.put("email", user.getEmail());
-                CollectionReference usersCollection = db.collection("Users");
-                DocumentReference newUserDocRef = usersCollection.document();
-                newUserDocRef.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        standard.toast(activity,"Cadastro Concluido",1);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        standard.toast(activity,"Error: " + e.getMessage() + " tente mais tarde",2);
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                standard.toast(activity,"Error: " + e.getMessage() + " tente mais tarde",2);
-            }
-        });
     }
 }

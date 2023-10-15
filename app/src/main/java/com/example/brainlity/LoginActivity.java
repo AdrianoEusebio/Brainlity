@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.fonts.Font;
 import android.graphics.fonts.FontFamily;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Button;
@@ -21,20 +22,27 @@ import com.example.brainlity.DAO.CheckUtilits;
 import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.utils.Standard;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
     // todo - Atributos
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private EditText editTextEmail;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private SharedPreferences sharedPreferences;
-
-    private EditText editTextPassword;
+    private EditText editTextPassword, editTextEmail;
     private Button buttonLogin;
     private TextView textCadastro;
     private ImageView visibility;
@@ -48,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // todo - Declaraçãos dos atributos
         standard = new Standard();
-        sharedPreferences = getSharedPreferences("Usuario", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("Usuario", this.MODE_PRIVATE);
         editTextEmail = findViewById(R.id.editText_LoginEmail);
         editTextPassword = findViewById(R.id.editText_loginSenha);
         buttonLogin = findViewById(R.id.button_LoginEntrar);
@@ -78,10 +86,15 @@ public class LoginActivity extends AppCompatActivity {
             String senha = editTextPassword.getText().toString();
 
             // todo 1 Verificação, saber se os editTexts estão nulo ou não
-            if(!email.equals("") || !senha.equals("")){
-                checkUser(email,senha);
-            } else {
-                standard.toast(LoginActivity.this,"Falta preencher alguns campos", 2);
+            try {
+                if (!email.equals("") || !senha.equals("")) {
+                    VerificacaoTask verificacaoTask = new VerificacaoTask();
+                    verificacaoTask.execute();
+                } else {
+                    standard.toast(LoginActivity.this, "Falta preencher alguns campos", 2);
+                }
+            }catch (IllegalArgumentException e){
+                standard.toast(LoginActivity.this, "Falta preencher alguns campos", 2);
             }
 
         });
@@ -113,27 +126,51 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void checkUser(String email, String senha){
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        Task<AuthResult> user = firebaseAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    salvarCredenciais(email,senha);
-                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else{
-                    standard.toast(LoginActivity.this, "Login Invalido",2);
-                }
-            }
-        });
-    }
+    private class VerificacaoTask extends AsyncTask<Void, Void, Boolean> {
 
-    public void salvarCredenciais(String email, String senha){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("email", email);
-        editor.putString("senha", senha);
-        editor.apply();
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            try{
+                Thread.sleep(2000);
+            } catch (InterruptedException e){
+
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if (aBoolean) {
+                String email = editTextEmail.getText().toString();
+                String senha = editTextPassword.getText().toString();
+                checkUserExist(email,senha);
+            }
+        }
+
+        public void checkUserExist(String email, String senha){
+            Task<AuthResult> user = mAuth.signInWithEmailAndPassword(email, senha);
+            CollectionReference usersCollection = db.collection("Users");
+            Query query = usersCollection.whereEqualTo("email", email);
+
+            user.addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+                        standard.toast(LoginActivity.this,"Login realizado com sucesso",1);
+                        for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots){
+                            String nome = documentSnapshot.getString("nome");
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("email",email);
+                            editor.putString("senha", senha);
+                            editor.putString("nome", nome );
+                            editor.apply();
+                        }
+                        Intent intent = new Intent(LoginActivity.this,MenuActivity.class);
+                        startActivity(intent);
+                    }).addOnFailureListener(e -> {});
+                } else {
+                    standard.toast(LoginActivity.this,"Login Invalido",2);
+                }
+            });
+        }
     }
 }
