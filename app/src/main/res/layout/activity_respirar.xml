@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background_item2"
+    android:background="#E6E6E6"
     android:layout_height="match_parent"
     tools:context=".Exercicios.Respiração.RespirarActivity">
 
@@ -29,7 +29,7 @@
         android:layout_width="140dp"
         android:layout_height="65dp"
         android:layout_marginTop="104dp"
-        android:backgroundTint="@color/background_item5"
+        android:backgroundTint="@color/background_item3"
         android:elevation="8dp"
         android:text="Começar"
         android:textColor="@color/white"

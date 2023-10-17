@@ -31,9 +31,11 @@ public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Insight item = dataSet.get(position);
+        long idItem = item.getId();
 
         holder.autorTextView.setText(item.getAuthor());
         holder.textoTextView.setText(item.getText());
+        holder.IDTextView.setText("#" + String.valueOf(idItem));
         int id = item.getFundo();
         switch (id){
             case 1:
@@ -64,6 +66,7 @@ public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHold
         public View view;
         public TextView autorTextView;
         public TextView textoTextView;
+        public TextView IDTextView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +74,7 @@ public class AdapterShorts extends RecyclerView.Adapter<AdapterShorts.MyViewHold
             autorTextView = itemView.findViewById(R.id.textView_author);
             view = itemView.findViewById(R.id.view);
             textoTextView = itemView.findViewById(R.id.textView_itemCard);
+            IDTextView = itemView.findViewById(R.id.textView_ID);
 
             int corEscura = Color.argb(100, 0, 0, 0);
             view.setBackgroundColor(corEscura);

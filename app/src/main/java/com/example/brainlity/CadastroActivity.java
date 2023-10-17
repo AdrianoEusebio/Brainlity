@@ -3,6 +3,7 @@ package com.example.brainlity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -46,6 +47,7 @@ public class CadastroActivity extends AppCompatActivity {
     private TextView textLogin;
     private Standard standard;
     private ImageView visibility;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private boolean passwordVisible = false;
 
     private CheckUtilits checkUtilits = new CheckUtilits(this);
@@ -80,15 +82,15 @@ public class CadastroActivity extends AppCompatActivity {
     // todo - metodo padrão back do celular
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(CadastroActivity.this,LoginActivity.class);
+        Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
         super.onBackPressed();
     }
 
     // todo - Metodo 1
-    public void buttonCadastrarClick(){
-        cadastrar.setOnClickListener(view ->{
+    public void buttonCadastrarClick() {
+        cadastrar.setOnClickListener(view -> {
             // todo - Declaração das devidas variaveis
             String nome = editTextName.getText().toString();
             String email = editTextEmail.getText().toString();
@@ -111,8 +113,8 @@ public class CadastroActivity extends AppCompatActivity {
 
                                     // todo - 4 Verificação, saber se a senha tem 6 ou mais caracteres
                                     if (checkUtilits.checkPasswordChar(senha)) {
-                                        VerificacaoTask verificacaoTask = new VerificacaoTask();
-                                        verificacaoTask.execute();
+                                        Usuario usuario = new Usuario(nome, email, senha);
+                                        createUsers(CadastroActivity.this, usuario);
 
                                     } else {
                                         standard.toast(CadastroActivity.this, "A senha precisa ter 6 ou mais caracteres.", 2);
@@ -134,7 +136,7 @@ public class CadastroActivity extends AppCompatActivity {
                 } else {
                     standard.toast(CadastroActivity.this, "Falta preencher alguns campos de texto.", 2);
                 }
-            }catch ( IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 standard.toast(CadastroActivity.this, "Falta preencher alguns campos de texto.", 2);
             }
         });
@@ -143,7 +145,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     // todo - Metodo 2
-    public void textLoginClick(){
+    public void textLoginClick() {
         textLogin.setOnClickListener(view -> {
             Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -169,57 +171,37 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
-    private class VerificacaoTask extends AsyncTask<Void, Void, Boolean>{
-        private FirebaseFirestore db = FirebaseFirestore.getInstance();
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            try{
-                Thread.sleep(2000);
-            } catch (InterruptedException e){
-
+    public void createUsers(AppCompatActivity activity, Usuario user) {
+        Dialog dialog = standard.showProgressBar(CadastroActivity.this);
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                dialog.create();
+                Map<String, Object> userData = new HashMap<>();
+                userData.put("nome", user.getNome());
+                userData.put("email", user.getEmail());
+                CollectionReference usersCollection = db.collection("Users");
+                DocumentReference newUserDocRef = usersCollection.document();
+                newUserDocRef.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        standard.toast(activity, "Cadastro Concluido", 1);
+                        dialog.cancel();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        standard.toast(activity, "Error: " + e.getMessage() + ". tente mais tarde", 2);
+                        dialog.cancel();
+                    }
+                });
             }
-            return true;
-        }
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean) {
-                String nome = editTextName.getText().toString();
-                String email = editTextEmail.getText().toString();
-                String senha = editTextPassword.getText().toString();
-                Usuario usuario = new Usuario(nome,email,senha);
-                createUsers(CadastroActivity.this,usuario);
-            } else {
-                // Trate o caso de falha nas verificações
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                standard.toast(activity, "Error: " + e.getMessage() + ". tente mais tarde", 2);
+                dialog.cancel();
             }
-        }
-
-        public void createUsers(AppCompatActivity activity, Usuario user) {
-            mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                @Override
-                public void onSuccess(AuthResult authResult) {
-                    Map<String, Object> userData = new HashMap<>();
-                    userData.put("nome", user.getNome());
-                    userData.put("email", user.getEmail());
-                    CollectionReference usersCollection = db.collection("Users");
-                    DocumentReference newUserDocRef = usersCollection.document();
-                    newUserDocRef.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            standard.toast(activity,"Cadastro Concluido",1);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            standard.toast(activity,"Error: " + e.getMessage() + ". tente mais tarde",2);
-                        }
-                    });
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    standard.toast(activity,"Error: " + e.getMessage() + ". tente mais tarde",2);
-                }
-            });
-        }
+        });
     }
 }

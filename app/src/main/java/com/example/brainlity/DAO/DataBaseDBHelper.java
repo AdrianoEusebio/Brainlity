@@ -44,7 +44,6 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
         db.execSQL(sql2);
 
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if(oldVersion < 2){

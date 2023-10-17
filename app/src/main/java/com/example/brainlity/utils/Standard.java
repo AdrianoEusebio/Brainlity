@@ -1,6 +1,7 @@
 package com.example.brainlity.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -84,5 +85,21 @@ public class Standard {
 
 // Mostrar o Toast
         toast.show();
+    }
+
+    public Dialog showProgressBar(Context context){
+        Dialog progressDialog = new Dialog(context);
+        progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        progressDialog.setContentView(R.layout.pop_up);
+        progressDialog.setCancelable(false);
+
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(progressDialog.getWindow().getAttributes());
+        layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        progressDialog.show();
+        progressDialog.getWindow().setAttributes(layoutParams);
+        return progressDialog;
     }
 }

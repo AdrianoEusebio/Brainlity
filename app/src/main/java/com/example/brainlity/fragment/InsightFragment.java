@@ -29,7 +29,7 @@ public class InsightFragment extends Fragment {
     private AdapterShorts adapterShorts;
     private DatabaseReference databaseReference;
     private List<Insight> insightsList;
-    private ImageView back;
+    private ImageView imageSearch;
     private View view;
 
     @Override
@@ -40,6 +40,7 @@ public class InsightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view =  inflater.inflate(R.layout.fragment_insight, container, false);
         FirebaseApp.initializeApp(getActivity());
         FirebaseBDLocal firebaseBDLocal = new FirebaseBDLocal(getContext());
         databaseReference = FirebaseDatabase.getInstance().getReference("Frases");
@@ -47,9 +48,7 @@ public class InsightFragment extends Fragment {
 
         insightsList = firebaseBDLocal.getAllFrases();
         adapterShorts = new AdapterShorts(insightsList);
-
-        view =  inflater.inflate(R.layout.fragment_insight, container, false);
-        back = view.findViewById(R.id.shorts_back);
+        imageSearch = view.findViewById(R.id.imageView_search);
 
         recyclerView = view.findViewById(R.id.recyclerview_shorts);
         recyclerViewConfig();
@@ -69,5 +68,8 @@ public class InsightFragment extends Fragment {
         final SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapterShorts);
+    }
+
+    public void imageSearchClick(){
     }
 }

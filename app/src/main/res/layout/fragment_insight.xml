@@ -27,6 +27,7 @@
             android:id="@+id/text_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/itim"
             android:text="B r a i n l i t y"
             android:textColor="@color/white"
@@ -36,14 +37,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:src="@drawable/baseline_share"
-            app:layout_constraintBottom_toBottomOf="@+id/text_logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_logo"
-            app:layout_constraintTop_toTopOf="@+id/text_logo" />
+            android:id="@+id/imageView_search"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_image_search"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerview_shorts"
+            app:layout_constraintEnd_toStartOf="@+id/text_logo"
+            app:layout_constraintHorizontal_bias="0.417"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

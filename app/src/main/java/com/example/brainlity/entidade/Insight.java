@@ -14,10 +14,11 @@ public class Insight {
     public Insight() {
     }
 
-    public Insight(String text, String author, int backgroundResId) {
+    public Insight(String text, String author, int backgroundResId, long id) {
         this.text = text;
         this.author = author;
         this.fundo = backgroundResId;
+        this.id = id;
     }
 
     public long getId(){

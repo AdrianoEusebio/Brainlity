@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -88,8 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             // todo 1 Verificação, saber se os editTexts estão nulo ou não
             try {
                 if (!email.equals("") || !senha.equals("")) {
-                    VerificacaoTask verificacaoTask = new VerificacaoTask();
-                    verificacaoTask.execute();
+                   checkUserExist(email,senha);
                 } else {
                     standard.toast(LoginActivity.this, "Falta preencher alguns campos", 2);
                 }
@@ -126,33 +126,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private class VerificacaoTask extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... voids) {
-            try{
-                Thread.sleep(2000);
-            } catch (InterruptedException e){
-
-            }
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean) {
-                String email = editTextEmail.getText().toString();
-                String senha = editTextPassword.getText().toString();
-                checkUserExist(email,senha);
-            }
-        }
-
         public void checkUserExist(String email, String senha){
-            Task<AuthResult> user = mAuth.signInWithEmailAndPassword(email, senha);
+            Dialog dialog = standard.showProgressBar(LoginActivity.this);
+            dialog.create();
             CollectionReference usersCollection = db.collection("Users");
             Query query = usersCollection.whereEqualTo("email", email);
-
-            user.addOnCompleteListener(task -> {
+            mAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     query.get().addOnSuccessListener(queryDocumentSnapshots -> {
                         standard.toast(LoginActivity.this,"Login realizado com sucesso",1);
@@ -166,11 +145,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         Intent intent = new Intent(LoginActivity.this,MenuActivity.class);
                         startActivity(intent);
+                        finish();
                     }).addOnFailureListener(e -> {});
                 } else {
                     standard.toast(LoginActivity.this,"Login Invalido",2);
-                }
-            });
-        }
+                    dialog.cancel();
+                }});
     }
 }

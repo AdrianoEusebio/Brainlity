@@ -46,7 +46,8 @@ public class FirebaseBDLocal {
                     Integer image = snapshot.child("frase"+i).child("fundo").getValue(Integer.class);
                     String texto = snapshot.child("frase"+i).child("texto").getValue(String.class);
                     String autor = snapshot.child("frase"+i).child("autor").getValue(String.class);
-                    Insight insight = new Insight(texto,autor,image);
+                    long id = i;
+                    Insight insight = new Insight(texto,autor,image, id);
                     inserirFrase(insight);
                     i++;
                 }
@@ -68,6 +69,7 @@ public class FirebaseBDLocal {
             values.put(dbHelper.KEY_TEXTO, insight.getText());
             values.put(dbHelper.KEY_FUNDO, insight.getFundo());
             values.put(dbHelper.KEY_AUTOR, insight.getAuthor());
+            values.put(dbHelper.KEY_ID, insight.getId());
 
             idInserido = db.insert(dbHelper.TABLE_FRASE, null, values);
         } catch (SQLException e) {
@@ -117,36 +119,4 @@ public class FirebaseBDLocal {
 
         return insights;
     }
-
-    //METODOS DA TABELA USUARIO -----------------------------------------------------------------------------------------------
-
-    public long inserirUsuario(Usuario usuario) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        long idInserido = -1; // Valor padrão se a inserção falhar
-        try {
-            ContentValues values = new ContentValues();
-            values.put(dbHelper.KEY_EMAIL, usuario.getEmail());
-            values.put(dbHelper.KEY_NOME, usuario.getNome());
-            values.put(dbHelper.KEY_SENHA, usuario.getSenha());
-
-            idInserido = db.insert(dbHelper.TABLE_USUARIO, null, values);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            db.close();
-        }
-        return idInserido;
-    }
-
-    public void deleteAllUsuarios() {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        try {
-            db.delete(dbHelper.TABLE_USUARIO, null, null);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            db.close();
-        }
-    }
-
 }
