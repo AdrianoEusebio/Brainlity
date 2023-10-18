@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.brainlity.R;
-import com.example.brainlity.utils.Standard;
+import com.example.brainlity.Utils.Standard;
 
 public class RelaxarActivity extends AppCompatActivity {
 

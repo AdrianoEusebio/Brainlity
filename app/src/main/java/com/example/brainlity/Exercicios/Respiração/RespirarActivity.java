@@ -9,10 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.brainlity.R;
-import com.example.brainlity.utils.Standard;
-import com.example.brainlity.utils.Musica;
+import com.example.brainlity.Utils.Standard;
+import com.example.brainlity.Utils.Musica;
 
-import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
 public class RespirarActivity extends AppCompatActivity {

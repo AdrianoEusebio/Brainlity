@@ -10,7 +10,7 @@ import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.example.brainlity.R;
-import com.example.brainlity.utils.Standard;
+import com.example.brainlity.Utils.Standard;
 
 public class RespirarMainActivity extends AppCompatActivity {
 
