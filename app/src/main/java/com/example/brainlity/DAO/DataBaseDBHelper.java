@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseDBHelper extends SQLiteOpenHelper {
 
     private static String NAME = "DATABASE";
-    private static int VERSION = 2;
+    private static int VERSION = 3;
 
     // TABELA FRASE
     public static final String TABLE_FRASE = "Frase";
@@ -39,7 +39,7 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
 
         String sql2 = "CREATE TABLE " + TABLE_REGISTRO + "("
-                + KEY_REGISTRO_ID + " TEXT PRIMARY KEY,"
+                + KEY_REGISTRO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_REGISTRO_DESCRICAO + " TEXT NOT NULL,"
                 + KEY_REGISTRO_HUMOR + " TEXT NOT NULL,"
                 + KEY_REGISTRO_FRASE + " TEXT NOT NULL,"
@@ -50,9 +50,9 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if(oldVersion < 2){
+        if(oldVersion < 3){
             db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_REGISTRO + "("
-                    + KEY_REGISTRO_ID + " TEXT PRIMARY KEY,"
+                    + KEY_REGISTRO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + KEY_REGISTRO_DESCRICAO + " TEXT NOT NULL,"
                     + KEY_REGISTRO_HUMOR + " TEXT NOT NULL,"
                     + KEY_REGISTRO_FRASE + " TEXT NOT NULL,"

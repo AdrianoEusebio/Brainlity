@@ -8,8 +8,7 @@ public class Registro {
     private String humor, descricao, frase;
     private String data;
 
-    public Registro(long id, String humor, String descricao, String frase, String date){
-        this.id = id;
+    public Registro(String humor, String descricao, String frase, String date){
         this.humor = humor;
         this.descricao = descricao;
         this.frase = frase;

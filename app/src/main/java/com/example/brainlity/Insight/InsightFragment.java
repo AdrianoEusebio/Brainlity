@@ -64,7 +64,4 @@ public class InsightFragment extends Fragment {
         snapHelper.attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(insightAdapter);
     }
-
-    public void imageSearchClick(){
-    }
 }

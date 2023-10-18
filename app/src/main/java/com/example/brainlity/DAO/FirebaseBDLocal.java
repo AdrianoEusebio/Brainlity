@@ -29,7 +29,6 @@ public class FirebaseBDLocal {
     public FirebaseBDLocal(Context context) {
         this.context = context;
         dbHelper = new DataBaseDBHelper(context);
-        //fixme Inicialize o DatabaseReference com a referência ao nó "Frases" do Firebase Realtime Database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Frases");
     }
 
@@ -127,7 +126,6 @@ public class FirebaseBDLocal {
         long idInserido = -1; // Valor padrão se a inserção falhar
         try {
             ContentValues values = new ContentValues();
-            values.put(dbHelper.KEY_REGISTRO_ID, registro.getId());
             values.put(dbHelper.KEY_REGISTRO_DESCRICAO, registro.getDescricao());
             values.put(dbHelper.KEY_REGISTRO_HUMOR, registro.getHumor());
             values.put(dbHelper.KEY_REGISTRO_FRASE, registro.getFrase());
