@@ -21,7 +21,6 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
     public static final String KEY_REGISTRO_DESCRICAO = "descricao";
     public static final String KEY_REGISTRO_HUMOR = "humor";
     public static final String KEY_REGISTRO_ID = "Id";
-    public static final String KEY_REGISTRO_FRASE = "frase";
     public static final String KEY_REGISTRO_DATE = "data";
 
     public DataBaseDBHelper(Context context) {
@@ -42,7 +41,6 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
                 + KEY_REGISTRO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_REGISTRO_DESCRICAO + " TEXT NOT NULL,"
                 + KEY_REGISTRO_HUMOR + " TEXT NOT NULL,"
-                + KEY_REGISTRO_FRASE + " TEXT NOT NULL,"
                 + KEY_REGISTRO_DATE + " TEXT NOT NULL"
                 + ")";
         db.execSQL(sql2);
@@ -55,9 +53,9 @@ public class DataBaseDBHelper extends SQLiteOpenHelper {
                     + KEY_REGISTRO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + KEY_REGISTRO_DESCRICAO + " TEXT NOT NULL,"
                     + KEY_REGISTRO_HUMOR + " TEXT NOT NULL,"
-                    + KEY_REGISTRO_FRASE + " TEXT NOT NULL,"
                     + KEY_REGISTRO_DATE + " TEXT NOT NULL"
-                    + ")");
+                    + ")"
+            );
         }
     }
 }

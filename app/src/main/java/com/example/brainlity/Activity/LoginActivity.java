@@ -1,5 +1,6 @@
 package com.example.brainlity.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -11,19 +12,27 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.brainlity.DAO.FirebaseBDLocal;
+import com.example.brainlity.Entidade.Registro;
 import com.example.brainlity.R;
 import com.example.brainlity.Utils.Standard;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
     // todo - Atributos
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseBDLocal firebaseBDLocal;
     private SharedPreferences sharedPreferences;
     private EditText editTextPassword, editTextEmail;
     private Button buttonLogin;
@@ -39,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // todo - Declaraçãos dos atributos
         standard = new Standard();
+        firebaseBDLocal = new FirebaseBDLocal(this);
         sharedPreferences = getSharedPreferences("Usuario", this.MODE_PRIVATE);
         editTextEmail = findViewById(R.id.editText_LoginEmail);
         editTextPassword = findViewById(R.id.editText_loginSenha);
@@ -46,44 +56,34 @@ public class LoginActivity extends AppCompatActivity {
         textCadastro = findViewById(R.id.textCadastro);
         visibility = findViewById(R.id.imageView10);
 
-        // todo - metodo para trocar a cor da barra de notificações
         standard.actionColorDefault(this);
 
-        // todo - 1 metodo de ação para o botão Login onde irá fazer as devidas verificações e checagens para o login do usuario
         buttonLoginClick();
-
-        // todo - 2 metodo de ação do textCadastro, ao apertar o usuario será redirecionado a tela de CadastroActivity
         textCadastroClick();
-
-        // todo - 3 metodo para deixar a senha visivel ou mascarado
         togglePasswordVisibility();
-
     }
 
-    // todo - 1 metodo
     public void buttonLoginClick() {
         buttonLogin.setOnClickListener(view -> {
+            Dialog dialog = standard.showProgressBar(LoginActivity.this);
+            dialog.create();
 
-            // todo - declaração das devidas variaveis
             String email = editTextEmail.getText().toString();
             String senha = editTextPassword.getText().toString();
 
-            // todo 1 Verificação, saber se os editTexts estão nulo ou não
             try {
                 if (!email.equals("") || !senha.equals("")) {
-                   checkUserExist(email,senha);
-                } else {
-                    standard.toast(LoginActivity.this, "Falta preencher alguns campos", 2);
+                    checkUserExist(email, senha, dialog);
                 }
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
+                dialog.cancel();
                 standard.toast(LoginActivity.this, "Falta preencher alguns campos", 2);
             }
-
         });
     }
 
-    public void textCadastroClick(){
-        textCadastro.setOnClickListener(view ->{
+    public void textCadastroClick() {
+        textCadastro.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
             startActivity(intent);
             finish();
@@ -95,43 +95,74 @@ public class LoginActivity extends AppCompatActivity {
         visibility.setOnClickListener(view -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
-                // Mostrar a senha
+
                 editTextPassword.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 visibility.setImageResource(R.drawable.baseline_visibility_off);
             } else {
-                // Ocultar a senha
+
                 editTextPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 visibility.setImageResource(R.drawable.baseline_visibility);
             }
-            // Mover o cursor para o final do texto
+
             editTextPassword.setSelection(editTextPassword.getText().length());
         });
     }
 
-        public void checkUserExist(String email, String senha){
-            Dialog dialog = standard.showProgressBar(LoginActivity.this);
-            dialog.create();
+    public void checkUserExist(String email, String senha, Dialog dialog) {
+        mAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
+
             CollectionReference usersCollection = db.collection("Users");
             Query query = usersCollection.whereEqualTo("email", email);
-            mAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
-                if(task.isSuccessful()){
-                    query.get().addOnSuccessListener(queryDocumentSnapshots -> {
-                        standard.toast(LoginActivity.this,"Login realizado com sucesso",1);
-                        for(QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots){
-                            String nome = documentSnapshot.getString("nome");
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("email",email);
-                            editor.putString("senha", senha);
-                            editor.putString("nome", nome );
-                            editor.apply();
+
+            if (task.isSuccessful()) {
+                firestoreSelected(email);
+                query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                        String nome = documentSnapshot.getString("nome");
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email", email);
+                        editor.putString("senha", senha);
+                        editor.putString("nome", nome);
+                        editor.apply();
+                        standard.toast(LoginActivity.this, "Login realizado com sucesso", 1);
+                    }
+
+                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }).addOnFailureListener(e -> {
+                });
+            } else {
+                standard.toast(LoginActivity.this, "Login Invalido", 2);
+                dialog.cancel();
+            }
+        });
+    }
+
+    public void firestoreSelected(String email){
+        firebaseBDLocal.deleteAllRegistro();
+        CollectionReference collectionReference = db.collection("Users");
+        Query query = collectionReference.whereEqualTo("email", email);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                CollectionReference colecao = collectionReference.document(email).collection("Registros");
+                colecao.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                            if(!document.getId().equals("default")){
+                                Registro registro = document.toObject(Registro.class);
+                                firebaseBDLocal.inserirRegistro(registro);
+                            }
                         }
-                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }).addOnFailureListener(e -> {});
-                } else {
-                    standard.toast(LoginActivity.this,"Login Invalido",2);
-                    dialog.cancel();
-                }});
+                    }
+                }).addOnFailureListener(e -> {
+
+                });
+            }
+        });
+
     }
 }

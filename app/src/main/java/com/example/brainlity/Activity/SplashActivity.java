@@ -12,20 +12,28 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.example.brainlity.DAO.FirebaseBDLocal;
+import com.example.brainlity.Entidade.Registro;
 import com.example.brainlity.R;
 import com.example.brainlity.Utils.Standard;
+import com.example.brainlity.Utils.VerificarConexaoAsyncTask;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
 
     // todo - Atributos
     private Standard standard;
     private SharedPreferences sharedPreferences;
+    private FirebaseBDLocal firebaseBDLocal;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference usersCollection;
 
@@ -38,16 +46,16 @@ public class SplashActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         standard = new Standard();
         usersCollection = db.getInstance().collection("Users");
+        firebaseBDLocal = new FirebaseBDLocal(this);
         sharedPreferences = getSharedPreferences("Usuario", MODE_PRIVATE);
         standard.actionColorDefault(this);
 
-        if (standard.avaliarConexao(this)) {
+        if(standard.avaliarConexao(this)){
             realizarSincronizacaoInsight();
             realizarSincronizacaoFirestore();
-            navigateToNextActivity();
-        } else {
-            navigateToNextActivity();
         }
+
+        navigateToNextActivity();
 
     }
 
@@ -57,15 +65,17 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void realizarSincronizacaoFirestore() {
-        String emailToSearch = sharedPreferences.getString("email", "");
-        String nomeUpdate = sharedPreferences.getString("nome","");
-        Query query = usersCollection.whereEqualTo("email", emailToSearch);
         if(verificacaoCount()){
+            String emailToSearch = sharedPreferences.getString("email", "");
+            String nomeUpdate = sharedPreferences.getString("nome","");
+            firebaseBDLocal.inserirRegistroFirestore(emailToSearch);
+            Query query = usersCollection.whereEqualTo("email", emailToSearch);
             query.get().addOnCompleteListener(task -> {
                if(task.isSuccessful()){
                     QuerySnapshot queryDocument = task.getResult();
                    if (queryDocument != null && !queryDocument.isEmpty()) {
                         for(DocumentSnapshot documentSnapshot: queryDocument.getDocuments()){
+
                            if(documentSnapshot.getReference().update("nome",nomeUpdate).isSuccessful()){
 
                            }
@@ -75,6 +85,8 @@ public class SplashActivity extends AppCompatActivity {
             });
         }
     }
+
+
 
     public boolean verificacaoCount() {
         if (!sharedPreferences.getString("email", "").equals("") &&

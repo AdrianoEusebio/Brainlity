@@ -6,20 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.brainlity.DAO.CheckUtilits;
 import com.example.brainlity.Entidade.Usuario;
 import com.example.brainlity.R;
 import com.example.brainlity.Utils.Standard;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.firestore.CollectionReference;
@@ -39,11 +35,10 @@ public class CadastroActivity extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private TextView textLogin;
     private Standard standard;
+    boolean passwordVisible = false;
     private ImageView visibility;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private boolean passwordVisible = false;
 
-    private CheckUtilits checkUtilits = new CheckUtilits(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,20 +54,13 @@ public class CadastroActivity extends AppCompatActivity {
         textLogin = findViewById(R.id.textLogin);
         cadastrar = findViewById(R.id.button_cadastrar);
 
-        // todo - metodo para trocar a cor da barra de notificações
+
         standard.actionColorDefault(this);
-
-        // todo - 1 metodo de ação do botão Cadastrar onde irá fazer as devidas verificações e checagens para a criação do usuario
         buttonCadastrarClick();
-
-        // todo - 2 metodo de ação do textLogin, ao apertar o usuario será redirecionado para a tela de LoginActivity
         textLoginClick();
-
-        // todo - 3 metodo para deixar a senha visivel e mascarada
-        togglePasswordVisibility();
+        togglePasswordVisibility(visibility, editTextPassword);
     }
 
-    // todo - metodo padrão back do celular
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
@@ -81,15 +69,12 @@ public class CadastroActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    // todo - Metodo 1
     public void buttonCadastrarClick() {
         cadastrar.setOnClickListener(view -> {
-            // todo - Declaração das devidas variaveis
+
             String nome = editTextName.getText().toString();
             String email = editTextEmail.getText().toString();
             String senha = editTextPassword.getText().toString();
-
-            // todo - 1 Verificação, saber se os editText estão vazio ou não
 
             try {
                 if (!nome.equals("") || !email.equals("") || !senha.equals("")) {
@@ -97,15 +82,12 @@ public class CadastroActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
 
-                            // todo - 2 Verificação, saber se o Email é valido
                             if (task.isSuccessful()) {
                                 SignInMethodQueryResult result = task.getResult();
 
-                                // todo - 3 Verificação, saber se o email já esta sendo utilizado
                                 if (result.getSignInMethods().isEmpty()) {
 
-                                    // todo - 4 Verificação, saber se a senha tem 6 ou mais caracteres
-                                    if (checkUtilits.checkPasswordChar(senha)) {
+                                    if (checkPasswordChar(senha)) {
                                         Usuario usuario = new Usuario(nome, email, senha);
                                         createUsers(CadastroActivity.this, usuario);
 
@@ -114,7 +96,6 @@ public class CadastroActivity extends AppCompatActivity {
                                     }
 
                                 } else {
-
                                     standard.toast(CadastroActivity.this, "Email já está sendo utilizado", 2);
                                 }
 
@@ -126,6 +107,7 @@ public class CadastroActivity extends AppCompatActivity {
                             }
                         }
                     });
+
                 } else {
                     standard.toast(CadastroActivity.this, "Falta preencher alguns campos de texto.", 2);
                 }
@@ -133,11 +115,16 @@ public class CadastroActivity extends AppCompatActivity {
                 standard.toast(CadastroActivity.this, "Falta preencher alguns campos de texto.", 2);
             }
         });
-
-
     }
 
-    // todo - Metodo 2
+    public boolean checkPasswordChar(String password) {
+        if (password.length() < 6) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public void textLoginClick() {
         textLogin.setOnClickListener(view -> {
             Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
@@ -146,55 +133,67 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
-    // todo - Metodo 3
-    public void togglePasswordVisibility() {
+    public void createUsers(AppCompatActivity activity, Usuario user) {
+        Dialog dialog = standard.showProgressBar(CadastroActivity.this);
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnSuccessListener(task -> {
+
+                    dialog.create();
+
+                    Map<String, Object> userData = new HashMap<>();
+                    userData.put("nome", user.getNome());
+                    userData.put("email", user.getEmail());
+
+                    CollectionReference usersCollection = db.collection("Users");
+                    DocumentReference newUserDocRef = usersCollection.document(user.getEmail());
+
+                    newUserDocRef.set(userData).addOnSuccessListener(task1 -> {
+                        Map<String, String> dados = new HashMap<>();
+                        dados.put("descricao","default");
+                        dados.put("humor","default");
+                        dados.put("data","default");
+
+                        DocumentReference documentReference = newUserDocRef.collection("Registros").document("default");
+                        documentReference.set(dados).addOnSuccessListener(command -> {
+                            standard.toast(activity, "Cadastro Concluido", 1);
+                            dialog.cancel();
+                        }).addOnFailureListener(e -> {
+                            standard.toast(activity, "Error: " + e.getMessage() + " tente mais tarde", 2);
+                            dialog.cancel();
+                        });
+
+
+
+                    }).addOnFailureListener(e -> {
+                        standard.toast(activity, "Error: " + e.getMessage() + " tente mais tarde", 2);
+                        dialog.cancel();
+
+                    });
+
+                }).
+
+                addOnFailureListener(e -> {
+
+                    standard.toast(activity, "Error: " + e.getMessage() + ". tente mais tarde", 2);
+                    dialog.cancel();
+
+                });
+    }
+
+
+    public void togglePasswordVisibility(ImageView visibility, EditText editTextPassword) {
         visibility.setOnClickListener(view -> {
             passwordVisible = !passwordVisible;
             if (passwordVisible) {
-                // Mostrar a senha
+
                 editTextPassword.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 visibility.setImageResource(R.drawable.baseline_visibility_off);
             } else {
-                // Ocultar a senha
+
                 editTextPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 visibility.setImageResource(R.drawable.baseline_visibility);
             }
-            // Mover o cursor para o final do texto
-            editTextPassword.setSelection(editTextPassword.getText().length());
-        });
-    }
 
-    public void createUsers(AppCompatActivity activity, Usuario user) {
-        Dialog dialog = standard.showProgressBar(CadastroActivity.this);
-        mAuth.createUserWithEmailAndPassword(user.getEmail(), user.getSenha()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-            @Override
-            public void onSuccess(AuthResult authResult) {
-                dialog.create();
-                Map<String, Object> userData = new HashMap<>();
-                userData.put("nome", user.getNome());
-                userData.put("email", user.getEmail());
-                CollectionReference usersCollection = db.collection("Users");
-                DocumentReference newUserDocRef = usersCollection.document();
-                newUserDocRef.set(userData).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        standard.toast(activity, "Cadastro Concluido", 1);
-                        dialog.cancel();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        standard.toast(activity, "Error: " + e.getMessage() + ". tente mais tarde", 2);
-                        dialog.cancel();
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                standard.toast(activity, "Error: " + e.getMessage() + ". tente mais tarde", 2);
-                dialog.cancel();
-            }
+            editTextPassword.setSelection(editTextPassword.getText().length());
         });
     }
 }

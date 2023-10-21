@@ -1,15 +1,11 @@
 package com.example.brainlity.Registro;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +14,6 @@ import android.view.ViewGroup;
 import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.Entidade.Registro;
 import com.example.brainlity.R;
-import com.example.brainlity.RegistroActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -43,17 +38,16 @@ public class DiarioFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_diario, container, false);
 
         firebaseBDLocal = new FirebaseBDLocal(getContext());
-        registros = firebaseBDLocal.getAllRegistros();
+        registros = firebaseBDLocal.getAllRegistro();
+        registroAdapter = new RegistroAdapter(registros,getContext());
         button = view.findViewById(R.id.floatingActionButton);
-        registroAdapter = new RegistroAdapter(registros);
+        registroAdapter = new RegistroAdapter(registros,getContext());
         recyclerView = view.findViewById(R.id.recyclerView_registro);
         recyclerViewConfig();
         buttonCLick();
 
-
         return view;
     }
-
     public void recyclerViewConfig(){
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         LinearLayoutManager lm = new LinearLayoutManager(getContext());
@@ -69,6 +63,7 @@ public class DiarioFragment extends Fragment {
         button.setOnClickListener(view ->{
             Intent intent = new Intent(getActivity(), RegistroActivity.class);
             startActivity(intent);
+            getActivity().finish();
         });
     }
 

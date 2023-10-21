@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/frame_layoutdiario"
     android:background="@color/background_item2"
     tools:context=".Registro.DiarioFragment">
 

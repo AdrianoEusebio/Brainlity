@@ -5,25 +5,16 @@ import java.util.Date;
 
 public class Registro {
     private long id;
-    private String humor, descricao, frase;
+    private String humor, descricao;
     private String data;
 
-    public Registro(String humor, String descricao, String frase, String date){
+    public Registro(String humor, String descricao, String date){
         this.humor = humor;
         this.descricao = descricao;
-        this.frase = frase;
         this.data = date;
     }
 
     public Registro(){
-    }
-
-    public String getFrase() {
-        return frase;
-    }
-
-    public void setFrase(String frase) {
-        this.frase = frase;
     }
 
     public String getData() {

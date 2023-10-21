@@ -21,6 +21,7 @@ import com.example.brainlity.Activity.LoginActivity;
 import com.example.brainlity.R;
 import com.example.brainlity.Activity.SplashActivity;
 import com.example.brainlity.Utils.Standard;
+import com.example.brainlity.Utils.VerificarConexaoAsyncTask;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -104,6 +105,7 @@ public class PerfilFragment extends Fragment {
                 } else {
                     standard.toast((AppCompatActivity)getActivity(),"Seu nome não foi 100% salvo, conecte-se a internet para salvar na nuvem", 2);
                 }
+
                 textNome.setText(sharedPreferences.getString("nome",""));
             }
         });
