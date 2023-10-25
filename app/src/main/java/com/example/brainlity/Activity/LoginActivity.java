@@ -3,7 +3,9 @@ package com.example.brainlity.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private EditText editTextPassword, editTextEmail;
     private Button buttonLogin;
-    private TextView textCadastro;
+    private TextView textCadastro, textSenha;
     private ImageView visibility;
     private Boolean passwordVisible = false;
     private Standard standard;
@@ -48,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // todo - Declaraçãos dos atributos
         standard = new Standard();
+        textSenha = findViewById(R.id.textSenha);
         firebaseBDLocal = new FirebaseBDLocal(this);
         sharedPreferences = getSharedPreferences("Usuario", this.MODE_PRIVATE);
         editTextEmail = findViewById(R.id.editText_LoginEmail);
@@ -61,6 +64,32 @@ public class LoginActivity extends AppCompatActivity {
         buttonLoginClick();
         textCadastroClick();
         togglePasswordVisibility();
+        textSenhaClick();
+    }
+
+    public void textSenhaClick(){
+        textSenha.setOnClickListener(v -> {
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            dialogBuilder.setTitle("Verificação de email");
+            EditText editTextName = new EditText(this);
+            dialogBuilder.setView(editTextName);
+            dialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String email = editTextName.getText().toString();
+                    recuperarSenha(email);
+                }
+            });
+
+            dialogBuilder.setNegativeButton("cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog dialog = dialogBuilder.create();
+            dialog.show();
+        });
     }
 
     public void buttonLoginClick() {
@@ -163,6 +192,18 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+    }
 
+    public void recuperarSenha(String email){
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    standard.toast(LoginActivity.this,"Email Enviado com sucesso",1);
+                } else {
+                    standard.toast(LoginActivity.this,"Falha ao enviar o email",2);
+                }
+            }
+        });
     }
 }

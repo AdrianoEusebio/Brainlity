@@ -1,4 +1,4 @@
-package com.example.brainlity.Fragment;
+package com.example.brainlity;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,10 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.brainlity.Activity.LoginActivity;
+import com.example.brainlity.Activity.MenuActivity;
+import com.example.brainlity.Utils.AsyncTask;
 import com.example.brainlity.R;
-import com.example.brainlity.Activity.SplashActivity;
+import com.example.brainlity.Utils.NotificationHelper;
 import com.example.brainlity.Utils.Standard;
-import com.example.brainlity.Utils.VerificarConexaoAsyncTask;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,6 +37,7 @@ public class PerfilFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private SharedPreferences sharedPreferences;
     private CollectionReference usersCollection;
+    private AsyncTask asyncTask;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);}
@@ -45,6 +47,8 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         FirebaseApp.initializeApp(getContext());
+        asyncTask = new AsyncTask(getContext());
+        asyncTask.execute();
         usersCollection = db.getInstance().collection("Users");
         view = inflater.inflate(R.layout.fragment_perfil, container, false);
         textNome = view.findViewById(R.id.textView_userNome);
@@ -95,16 +99,14 @@ public class PerfilFragment extends Fragment {
                 String name = editTextName.getText().toString();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("nome", name);
+                NotificationHelper notificationHelper = new NotificationHelper();
+                notificationHelper.showNotification(getContext(),"Teste", "EXEMPLO");
                 editor.apply();
 
-                if(standard.avaliarConexao(getContext())){
-                    standard.toast((AppCompatActivity)getActivity(),"Seu nome foi modificado e salvo na nuvem", 1);
-                    Intent intent = new Intent(getActivity(),SplashActivity.class);
-                    startActivity(intent);
-                    getActivity().finish();
-                } else {
-                    standard.toast((AppCompatActivity)getActivity(),"Seu nome não foi 100% salvo, conecte-se a internet para salvar na nuvem", 2);
-                }
+                standard.toast((AppCompatActivity) getActivity(),"Nome Trocado com sucesso",1);
+                Intent intent = new Intent(getActivity(), MenuActivity.class);
+                startActivity(intent);
+                getActivity().finish();
 
                 textNome.setText(sharedPreferences.getString("nome",""));
             }

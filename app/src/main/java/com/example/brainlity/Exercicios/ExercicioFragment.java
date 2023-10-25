@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.brainlity.Utils.AsyncTask;
 import com.example.brainlity.Exercicios.Relaxar.RelaxarActivity;
 import com.example.brainlity.Exercicios.Respiração.RespirarMainActivity;
 import com.example.brainlity.R;
@@ -20,6 +21,7 @@ public class ExercicioFragment extends Fragment {
 
     View view;
     ConstraintLayout bottomRespirar, bottomRelaxar;
+    AsyncTask asyncTask = new AsyncTask(getContext());
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

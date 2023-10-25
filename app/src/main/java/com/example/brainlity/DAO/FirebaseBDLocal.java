@@ -7,38 +7,27 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-import android.widget.Adapter;
 
 import androidx.annotation.NonNull;
 
 import com.example.brainlity.Entidade.Insight;
 import com.example.brainlity.Entidade.Registro;
-import com.example.brainlity.Registro.RegistroAdapter;
-import com.example.brainlity.Utils.Standard;
-import com.example.brainlity.Utils.VerificarConexaoAsyncTask;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FirebaseBDLocal {
+public class FirebaseBDLocal{
 
     private DatabaseReference databaseReference;
     private DataBaseDBHelper dbHelper;
@@ -164,7 +153,7 @@ public class FirebaseBDLocal {
         return idInserido;
     }
 
-    public void inserirRegistroFirestore(String email){
+    public void syncRegistroFirestore(String email){
         List<Registro> registros = getAllRegistro();
         CollectionReference collectionReference = colecao.document(email).collection("Registros");
         int i = 1;
@@ -180,6 +169,23 @@ public class FirebaseBDLocal {
             });
             i++;
         }
+
+        collectionReference
+                .orderBy(FieldPath.documentId())
+                .startAt(String.valueOf(i)) // Inicia após o último documento inserido
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            if(!document.getId().equals("default")){
+                                collectionReference.document(document.getId()).delete();
+                            }
+                        }
+                    } else {
+                        // Tratamento de erro na consulta
+                    }
+                });
     }
     @SuppressLint("Range")
     public List<Registro> getAllRegistro() {
@@ -223,6 +229,7 @@ public class FirebaseBDLocal {
     }
 
     public void deleteRegistro(long registroId) {
+
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         String whereClause = dbHelper.KEY_REGISTRO_ID + " = ?";
         String[] whereArgs = { String.valueOf(registroId) };

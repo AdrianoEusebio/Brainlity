@@ -1,32 +1,25 @@
 package com.example.brainlity.Activity;
 
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 
 import android.content.Intent;
 
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
 import com.example.brainlity.DAO.FirebaseBDLocal;
-import com.example.brainlity.Entidade.Registro;
 import com.example.brainlity.R;
 import com.example.brainlity.Utils.Standard;
-import com.example.brainlity.Utils.VerificarConexaoAsyncTask;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -34,8 +27,14 @@ public class SplashActivity extends AppCompatActivity {
     private Standard standard;
     private SharedPreferences sharedPreferences;
     private FirebaseBDLocal firebaseBDLocal;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference usersCollection;
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    // FCM SDK (and your app) can post notifications.
+                } else {
+                    // TODO: Inform user that that your app will not show notifications.
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,62 +44,18 @@ public class SplashActivity extends AppCompatActivity {
         // todo - declaração dos atributos
         FirebaseApp.initializeApp(this);
         standard = new Standard();
-        usersCollection = db.getInstance().collection("Users");
         firebaseBDLocal = new FirebaseBDLocal(this);
         sharedPreferences = getSharedPreferences("Usuario", MODE_PRIVATE);
         standard.actionColorDefault(this);
-
-        if(standard.avaliarConexao(this)){
-            realizarSincronizacaoInsight();
-            realizarSincronizacaoFirestore();
-        }
-
         navigateToNextActivity();
 
     }
 
-    public void realizarSincronizacaoInsight() {
-        FirebaseBDLocal firebaseBDLocal = new FirebaseBDLocal(getApplicationContext());
-        firebaseBDLocal.syncFirebaseDataToLocalDatabaseInsight();
-    }
-
-    public void realizarSincronizacaoFirestore() {
-        if(verificacaoCount()){
-            String emailToSearch = sharedPreferences.getString("email", "");
-            String nomeUpdate = sharedPreferences.getString("nome","");
-            firebaseBDLocal.inserirRegistroFirestore(emailToSearch);
-            Query query = usersCollection.whereEqualTo("email", emailToSearch);
-            query.get().addOnCompleteListener(task -> {
-               if(task.isSuccessful()){
-                    QuerySnapshot queryDocument = task.getResult();
-                   if (queryDocument != null && !queryDocument.isEmpty()) {
-                        for(DocumentSnapshot documentSnapshot: queryDocument.getDocuments()){
-
-                           if(documentSnapshot.getReference().update("nome",nomeUpdate).isSuccessful()){
-
-                           }
-                        }
-                    }
-               }
-            });
-        }
-    }
-
-
-
-    public boolean verificacaoCount() {
-        if (!sharedPreferences.getString("email", "").equals("") &&
-                !sharedPreferences.getString("senha", "").equals("")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
     private void navigateToNextActivity(){
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (verificacaoCount()) {
+                if (standard.verificacaoCount(SplashActivity.this)) {
                     Intent intent = new Intent(SplashActivity.this, MenuActivity.class);
                     startActivity(intent);
                     finish();
@@ -111,4 +66,6 @@ public class SplashActivity extends AppCompatActivity {
                 }
             }}, 2000); // Delay for 2 seconds
         }
-    }
+
+
+}

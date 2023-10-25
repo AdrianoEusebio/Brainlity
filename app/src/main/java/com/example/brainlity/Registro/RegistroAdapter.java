@@ -2,9 +2,7 @@ package com.example.brainlity.Registro;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -12,19 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.brainlity.DAO.FirebaseBDLocal;
-import com.example.brainlity.Entidade.Insight;
 import com.example.brainlity.Entidade.Registro;
 import com.example.brainlity.R;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class RegistroAdapter extends RecyclerView.Adapter<RegistroAdapter.MyViewHolder>{
 
     private List<Registro> dataset = new ArrayList<>();
+    private DiarioFragment diarioFragment = new DiarioFragment();
     private Context context;
     private  FirebaseBDLocal firebaseBDLocal;
 
@@ -46,7 +42,6 @@ public class RegistroAdapter extends RecyclerView.Adapter<RegistroAdapter.MyView
         holder.humor.setText(item.getHumor());
         holder.data.setText(item.getData());
         holder.id.setText(String.valueOf(position+1));
-        viewPressed(holder, item.getId(),position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +52,14 @@ public class RegistroAdapter extends RecyclerView.Adapter<RegistroAdapter.MyView
                 context.startActivity(intent);
             }
         });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                firebaseBDLocal.deleteRegistro(item.getId());
+                return true;
+            }
+        });
     }
 
     @Override
@@ -64,16 +67,13 @@ public class RegistroAdapter extends RecyclerView.Adapter<RegistroAdapter.MyView
         return dataset.size();
     }
 
-    public void viewPressed(@NonNull MyViewHolder holder, long id, int position){
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                firebaseBDLocal.deleteRegistro(id);
-                return true;
-            }
-        });
-
+    public List<Registro> getDataset(){
+        return dataset;
     }
+    public void getDataset(List<Registro> registros){
+        dataset = registros;
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView humor, data, id;

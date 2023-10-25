@@ -3,6 +3,7 @@ package com.example.brainlity.Utils;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -97,4 +98,13 @@ public class Standard {
     }
 
 
+    public boolean verificacaoCount(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+        if (!sharedPreferences.getString("email", "").equals("") &&
+                !sharedPreferences.getString("senha", "").equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

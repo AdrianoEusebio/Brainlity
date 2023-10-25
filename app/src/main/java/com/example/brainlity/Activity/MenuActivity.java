@@ -7,18 +7,20 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.brainlity.Utils.AsyncTask;
 import com.example.brainlity.R;
 import com.example.brainlity.Registro.DiarioFragment;
 import com.example.brainlity.Exercicios.ExercicioFragment;
 import com.example.brainlity.Insight.InsightFragment;
-import com.example.brainlity.Fragment.MenuFragment;
-import com.example.brainlity.Fragment.PerfilFragment;
+import com.example.brainlity.MenuFragment;
+import com.example.brainlity.PerfilFragment;
 import com.example.brainlity.Utils.Standard;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    AsyncTask asyncTask = new AsyncTask(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,10 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         Standard standard = new Standard();
         standard.actionColorDefault(this);
+
+        if(standard.avaliarConexao(this)){
+            asyncTask.execute();
+        }
 
         replaceFragment(new MenuFragment());
         bottomNavigationView = findViewById(R.id.bottom_nav);
