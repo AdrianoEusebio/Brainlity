@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -15,16 +15,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Brainlity"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".Exercicios.Respiração.ConhecimentoActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/baseline_check" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/background_item3" />
+
+        <meta-data
+            android:name="com.google.android.youtube.api.key"
+            android:value="AIzaSyD6ulfvfwABQ8g8-w0Nk3H4iVoNjoWXZ14" />
 
         <activity
             android:name=".Registro.DiarioActivity"
@@ -35,17 +41,15 @@
         <activity
             android:name=".Registro.RegistroActivity"
             android:exported="false" />
-
         <activity
             android:name=".Activity.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activity.CadastroActivity"
             android:exported="false"

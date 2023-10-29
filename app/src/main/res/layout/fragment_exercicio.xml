@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="@string/app_name"
     android:background="@color/background_item2"
     tools:context=".Exercicios.ExercicioFragment">
 
@@ -11,95 +12,267 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="200dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="24dp"
-            android:id="@+id/bottom_respirar"
+        <ImageView
+            android:id="@+id/button_respirar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:elevation="50dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/background_item_card"
-            android:elevation="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="Respirar"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView5"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/baseline_air"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.4" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottom_relaxar"
-            android:layout_width="200dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/background_item_card"
-            app:layout_constraintEnd_toEndOf="@+id/bottom_respirar"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/bottom_respirar"
-            app:layout_constraintTop_toBottomOf="@+id/bottom_respirar">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:text="Relaxar"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.39"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.466" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:src="@drawable/baseline_hotel"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.4" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/baseline_air"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_exerciciopratico" />
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/text_respirar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44sp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_respirar"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_respirar"
+            app:layout_constraintStart_toStartOf="@+id/button_respirar"
+            app:layout_constraintTop_toBottomOf="@+id/button_respirar" />
+
+        <ImageView
+            android:id="@+id/button_relaxar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="45dp"
+            android:background="@drawable/background_item_card"
+            android:contentDescription="@string/app_name"
+            android:elevation="50dp"
+            android:padding="3dp"
+            android:src="@drawable/baseline_hotel"
+            app:layout_constraintBottom_toTopOf="@+id/text_respirar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/button_respirar"
+            app:layout_constraintTop_toTopOf="@+id/button_respirar"
+            app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/text_relaxar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_relaxar"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_relaxar"
+            app:layout_constraintStart_toStartOf="@+id/button_relaxar"
+            app:layout_constraintTop_toBottomOf="@+id/button_relaxar" />
+
+
+        <TextView
+            android:id="@+id/textView_exerciciopratico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@color/background_item3"
+            android:elevation="8dp"
             android:fontFamily="@font/itim"
-            android:text="Exercicios práticos"
+            android:paddingLeft="15dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="15dp"
+            android:text="@string/text_exercicios"
             android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@color/background_item3"
+            android:elevation="8dp"
+            android:fontFamily="@font/itim"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/text_conhecimento"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_respirar" />
+
+
+        <ImageView
+            android:id="@+id/button_foco"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:elevation="50dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/background_item_card"
+            android:contentDescription="@string/app_name"
+            android:padding="3dp"
+            android:src="@drawable/baseline_psychology_alt"
+            app:layout_constraintEnd_toEndOf="@+id/button_meditacao"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/button_meditacao"
+            app:layout_constraintTop_toBottomOf="@+id/text_meditacao" />
+        <TextView
+            android:id="@+id/text_foco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_foco"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_ansiedade"
+            app:layout_constraintStart_toStartOf="@+id/button_ansiedade"
+            app:layout_constraintTop_toBottomOf="@+id/button_ansiedade" />
+
+        <ImageView
+            android:id="@+id/button_rotina"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/background_item_card"
+            android:contentDescription="@string/app_name"
+            android:padding="3dp"
+            android:elevation="50dp"
+            android:src="@drawable/baseline_loop"
+            app:layout_constraintBottom_toTopOf="@+id/text_meditacao"
+            app:layout_constraintStart_toEndOf="@+id/button_meditacao"
+            app:layout_constraintTop_toTopOf="@+id/button_meditacao"
+            app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/text_rotina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_rotina"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_rotina"
+            app:layout_constraintStart_toStartOf="@+id/button_rotina"
+            app:layout_constraintTop_toBottomOf="@+id/button_rotina" />
+
+        <ImageView
+            android:id="@+id/button_meditacao"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="30dp"
+            android:elevation="50dp"
+            android:background="@drawable/background_item_card"
+            android:contentDescription="@string/app_name"
+            android:padding="3dp"
+            android:src="@drawable/baseline_self_improvement"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <TextView
+            android:id="@+id/text_meditacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_meditacao"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_meditacao"
+            app:layout_constraintStart_toStartOf="@+id/button_meditacao"
+            app:layout_constraintTop_toBottomOf="@+id/button_meditacao" />
+
+        <ImageView
+            android:id="@+id/button_ansiedade"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:elevation="50dp"
+            android:layout_marginStart="40dp"
+            android:background="@drawable/background_item_card"
+            android:contentDescription="@string/app_name"
+            android:padding="3dp"
+            android:src="@drawable/baseline_search"
+            app:layout_constraintBottom_toTopOf="@+id/text_ansiedade"
+            app:layout_constraintEnd_toEndOf="@+id/button_rotina"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/button_foco"
+            app:layout_constraintTop_toTopOf="@+id/button_foco"
+            app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/text_ansiedade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_ansiedade"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_foco"
+            app:layout_constraintStart_toStartOf="@+id/button_foco"
+            app:layout_constraintTop_toBottomOf="@+id/button_foco" />
+
+        <ImageView
+            android:id="@+id/button_saudemental"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="40dp"
+            android:elevation="50dp"
+            android:background="@drawable/background_item_card"
+            android:contentDescription="@string/app_name"
+            android:padding="3dp"
+            android:src="@drawable/baseline_psychology"
+            app:layout_constraintEnd_toEndOf="@+id/button_sono"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/button_ansiedade"
+            app:layout_constraintTop_toTopOf="@+id/button_ansiedade" />
+        <TextView
+            android:id="@+id/text_saudemental"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_saudemental"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_saudemental"
+            app:layout_constraintStart_toStartOf="@+id/button_saudemental"
+            app:layout_constraintTop_toBottomOf="@+id/button_saudemental" />
+
+        <ImageView
+            android:id="@+id/button_sono"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="45dp"
+            android:background="@drawable/background_item_card"
+            android:contentDescription="@string/app_name"
+            android:padding="3dp"
+            android:elevation="50dp"
+            android:src="@drawable/baseline_snooze"
+            app:layout_constraintBottom_toTopOf="@+id/text_rotina"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/button_rotina"
+            app:layout_constraintTop_toTopOf="@+id/button_rotina"
+            app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/text_sono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/text_sono"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="@+id/button_sono"
+            app:layout_constraintStart_toStartOf="@+id/button_sono"
+            app:layout_constraintTop_toBottomOf="@+id/button_sono" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

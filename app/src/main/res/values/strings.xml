@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">Brainlity</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="number_picker_formatter">%02d</string>
-
+    <string name="text_meditacao">Meditação</string>
+    <string name="text_ansiedade">Ansiedade</string>
+    <string name="text_foco">Foco</string>
+    <string name="text_saudemental">Saúde Mental</string>
+    <string name="text_sono">Sono</string>
+    <string name="text_rotina">Rotina</string>
+    <string name="text_exercicios">Execícios</string>
+    <string name="text_relaxar">Relaxar</string>
+    <string name="text_respirar">Respirar</string>
+    <string name="text_conhecimento">Conhecimento</string>
+    <string name="meditacao_text_info">A meditação é uma prática comprovadamente benéfica para a saúde mental e física, proporcionando relaxamento, redução do estresse e ansiedade, melhoria do sono e fortalecimento do sistema imunológico. Além disso, ela aumenta o autoconhecimento, melhora o foco e a concentração, proporcionando maior clareza mental e tomada de decisões. Existem várias técnicas de meditação para escolher, tornando-a uma prática versátil com amplos benefícios para a saúde e o bem-estar.</string>
+    <string name="meditacao_text_info2">Para iniciar a meditação, encontre um local confortável, escolha entre sentar-se ou deitar-se (evitando adormecer), concentre-se na respiração, observe atentamente a entrada e saída do ar e os movimentos do corpo associados à respiração. Deixe os pensamentos surgirem e passarem sem se prender a eles, retornando suavemente ao foco na respiração. Embora seja desafiador no início, a prática regular aprimora essa habilidade com o tempo.</string>
+    <string name="meditacao_text_info3">Não existe uma duração específica para a meditação. Comece com alguns minutos pela manhã ou à noite e aumente gradualmente o tempo à medida que se torna mais confortável. Praticar logo após acordar pode liberar a mente de ansiedades, e antes de dormir, pode relaxar o corpo e a mente, promovendo um sono tranquilo.
+</string>
 </resources>
