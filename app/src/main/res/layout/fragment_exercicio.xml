@@ -108,7 +108,7 @@
 
 
         <ImageView
-            android:id="@+id/button_foco"
+            android:id="@+id/button_ansiedade"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:elevation="50dp"
@@ -130,9 +130,9 @@
             android:text="@string/text_foco"
             android:textColor="@color/white"
             android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_ansiedade"
-            app:layout_constraintStart_toStartOf="@+id/button_ansiedade"
-            app:layout_constraintTop_toBottomOf="@+id/button_ansiedade" />
+            app:layout_constraintEnd_toEndOf="@+id/button_foco"
+            app:layout_constraintStart_toStartOf="@+id/button_foco"
+            app:layout_constraintTop_toBottomOf="@+id/button_foco" />
 
         <ImageView
             android:id="@+id/button_rotina"
@@ -188,7 +188,7 @@
             app:layout_constraintTop_toBottomOf="@+id/button_meditacao" />
 
         <ImageView
-            android:id="@+id/button_ansiedade"
+            android:id="@+id/button_foco"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:elevation="50dp"
@@ -200,8 +200,8 @@
             app:layout_constraintBottom_toTopOf="@+id/text_ansiedade"
             app:layout_constraintEnd_toEndOf="@+id/button_rotina"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/button_foco"
-            app:layout_constraintTop_toTopOf="@+id/button_foco"
+            app:layout_constraintStart_toEndOf="@+id/button_ansiedade"
+            app:layout_constraintTop_toTopOf="@+id/button_ansiedade"
             app:layout_constraintVertical_bias="0.0" />
         <TextView
             android:id="@+id/text_ansiedade"
@@ -212,9 +212,9 @@
             android:text="@string/text_ansiedade"
             android:textColor="@color/white"
             android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_foco"
-            app:layout_constraintStart_toStartOf="@+id/button_foco"
-            app:layout_constraintTop_toBottomOf="@+id/button_foco" />
+            app:layout_constraintEnd_toEndOf="@+id/button_ansiedade"
+            app:layout_constraintStart_toStartOf="@+id/button_ansiedade"
+            app:layout_constraintTop_toBottomOf="@+id/button_ansiedade" />
 
         <ImageView
             android:id="@+id/button_saudemental"
