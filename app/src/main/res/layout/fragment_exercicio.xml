@@ -12,15 +12,213 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:scrollbars="horizontal"
+            android:fadeScrollbars="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/button_saudemental"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/background_item_card"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="50dp"
+                        android:padding="3dp"
+                        android:src="@drawable/baseline_psychology" />
+
+                    <TextView
+                        android:id="@+id/text_saudemental"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/text_saudemental"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/button_ansiedade"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/background_item_card"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="50dp"
+                        android:layout_gravity="center"
+                        android:padding="3dp"
+                        android:src="@drawable/baseline_psychology_alt" />
+
+                    <TextView
+                        android:id="@+id/text_ansiedade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/text_ansiedade"
+                        android:textColor="@color/white"
+                        android:textSize="23sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/button_rotina"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/background_item_card"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="50dp"
+                        android:padding="3dp"
+                        android:src="@drawable/baseline_loop" />
+
+                    <TextView
+                        android:id="@+id/text_rotina"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/text_rotina"
+                        android:textColor="@color/white"
+                        android:textSize="23sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/button_meditacao"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/background_item_card"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="50dp"
+                        android:padding="3dp"
+                        android:src="@drawable/baseline_self_improvement" />
+
+                    <TextView
+                        android:id="@+id/text_meditacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/text_meditacao"
+                        android:textColor="@color/white"
+                        android:textSize="23sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/button_foco"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/background_item_card"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="50dp"
+                        android:padding="3dp"
+                        android:src="@drawable/baseline_search" />
+
+                    <TextView
+                        android:id="@+id/text_foco"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/text_foco"
+                        android:textColor="@color/white"
+                        android:textSize="23sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/button_sono"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/background_item_card"
+                        android:contentDescription="@string/app_name"
+                        android:elevation="50dp"
+                        android:padding="3dp"
+                        android:src="@drawable/baseline_snooze" />
+
+                    <TextView
+                        android:id="@+id/text_sono"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/text_sono"
+                        android:textColor="@color/white"
+                        android:textSize="23sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
         <ImageView
             android:id="@+id/button_respirar"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:elevation="50dp"
-            android:layout_marginStart="45dp"
+            android:layout_marginStart="90dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/background_item_card"
             android:contentDescription="@string/app_name"
+            android:elevation="50dp"
             android:src="@drawable/baseline_air"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_exerciciopratico" />
@@ -42,6 +240,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="45dp"
+            android:layout_marginEnd="100dp"
             android:background="@drawable/background_item_card"
             android:contentDescription="@string/app_name"
             android:elevation="50dp"
@@ -49,10 +248,11 @@
             android:src="@drawable/baseline_hotel"
             app:layout_constraintBottom_toTopOf="@+id/text_respirar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/button_respirar"
             app:layout_constraintTop_toTopOf="@+id/button_respirar"
             app:layout_constraintVertical_bias="0.0" />
+
         <TextView
             android:id="@+id/text_relaxar"
             android:layout_width="wrap_content"
@@ -65,7 +265,6 @@
             app:layout_constraintEnd_toEndOf="@+id/button_relaxar"
             app:layout_constraintStart_toStartOf="@+id/button_relaxar"
             app:layout_constraintTop_toBottomOf="@+id/button_relaxar" />
-
 
         <TextView
             android:id="@+id/textView_exerciciopratico"
@@ -86,17 +285,18 @@
             app:layout_constraintHorizontal_bias="0.094"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:background="@color/background_item3"
             android:elevation="8dp"
             android:fontFamily="@font/itim"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp"
             android:paddingTop="5dp"
+            android:paddingRight="15dp"
             android:paddingBottom="5dp"
             android:text="@string/text_conhecimento"
             android:textColor="@color/white"
@@ -105,173 +305,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_respirar" />
-
-
-        <ImageView
-            android:id="@+id/button_ansiedade"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:elevation="50dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/background_item_card"
-            android:contentDescription="@string/app_name"
-            android:padding="3dp"
-            android:src="@drawable/baseline_psychology_alt"
-            app:layout_constraintEnd_toEndOf="@+id/button_meditacao"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/button_meditacao"
-            app:layout_constraintTop_toBottomOf="@+id/text_meditacao" />
-        <TextView
-            android:id="@+id/text_foco"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_foco"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_foco"
-            app:layout_constraintStart_toStartOf="@+id/button_foco"
-            app:layout_constraintTop_toBottomOf="@+id/button_foco" />
-
-        <ImageView
-            android:id="@+id/button_rotina"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/background_item_card"
-            android:contentDescription="@string/app_name"
-            android:padding="3dp"
-            android:elevation="50dp"
-            android:src="@drawable/baseline_loop"
-            app:layout_constraintBottom_toTopOf="@+id/text_meditacao"
-            app:layout_constraintStart_toEndOf="@+id/button_meditacao"
-            app:layout_constraintTop_toTopOf="@+id/button_meditacao"
-            app:layout_constraintVertical_bias="0.0" />
-        <TextView
-            android:id="@+id/text_rotina"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_rotina"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_rotina"
-            app:layout_constraintStart_toStartOf="@+id/button_rotina"
-            app:layout_constraintTop_toBottomOf="@+id/button_rotina" />
-
-        <ImageView
-            android:id="@+id/button_meditacao"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="45dp"
-            android:layout_marginTop="30dp"
-            android:elevation="50dp"
-            android:background="@drawable/background_item_card"
-            android:contentDescription="@string/app_name"
-            android:padding="3dp"
-            android:src="@drawable/baseline_self_improvement"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-        <TextView
-            android:id="@+id/text_meditacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_meditacao"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_meditacao"
-            app:layout_constraintStart_toStartOf="@+id/button_meditacao"
-            app:layout_constraintTop_toBottomOf="@+id/button_meditacao" />
-
-        <ImageView
-            android:id="@+id/button_foco"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:elevation="50dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/background_item_card"
-            android:contentDescription="@string/app_name"
-            android:padding="3dp"
-            android:src="@drawable/baseline_search"
-            app:layout_constraintBottom_toTopOf="@+id/text_ansiedade"
-            app:layout_constraintEnd_toEndOf="@+id/button_rotina"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/button_ansiedade"
-            app:layout_constraintTop_toTopOf="@+id/button_ansiedade"
-            app:layout_constraintVertical_bias="0.0" />
-        <TextView
-            android:id="@+id/text_ansiedade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_ansiedade"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_ansiedade"
-            app:layout_constraintStart_toStartOf="@+id/button_ansiedade"
-            app:layout_constraintTop_toBottomOf="@+id/button_ansiedade" />
-
-        <ImageView
-            android:id="@+id/button_saudemental"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="40dp"
-            android:elevation="50dp"
-            android:background="@drawable/background_item_card"
-            android:contentDescription="@string/app_name"
-            android:padding="3dp"
-            android:src="@drawable/baseline_psychology"
-            app:layout_constraintEnd_toEndOf="@+id/button_sono"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/button_ansiedade"
-            app:layout_constraintTop_toTopOf="@+id/button_ansiedade" />
-        <TextView
-            android:id="@+id/text_saudemental"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_saudemental"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_saudemental"
-            app:layout_constraintStart_toStartOf="@+id/button_saudemental"
-            app:layout_constraintTop_toBottomOf="@+id/button_saudemental" />
-
-        <ImageView
-            android:id="@+id/button_sono"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="45dp"
-            android:background="@drawable/background_item_card"
-            android:contentDescription="@string/app_name"
-            android:padding="3dp"
-            android:elevation="50dp"
-            android:src="@drawable/baseline_snooze"
-            app:layout_constraintBottom_toTopOf="@+id/text_rotina"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/button_rotina"
-            app:layout_constraintTop_toTopOf="@+id/button_rotina"
-            app:layout_constraintVertical_bias="0.0" />
-        <TextView
-            android:id="@+id/text_sono"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/text_sono"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="@+id/button_sono"
-            app:layout_constraintStart_toStartOf="@+id/button_sono"
-            app:layout_constraintTop_toBottomOf="@+id/button_sono" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

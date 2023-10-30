@@ -3,7 +3,7 @@
     <string name="text_meditacao">Meditação</string>
     <string name="text_ansiedade">Ansiedade</string>
     <string name="text_foco">Foco</string>
-    <string name="text_saudemental">Saúde Mental</string>
+    <string name="text_saudemental">Mental</string>
     <string name="text_sono">Sono</string>
     <string name="text_rotina">Rotina</string>
     <string name="text_exercicios">Execícios</string>
@@ -19,6 +19,12 @@
     <string name="foco_text_info">A capacidade de manter o foco é uma habilidade altamente desejada por todos, mas muitas vezes enfrentamos obstáculos significativos para alcançá-la. No entanto, o foco é essencial em todas as áreas da vida, seja nos estudos, no trabalho ou até mesmo no lazer. Em algumas situações, manter o foco pode ser desafiador, enquanto em outras, pode ser mais simples.</string>
     <string name="foco_text_info2">O foco é facilmente comprometido por inúmeras distrações na era moderna. Steve Jobs enfatizou a importância de dizer "não" a elas para se concentrar verdadeiramente. Dispositivos como celulares impactam negativamente a produtividade, e o ambiente onde trabalhamos também é crucial. Para manter o foco, é vital minimizar essas interferências e organizar o espaço de trabalho.</string>
     <string name="foco_text_info3">Além disso, existem maneiras de tornar a mente mais resistente às distrações. A meditação e a leitura são duas atividades que podem contribuir significativamente para isso. E também técnicas como o pomodoro que ajudam a estruturar melhor seu tempo.</string>
+    <string name="rotina_text_info">Uma rotina bem estruturada organiza o dia-a-dia, aumenta a produtividade e o foco, promove a formação de hábitos e pode reduzir o estresse, melhorar o sono e auxiliar na realização de metas.</string>
+    <string name="rotina_text_info2">Para criar uma rotina, liste suas tarefas diárias e os horários de execução. Inclua atividades simples e complexas, dividindo as maiores em subtarefas. Organizar tarefas por horário ajuda a clarificar seu dia.</string>
+    <string name="rotina_text_info3">Para otimizar sua rotina, considere usar aplicativos de gestão de tarefas e fixar uma lista visível das atividades no seu ambiente, facilitando a visualização e o cumprimento consistente das tarefas.</string>
+    <string name="mental_text_info">A saúde mental está tornando-se uma preocupação crescente nas gerações recentes, com um aumento de casos de ansiedade e depressão. Apesar da relevância do tema, muitos ainda o subestimam, não percebendo as implicações a longo prazo de negligenciar esse aspecto do bem-estar. A desatenção à saúde mental pode comprometer a capacidade de lidar com desafios cotidianos e, em situações extremas, tornar alguém dependente de medicamentos. É vital abordar a saúde mental com a seriedade que ela merece.</string>
+    <string name="mental_text_info2">Para melhorar a saúde mental, é recomendado adotar estratégias como meditação, sono de qualidade, moderação no uso de dispositivos móveis e exercícios físicos regulares. Estabelecer hábitos saudáveis pode potencializar a qualidade de vida e a saúde mental, sendo fundamental priorizar esse cuidado no cotidiano.</string>
+    <string name="mental_texto_info3">Por último, mas não menos importante, é fundamental buscar a orientação de um profissional especializado no assunto, como um psicólogo, mesmo quando você se sente bem. A assistência de um profissional é sempre valiosa para manter e aprimorar a saúde mental. Portanto, não hesite em consultar um especialista, independentemente de como você esteja se sentindo.</string>
 
 
 </resources>
