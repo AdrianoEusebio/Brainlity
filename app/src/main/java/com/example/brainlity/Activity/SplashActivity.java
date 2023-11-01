@@ -27,14 +27,6 @@ public class SplashActivity extends AppCompatActivity {
     private Standard standard;
     private SharedPreferences sharedPreferences;
     private FirebaseBDLocal firebaseBDLocal;
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    // FCM SDK (and your app) can post notifications.
-                } else {
-                    // TODO: Inform user that that your app will not show notifications.
-                }
-            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-            }}, 2000); // Delay for 2 seconds
+            }}, 3000); // Delay for 2 seconds
         }
 
 

@@ -63,18 +63,12 @@ public class DiarioFragment extends Fragment {
 
         return view;
     }
-
-    public void notifyRecyclerView(int id){
-        recyclerView.setAdapter(registroAdapter);
-        if (recyclerView != null && recyclerView.getAdapter() != null) {
-            recyclerView.getAdapter().notifyItemRemoved(id);
-        }
-    }
     public void buttonCLick(){
         button.setOnClickListener(view ->{
             Intent intent = new Intent(getActivity(), RegistroActivity.class);
             startActivity(intent);
             getActivity().finish();
+
         });
     }
 }

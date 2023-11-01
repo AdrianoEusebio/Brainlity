@@ -3,8 +3,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_item2"
     tools:context=".Exercicios.SonoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_sono"
+        android:elevation="8dp"
+        android:background="@color/background_item2"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:paddingTop="15dp"
+        android:fontFamily="@font/itim"
+        android:layout_gravity="left"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="70dp" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/youtubeplayer2"
+                app:videoId="CV5JHv6BsdE"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sono_text_info"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="15dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/itim"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="240dp"
+                android:paddingTop="15dp"
+                android:src="@drawable/sono"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/itim"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="15dp"
+                android:text="@string/sono_text_info2"
+                android:textColor="@color/white"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="460dp"
+                android:paddingTop="15dp"
+                android:src="@drawable/sono_guia" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sono_text_info3"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/itim"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sono_text_info4"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/itim"/>
+
+            <TextView
+                android:id="@+id/text_link6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Para mais dicas entre clique aqui!!"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textSize="25dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/itim"/>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
