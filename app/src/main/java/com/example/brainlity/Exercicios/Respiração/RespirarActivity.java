@@ -34,7 +34,7 @@ public class RespirarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_respirar);
 
         //Criando os objetos das classes do package utils
-        musica = new Musica(this,R.raw.relax_music);
+        musica = new Musica(this,R.raw.reflected);
         standard.actionColorDefault(this);
 
         //Setando ID dos componentes da tela

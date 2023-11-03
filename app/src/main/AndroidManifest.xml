@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,10 +14,14 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Brainlity"
         tools:targetApi="31">
+        <activity
+            android:name=".Exercicios.Relaxar.MediaPlayerActivity"
+            android:exported="false" />
         <activity
             android:name=".Exercicios.Respiração.ConhecimentoActivity"
             android:exported="false" />
@@ -23,11 +29,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/baseline_check" />
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/background_item3" />
-
         <meta-data
             android:name="com.google.android.youtube.api.key"
             android:value="AIzaSyD6ulfvfwABQ8g8-w0Nk3H4iVoNjoWXZ14" />

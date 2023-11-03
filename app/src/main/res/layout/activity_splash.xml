@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_item2"
+    android:background="@color/color_1"
     app:layoutDescription="@xml/activity_splash_scene"
     tools:context=".Activity.SplashActivity">
 
@@ -29,7 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
-        app:tint="@color/white" />
+        app:tint="@color/color_4" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -40,8 +40,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo"
-        app:tint="@color/background_item1" />
+        app:tint="@color/color_1" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:textColor="@color/color_4"
+        android:textSize="37dp"
+        android:fontFamily="@font/nunito_sans_extrabold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brainlity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

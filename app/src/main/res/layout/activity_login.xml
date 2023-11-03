@@ -3,55 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background_item2"
+    android:background="@drawable/shape_background_neon"
     android:layout_height="match_parent"
     tools:context=".Activity.LoginActivity">
 
-
-    <TextView
-        android:id="@+id/login_bemvindo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/itim"
-        android:text="Bem vindo ao Brainlity"
-        android:textColor="@color/white"
-        android:textSize="35dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginEnd="100dp"
+        android:background="@drawable/shape_background_bottom1"
+        android:backgroundTint="@color/color_1"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginEnd="-14dp"
+        android:background="@drawable/shape_background_bottom1"
+        android:backgroundTint="@color/color_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="70dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="60dp"
-        android:background="@color/background_item3"
+        android:background="@drawable/shape_background_layout_login"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_bemvindo"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.25">
 
         <EditText
             android:id="@+id/editText_LoginEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:autofillHints="emailAddress"
-            android:background="@color/background_item2"
+            android:background="@drawable/shape_background_edit_text"
             android:ems="10"
             android:fontFamily="@font/itim"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
@@ -61,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_bemvindo2"
             app:layout_constraintVertical_bias="0.0" />
 
         <EditText
@@ -69,13 +72,13 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
             android:autofillHints="password"
-            android:background="@color/background_item2"
+            android:background="@drawable/shape_background_edit_text"
             android:ems="10"
             android:fontFamily="@font/itim"
-            android:hint="Senha"
+            android:hint="@string/senha"
             android:inputType="textPassword"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
@@ -90,44 +93,18 @@
             android:id="@+id/textCadastro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:fontFamily="@font/itim"
-            android:text="Não tem conta? Cadastre-se aqui!"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="60dp"
+            android:fontFamily="@font/nunito_sans_extrabold"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/nao_tem_uma_conta"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/button_LoginEntrar"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="@+id/button_LoginEntrar"
-            app:layout_constraintTop_toBottomOf="@+id/button_LoginEntrar" />
-
-        <TextView
-            android:id="@+id/textSenha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="100dp"
-            android:fontFamily="@font/itim"
-            android:text="Esqueçeu minha senha? Clique Aqui!"
-            android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/textCadastro"
-            app:layout_constraintStart_toStartOf="@+id/textCadastro"
-            app:layout_constraintTop_toBottomOf="@+id/textCadastro"
-            app:layout_constraintVertical_bias="0.100000024" />
-
-        <Button
-            android:id="@+id/button_LoginEntrar"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="@color/background_item5"
-            android:elevation="8dp"
-            android:fontFamily="@font/itim"
-            android:text="Entrar"
-            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/editText_loginSenha"
-            app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="@+id/editText_loginSenha"
             app:layout_constraintTop_toBottomOf="@+id/editText_loginSenha" />
 
@@ -135,6 +112,7 @@
             android:id="@+id/imageView10"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:contentDescription="@string/baseline_visibility"
             app:layout_constraintBottom_toBottomOf="@+id/editText_loginSenha"
             app:layout_constraintEnd_toEndOf="@+id/editText_loginSenha"
             app:layout_constraintHorizontal_bias="0.9"
@@ -142,6 +120,52 @@
             app:layout_constraintTop_toTopOf="@+id/editText_loginSenha"
             app:srcCompat="@drawable/baseline_visibility" />
 
+        <TextView
+            android:id="@+id/login_bemvindo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nunito_sans_extrabold"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button_LoginEntrar"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/color_1"
+        android:elevation="8dp"
+        android:fontFamily="@font/itim"
+        android:text="@string/button_entrar"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <TextView
+        android:id="@+id/textSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_sans_extrabold"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/esqueceu_senha"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_LoginEntrar"
+        app:layout_constraintStart_toStartOf="@+id/button_LoginEntrar"
+        app:layout_constraintTop_toBottomOf="@+id/button_LoginEntrar"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

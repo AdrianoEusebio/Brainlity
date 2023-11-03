@@ -29,4 +29,15 @@
     <string name="sono_text_info2">Para um sono de qualidade, mantenha o quarto escuro, silencioso, agradável e organizado, e estabeleça uma rotina relaxante antes de dormir, evitando atividades agitadas.</string>
     <string name="sono_text_info3">Evite a luz azul de dispositivos eletrônicos antes de dormir para não prejudicar a produção de melatonina ou use aplicativos que minimizem essa emissão.</string>
     <string name="sono_text_info4">Antes de dormir, relaxe com atividades como banho quente ou leitura, evitando estímulos fortes. Faça exercícios regularmente, mas não perto da hora de deitar, e limite cochilos diurnos para não afetar o sono noturno.</string>
+    <string name="Ja_tem_uma_conta">Já tem uma conta? clique aqui!!</string>
+    <string name="nao_tem_uma_conta">Não tem conta? Cadastre-se aqui!!</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="login">Login</string>
+    <string name="button_entrar">Entrar</string>
+    <string name="esqueceu_senha">Esqueçeu minha senha? Clique Aqui!!</string>
+    <string name="baseline_visibility">visibility</string>
+    <string name="senha">Senha</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
 </resources>

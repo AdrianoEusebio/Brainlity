@@ -66,6 +66,7 @@ public class CadastroActivity extends AppCompatActivity {
         Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         super.onBackPressed();
     }
 
@@ -127,9 +128,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     public void textLoginClick() {
         textLogin.setOnClickListener(view -> {
-            Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+            onBackPressed();
         });
     }
 
