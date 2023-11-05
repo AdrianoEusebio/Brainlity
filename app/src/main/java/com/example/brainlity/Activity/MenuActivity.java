@@ -15,6 +15,7 @@ import com.example.brainlity.Insight.InsightFragment;
 import com.example.brainlity.MenuFragment;
 import com.example.brainlity.PerfilFragment;
 import com.example.brainlity.Utils.Standard;
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MenuActivity extends AppCompatActivity {
@@ -34,6 +35,8 @@ public class MenuActivity extends AppCompatActivity {
         }
 
         replaceFragment(new MenuFragment());
+
+
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnItemSelectedListener(item -> {
 

@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.brainlity.R;
@@ -38,7 +39,7 @@ public class MenuFragment extends Fragment {
     private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FraseDiaria");
     private TextView fraseDiaria;
     private Standard standard;
-    private NotificationManager notificationManager;
+    private ImageView imageShare;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,10 +54,16 @@ public class MenuFragment extends Fragment {
         String nome = sharedPreferences.getString("nome", "");
         textUser = view.findViewById(R.id.textUser);
         textUser.setText("Olá, " + nome);
+        imageShare = view.findViewById(R.id.image_share);
         standard = new Standard();
         fraseDiaria = view.findViewById(R.id.frase_diaria);
         inserirFraseDiaria();
         notificacao();
+
+        imageShare.setOnClickListener(v -> {
+            standard.shareViaWhatsApp(getContext(),fraseDiaria.getText().toString());
+        });
+
         return view;
     }
 

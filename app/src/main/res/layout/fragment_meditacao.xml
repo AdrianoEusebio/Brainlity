@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_item2"
+    android:background="@color/color_2"
     tools:context=".Exercicios.MeditacaoFragment">
 
     <TextView
@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:text="@string/text_meditacao"
         android:elevation="8dp"
-        android:background="@color/background_item2"
+        android:background="@color/color_1"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:paddingTop="15dp"
-        android:fontFamily="@font/itim"
+        android:fontFamily="@font/nunito_sans_extrabold"
         android:layout_gravity="left"
         android:paddingStart="20dp"
         android:paddingEnd="10dp"

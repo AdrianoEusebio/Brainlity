@@ -2,21 +2,29 @@ package com.example.brainlity.Exercicios.Respiração;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.example.brainlity.R;
 import com.example.brainlity.Utils.Standard;
 
+import java.lang.reflect.Field;
+
 public class RespirarMainActivity extends AppCompatActivity {
 
 
     private NumberPicker minutesPicker;
     private NumberPicker secondsPicker;
+    private ImageView back;
     private Button comecar;
 
     @Override
@@ -30,12 +38,24 @@ public class RespirarMainActivity extends AppCompatActivity {
         minutesPicker = findViewById(R.id.minutesPicker);
         secondsPicker = findViewById(R.id.secondsPicker);
         comecar = findViewById(R.id.button_comecar);
+        back = findViewById(R.id.imageView6);
 
         configureMinutesPicker();
         configureSecondsPicker();
         configureComecar();
+
+        back.setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+    @SuppressLint("ResourceAsColor")
     private void configureMinutesPicker() {
         minutesPicker.setOrientation(NumberPicker.VERTICAL);
         minutesPicker.setMinValue(0);
@@ -44,6 +64,15 @@ public class RespirarMainActivity extends AppCompatActivity {
         minutesPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             minutesPicker.setTextSize(40);
+        }
+        try {
+            @SuppressLint("SoonBlockedPrivateApi") Field selectorWheelPaintField = NumberPicker.class.getDeclaredField("mSelectorWheelPaint");
+            selectorWheelPaintField.setAccessible(true);
+            ((Paint) selectorWheelPaintField.get(minutesPicker)).setColor(Color.RED);
+            ((Paint) selectorWheelPaintField.get(minutesPicker)).setAntiAlias(true);
+            minutesPicker.invalidate();
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 

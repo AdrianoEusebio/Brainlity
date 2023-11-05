@@ -4,26 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_item2"
+    android:background="@color/color_1"
     tools:context=".Activity.MenuActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"/>
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
+        style="@style/BottomNavigationViewWithoutRipple"
+        app:itemTextAppearanceActive="@style/BottomNavTextSize"
+        app:itemTextAppearanceInactive="@style/BottomNavTextSize"
         android:layout_width="match_parent"
         android:layout_height="68dp"
+        android:background="@color/color_2"
         android:elevation="8dp"
-        app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white"
         app:itemHorizontalTranslationEnabled="false"
+        app:itemIconTint="@color/white"
+        app:itemRippleColor="@color/color_3"
+        app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/background_item3"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

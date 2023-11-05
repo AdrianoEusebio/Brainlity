@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.brainlity.Activity.MenuActivity;
 import com.example.brainlity.DAO.FirebaseBDLocal;
@@ -20,7 +21,8 @@ import java.util.Calendar;
 
 public class DescricaoActivity extends AppCompatActivity {
 
-    private Button voltar, finalizar;
+    private Button finalizar;
+    private ImageView voltar;
     private FirebaseBDLocal firebaseBDLocal;
     private Standard standard;
     private SharedPreferences sharedPreferences;

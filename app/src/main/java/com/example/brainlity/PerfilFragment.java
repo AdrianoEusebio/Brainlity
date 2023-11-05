@@ -20,8 +20,6 @@ import android.widget.TextView;
 import com.example.brainlity.Activity.LoginActivity;
 import com.example.brainlity.Activity.MenuActivity;
 import com.example.brainlity.Utils.AsyncTask;
-import com.example.brainlity.R;
-import com.example.brainlity.Utils.NotificationHelper;
 import com.example.brainlity.Utils.Standard;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.CollectionReference;
@@ -99,8 +97,6 @@ public class PerfilFragment extends Fragment {
                 String name = editTextName.getText().toString();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("nome", name);
-                NotificationHelper notificationHelper = new NotificationHelper();
-                notificationHelper.showNotification(getContext(),"Teste", "EXEMPLO");
                 editor.apply();
 
                 standard.toast((AppCompatActivity) getActivity(),"Nome Trocado com sucesso",1);

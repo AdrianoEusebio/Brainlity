@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="NumberPickerTextStyle">
-        <item name="android:textSize">20sp</item> <!-- Ajuste o tamanho do texto conforme necessário -->
-        <item name="android:textColor">@color/white</item> <!-- Cor do texto -->
+    <style name="BottomNavigationViewWithoutRipple" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="BottomNavTextSize">
+        <item name="android:textSize">18sp</item> <!-- Ajuste o valor conforme necessário -->
+        <item name="fontFamily">@font/itim</item>
+    </style>
+
+    <style name="CustomSeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="colorControlActivated">@color/color_4</item>
+        <item name="colorControlNormal">@color/color_4</item>
+        <item name="colorBackgroundFloating">@color/color_4</item>
     </style>
 
 

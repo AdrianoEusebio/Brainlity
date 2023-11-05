@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background_item2"
+    android:background="@color/color_2"
     tools:context=".Exercicios.AnsiedadeFragment">
 
     <TextView
@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:text="@string/text_ansiedade"
         android:elevation="8dp"
-        android:background="@color/background_item2"
+        android:background="@color/color_1"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:paddingTop="15dp"
-        android:fontFamily="@font/itim"
+        android:fontFamily="@font/nunito_sans_extrabold"
         android:layout_gravity="left"
-        android:paddingStart="20dp"
-        android:paddingEnd="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
         android:paddingBottom="10dp" />
 
 
