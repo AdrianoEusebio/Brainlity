@@ -1,6 +1,8 @@
 package com.example.brainlity.Registro;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.brainlity.DAO.FirebaseBDLocal;
 import com.example.brainlity.Entidade.Registro;
 import com.example.brainlity.R;
+import com.example.brainlity.Utils.Standard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +60,49 @@ public class RegistroAdapter extends RecyclerView.Adapter<RegistroAdapter.MyView
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                firebaseBDLocal.deleteRegistro(item.getId());
+                mostrarDialogoConfirmacao(item);
                 return true;
             }
         });
+    }
+
+    private void mostrarDialogoConfirmacao(Registro item) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setTitle("Confirmação");
+        builder.setMessage("Você deseja deletar esse registro?");
+
+        // Botão Sim
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Ação para quando o usuário clicar em Sim
+                acaoSim(item);
+            }
+        });
+
+        // Botão Não
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Ação para quando o usuário clicar em Não
+                acaoNao();
+            }
+        });
+
+        // Criar e mostrar o AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void acaoSim(Registro item) {
+        firebaseBDLocal.deleteRegistro(item.getId());
+        Standard standard = new Standard();
+        standard.toast((AppCompatActivity) context,"Deletado com sucesso, troque de tela para atualizar",1);
+    }
+
+    private void acaoNao() {
+        // Implementar o que deve acontecer quando o usuário clicar em Não
     }
 
     @Override
