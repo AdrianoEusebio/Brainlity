@@ -35,7 +35,7 @@
             android:clickable="true"
             android:enabled="true"
             android:src="@drawable/baseline_edit"
-            android:tint="@color/white"
+            app:tint="@color/icon_colo"
             app:elevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

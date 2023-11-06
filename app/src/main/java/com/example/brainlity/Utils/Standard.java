@@ -72,7 +72,7 @@ public class Standard {
         ImageView imageView = layout.findViewById(R.id.imageView8);
         switch (icon) {
             case 1:
-                layout.setBackgroundColor(activity.getResources().getColor(R.color.background_item5));
+                layout.setBackgroundColor(activity.getResources().getColor(R.color.color_3));
                 imageView.setImageResource(R.drawable.baseline_check);
                 break;
             case 2:

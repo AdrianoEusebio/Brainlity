@@ -8,11 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.brainlity.R;
+import com.example.brainlity.Utils.Standard;
 
 public class DiarioActivity extends AppCompatActivity {
 
     TextView textView;
     private ImageView back;
+    private Standard standard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,8 @@ public class DiarioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diario);
         textView = findViewById(R.id.textDiario);
         back = findViewById(R.id.imageView7);
+        standard = new Standard();
+        standard.actionColorDefault(this);
 
         Intent intent = getIntent();
         if(intent != null){

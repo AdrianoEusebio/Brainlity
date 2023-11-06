@@ -29,7 +29,7 @@
             android:resource="@drawable/baseline_check" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/background_item3" />
+            android:resource="@color/color_1" />
         <meta-data
             android:name="com.google.android.youtube.api.key"
             android:value="AIzaSyD6ulfvfwABQ8g8-w0Nk3H4iVoNjoWXZ14" />

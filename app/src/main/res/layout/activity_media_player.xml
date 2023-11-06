@@ -26,12 +26,13 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/color_4"
             android:clickable="true"
+            app:tint="@color/icon_color_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/seekBar"
             app:layout_constraintStart_toStartOf="@+id/seekBar"
             app:layout_constraintTop_toBottomOf="@+id/seekBar"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/baseline_play_arrow" />
+            app:srcCompat="@drawable/baseline_pause" />
 
         <SeekBar
             android:id="@+id/seekBar"
@@ -100,5 +101,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="45dp"
+        android:contentDescription="@string/arrow_back"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
