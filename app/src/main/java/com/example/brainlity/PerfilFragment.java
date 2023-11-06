@@ -29,8 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class PerfilFragment extends Fragment {
 
     private View view;
+    private Boolean passwordVisible = false;
     private TextView textSenha, textEmail, textNome, exit, alterarSenha;
-    private ImageView imageView;
+    private ImageView imageView,imageView2;
     private Standard standard = new Standard();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private SharedPreferences sharedPreferences;
@@ -50,6 +51,7 @@ public class PerfilFragment extends Fragment {
         usersCollection = db.getInstance().collection("Users");
         view = inflater.inflate(R.layout.fragment_perfil, container, false);
         textNome = view.findViewById(R.id.textView_userNome);
+        imageView2 = view.findViewById(R.id.imageView2);
         textSenha = view.findViewById(R.id.textView_userSenha);
         exit = view.findViewById(R.id.textView_exit);
         textEmail = view.findViewById(R.id.textView_userEmail);
@@ -60,6 +62,7 @@ public class PerfilFragment extends Fragment {
         String email = sharedPreferences.getString("email", "");
         String senha = sharedPreferences.getString("senha","");
 
+        togglePasswordVisibility();
         textNome.setText(nome);
         textEmail.setText(email);
         textSenha.setText(senha);
@@ -72,7 +75,19 @@ public class PerfilFragment extends Fragment {
         return view;
     }
 
+    public void togglePasswordVisibility() {
+        imageView2.setOnClickListener(view -> {
+            passwordVisible = !passwordVisible;
+            if (passwordVisible) {
+                textSenha.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                imageView2.setImageResource(R.drawable.baseline_visibility_off);
+            } else {
 
+                textSenha.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                imageView2.setImageResource(R.drawable.baseline_visibility);
+            }
+        });
+    }
     public void exit(){
         exit.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedPreferences.edit();
