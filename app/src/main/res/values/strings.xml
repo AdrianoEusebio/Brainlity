@@ -2,7 +2,7 @@
     <string name="app_name">Brainlity</string>
 
     <!--Texto de Titulo-->
-    <string name="text_exercicios">Execícios</string>
+    <string name="text_exercicios">Exercícios</string>
     <string name="text_relaxar">Exercício Relaxar</string>
     <string name="text_respirar">Exercício Respirar</string>
     <string name="text_conhecimento">Conhecimento</string>
