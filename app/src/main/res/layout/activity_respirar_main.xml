@@ -4,41 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_item3"
-    tools:context=".Exercicios.RespirarMainActivity"
+    android:background="@color/color_2"
+    tools:context=".Exercicios.Respiração.RespirarMainActivity"
     tools:layout_editor_absoluteX="-14dp"
     tools:layout_editor_absoluteY="244dp">
 
+    <TextView
+        android:id="@+id/titulo_respiracao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/nunito_sans_extrabold"
+        android:text="@string/exercicio_respiração"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/resp_layout2"
-        android:layout_width="250dp"
+        android:id="@+id/constraintLayout5"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/background_item_card"
-        android:elevation="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_background_layout_login"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resp_layout">
+        app:layout_constraintTop_toBottomOf="@+id/titulo_respiracao"
+        app:layout_constraintVertical_bias="0.0">
 
         <NumberPicker
             android:id="@+id/minutesPicker"
             android:layout_width="100dp"
             android:layout_height="240dp"
             android:layout_gravity="center"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_background_layout_login"
+            android:backgroundTint="@color/color_2"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/titulo_info"
+            app:layout_constraintVertical_bias="0.126" />
 
         <NumberPicker
             android:id="@+id/secondsPicker"
             android:layout_width="100dp"
             android:layout_height="240dp"
             android:layout_gravity="center"
+            android:background="@drawable/shape_background_layout_login"
+            android:backgroundTint="@color/color_2"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/minutesPicker"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,31 +67,24 @@
             app:layout_constraintTop_toTopOf="@+id/minutesPicker"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/text_min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_sans_extrabold"
-            android:text="Min"
+        <Button
+            android:id="@+id/button_comecar"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="70dp"
+            android:backgroundTint="@color/color_3"
+            android:elevation="20dp"
+            android:text="@string/button_comeca"
+            android:fontFamily="@font/itim"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView6"
-            app:layout_constraintStart_toStartOf="@+id/minutesPicker"
-            app:layout_constraintTop_toTopOf="@+id/minutesPicker"
-            app:layout_constraintVertical_bias="0.32" />
-
-        <TextView
-            android:id="@+id/text_sec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_sans_extrabold"
-            android:text="Sec"
-            android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/secondsPicker"
-            app:layout_constraintStart_toEndOf="@+id/minutesPicker"
-            app:layout_constraintTop_toTopOf="@+id/secondsPicker"
-            app:layout_constraintVertical_bias="0.321" />
+            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintStart_toStartOf="@+id/minutesPicker"
+            app:layout_constraintTop_toBottomOf="@+id/minutesPicker"
+            app:layout_constraintVertical_bias="0.232" />
 
         <TextView
             android:id="@+id/textView6"
@@ -81,82 +94,64 @@
             android:text=":"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/minutesPicker"
             app:layout_constraintEnd_toEndOf="@+id/secondsPicker"
             app:layout_constraintStart_toStartOf="@+id/minutesPicker"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/button_comecar"
-        android:layout_width="130dp"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/background_item4"
-        android:elevation="8dp"
-        android:text="Começar"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/resp_layout2"
-        app:layout_constraintStart_toStartOf="@+id/resp_layout2"
-        app:layout_constraintTop_toBottomOf="@+id/resp_layout2"
-        app:layout_constraintVertical_bias="0.131" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/resp_layout"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
-        android:background="@color/background_item1"
-        android:elevation="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/titulo_respiracao"
-        app:layout_constraintStart_toStartOf="@+id/titulo_respiracao"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_respiracao">
+            app:layout_constraintTop_toTopOf="@+id/minutesPicker" />
 
         <TextView
-            android:id="@+id/text_info"
-            android:layout_width="wrap_content"
+            android:id="@+id/titulo_info"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_sans_extrabold"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/itim"
             android:paddingLeft="15dp"
-            android:paddingTop="8dp"
-            android:lineSpacingExtra="5dp"
-            android:paddingBottom="10dp"
-            android:text="Esse exercicio serve para praticar sua respiração profunda em situações de estresse ou ansiosas."
+            android:paddingRight="15dp"
+            android:text="@string/info_respirar"
             android:textColor="@color/white"
-            android:textSize="17dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/titulo_respiracao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="monospace"
-        android:text="Exercicio de Respiração"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_help"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/white"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginEnd="90dp"
+        android:background="@drawable/shape_background_bottom1"
+        android:backgroundTint="@color/color_3"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/button_comecar"
-        app:layout_constraintStart_toStartOf="@+id/button_comecar"
-        app:layout_constraintTop_toBottomOf="@+id/button_comecar"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginEnd="-10dp"
+        android:background="@drawable/shape_background_bottom1"
+        android:backgroundTint="@color/color_4"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/arrow_back"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

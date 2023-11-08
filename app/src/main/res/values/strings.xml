@@ -1,4 +1,102 @@
 <resources>
     <string name="app_name">Brainlity</string>
 
+    <!--Texto de Titulo-->
+    <string name="text_exercicios">Exercícios</string>
+    <string name="text_relaxar">Exercício Relaxar</string>
+    <string name="text_respirar">Exercício Respirar</string>
+    <string name="text_conhecimento">Conhecimento</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="login">Login</string>
+    <string name="senha">Senha</string>
+    <string name="nome">Nome</string>
+    <string name="email">Email</string>
+    <string name="perfil">Perfil</string>
+    <string name="exercicio_relaxamento">Exercicio de Relaxamento</string>
+    <string name="exercicio_respiração">Exercicio de Respiração</string>
+
+    <!--Texto de meditação-->
+    <string name="text_meditacao">Meditação</string>
+    <string name="meditacao_text_info">A meditação é uma prática comprovadamente benéfica para a saúde mental e física, proporcionando relaxamento, redução do estresse e ansiedade, melhoria do sono e fortalecimento do sistema imunológico. Além disso, ela aumenta o autoconhecimento, melhora o foco e a concentração, proporcionando maior clareza mental e tomada de decisões. Existem várias técnicas de meditação para escolher, tornando-a uma prática versátil com amplos benefícios para a saúde e o bem-estar.</string>
+    <string name="meditacao_text_info2">Para iniciar a meditação, encontre um local confortável, escolha entre sentar-se ou deitar-se (evitando adormecer), concentre-se na respiração, observe atentamente a entrada e saída do ar e os movimentos do corpo associados à respiração. Deixe os pensamentos surgirem e passarem sem se prender a eles, retornando suavemente ao foco na respiração. Embora seja desafiador no início, a prática regular aprimora essa habilidade com o tempo.</string>
+    <string name="meditacao_text_info3">Não existe uma duração específica para a meditação. Comece com alguns minutos pela manhã ou à noite e aumente gradualmente o tempo à medida que se torna mais confortável. Praticar logo após acordar pode liberar a mente de ansiedades, e antes de dormir, pode relaxar o corpo e a mente, promovendo um sono tranquilo.</string>
+
+    <!--Texto de Ansiedade-->
+    <string name="text_ansiedade">Ansiedade</string>
+    <string name="ansiedade_text_info">A ansiedade é um sentimento de medo e tensão relacionado à antecipação de possíveis perigos ou ao desconhecido. Pode surgir de fatores genéticos, traumas, estresse ou condições físicas. Quando intensa e constante, pode prejudicar a saúde mental e física, comprometendo a qualidade de vida.</string>
+    <string name="ansiedade_text_info2">A ansiedade apresenta sintomas variados que afetam o bem-estar diário, como falta de concentração e dores de cabeça. Para combatê-la, é recomendada a consulta a um especialista. Em casos mais leves, técnicas de respiração e identificação da causa podem ajudar a restaurar o equilíbrio e a serenidade.</string>
+    <string name="ansiedade_text_info3">Após acalmar-se, é importante buscar o autoconhecimento, pois ele desempenha um papel fundamental no enfrentamento da ansiedade. Isso permite que a pessoa compreenda e identifique suas emoções, pensamentos e padrões de comportamento. Ao conhecer-se melhor, a pessoa ganha clareza sobre suas necessidades, limitações e os desencadeadores de sua ansiedade, o que possibilita a adoção de estratégias de enfrentamento eficazes e saudáveis. O autoconhecimento também promove o desenvolvimento de habilidades de autorregulação emocional, a identificação de crenças limitantes e a busca por apoio adequado, criando uma base sólida para a gestão da ansiedade e o cultivo de uma vida mais equilibrada e satisfatória</string>
+
+    <!--Texto de Foco-->
+    <string name="text_foco">Foco</string>
+    <string name="foco_text_info">A capacidade de manter o foco é uma habilidade altamente desejada por todos, mas muitas vezes enfrentamos obstáculos significativos para alcançá-la. No entanto, o foco é essencial em todas as áreas da vida, seja nos estudos, no trabalho ou até mesmo no lazer. Em algumas situações, manter o foco pode ser desafiador, enquanto em outras, pode ser mais simples.</string>
+    <string name="foco_text_info2">O foco é facilmente comprometido por inúmeras distrações na era moderna. Steve Jobs enfatizou a importância de dizer "não" a elas para se concentrar verdadeiramente. Dispositivos como celulares impactam negativamente a produtividade, e o ambiente onde trabalhamos também é crucial. Para manter o foco, é vital minimizar essas interferências e organizar o espaço de trabalho.</string>
+    <string name="foco_text_info3">Além disso, existem maneiras de tornar a mente mais resistente às distrações. A meditação e a leitura são duas atividades que podem contribuir significativamente para isso. E também técnicas como o pomodoro que ajudam a estruturar melhor seu tempo.</string>
+
+    <!--Texto de Rotina-->
+    <string name="text_rotina">Rotina</string>
+    <string name="rotina_text_info">Uma rotina bem estruturada organiza o dia-a-dia, aumenta a produtividade e o foco, promove a formação de hábitos e pode reduzir o estresse, melhorar o sono e auxiliar na realização de metas.</string>
+    <string name="rotina_text_info2">Para criar uma rotina, liste suas tarefas diárias e os horários de execução. Inclua atividades simples e complexas, dividindo as maiores em subtarefas. Organizar tarefas por horário ajuda a clarificar seu dia.</string>
+    <string name="rotina_text_info3">Para otimizar sua rotina, considere usar aplicativos de gestão de tarefas e fixar uma lista visível das atividades no seu ambiente, facilitando a visualização e o cumprimento consistente das tarefas.</string>
+
+    <!--Texto de Mental-->
+    <string name="text_saudemental">Mental</string>
+    <string name="mental_text_info">A saúde mental está tornando-se uma preocupação crescente nas gerações recentes, com um aumento de casos de ansiedade e depressão. Apesar da relevância do tema, muitos ainda o subestimam, não percebendo as implicações a longo prazo de negligenciar esse aspecto do bem-estar. A desatenção à saúde mental pode comprometer a capacidade de lidar com desafios cotidianos e, em situações extremas, tornar alguém dependente de medicamentos. É vital abordar a saúde mental com a seriedade que ela merece.</string>
+    <string name="mental_text_info2">Para melhorar a saúde mental, é recomendado adotar estratégias como meditação, sono de qualidade, moderação no uso de dispositivos móveis e exercícios físicos regulares. Estabelecer hábitos saudáveis pode potencializar a qualidade de vida e a saúde mental, sendo fundamental priorizar esse cuidado no cotidiano.</string>
+    <string name="mental_text_info3">Por último, mas não menos importante, é fundamental buscar a orientação de um profissional especializado no assunto, como um psicólogo, mesmo quando você se sente bem. A assistência de um profissional é sempre valiosa para manter e aprimorar a saúde mental. Portanto, não hesite em consultar um especialista, independentemente de como você esteja se sentindo.</string>
+
+    <!--Texto de Sono-->
+    <string name="text_sono">Sono</string>
+    <string name="sono_text_info">O sono é vital para o bem-estar físico e mental, reduzindo o estresse e melhorando a concentração. Mesmo conhecendo sua importância, muitos enfrentam dificuldades para dormir bem. Para aprimorar o sono, algumas estratégias podem ser consideradas.</string>
+    <string name="sono_text_info2">Para um sono de qualidade, mantenha o quarto escuro, silencioso, agradável e organizado, e estabeleça uma rotina relaxante antes de dormir, evitando atividades agitadas.</string>
+    <string name="sono_text_info3">Evite a luz azul de dispositivos eletrônicos antes de dormir para não prejudicar a produção de melatonina ou use aplicativos que minimizem essa emissão.</string>
+    <string name="sono_text_info4">Antes de dormir, relaxe com atividades como banho quente ou leitura, evitando estímulos fortes. Faça exercícios regularmente, mas não perto da hora de deitar, e limite cochilos diurnos para não afetar o sono noturno.</string>
+
+    <!--Texto das Tela Cadastro/Login-->
+    <string name="Ja_tem_uma_conta">Já tem uma conta? clique aqui!!</string>
+    <string name="nao_tem_uma_conta">Não tem conta? Cadastre-se aqui!!</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="button_entrar">Entrar</string>
+    <string name="esqueceu_senha">Esqueçeu minha senha? Clique Aqui!!</string>
+
+    <!--Description do Drawable-->
+    <string name="baseline_visibility">visibility</string>
+    <string name="baseline_edit">edit</string>
+    <string name="arrow_back">back</string>
+    <string name="logo">logo</string>
+    
+    <!--Description da Tela Perfil-->
+    <string name="deslogar">Deslogar-se</string>
+    <string name="trocar_senha">Trocar Senha</string>
+
+    <!--Texto da Tela DescricaoAcitivity-->
+    <string name="finalizar">Finalizar</string>
+    <string name="descreva_dia">Descreva seu dia.....</string>
+
+    <!--Texto da Tela Relaxar-->
+    <string name="ambient_guitar">1. Ambient_guitar</string>
+    <string name="inspiring_ambient">2. Inspiring_ambient</string>
+    <string name="peaceful_meditation">3. Peaceful_meditation</string>
+    <string name="apenas_relaxe">Apenas selecione alguma musica e relaxe....</string>
+
+    <!--Texto da Tela Respirar-->
+    <string name="button_comeca">Começar</string>
+    <string name="info_respirar">O exercício Respirar serve para praticar a respiração regulada em momentos de estresse. Adicione o tempo de praticar:</string>
+
+    <!--Texto da Tela Registro-->
+    <string name="muitofeliz">Muito feliz</string>
+    <string name="mais_menos">Mais ou menos</string>
+    <string name="alegre">Alegre</string>
+    <string name="normal">Normal</string>
+    <string name="triste">Triste</string>
+    <string name="familia">Familia</string>
+    <string name="estudos">Estudos</string>
+    <string name="trabalho">Trabalho</string>
+    <string name="outros">Outros</string>
+    <string name="social">Social</string>
+    <string name="amigos">Amigos</string>
+    <string name="title1_registro">Como foi seu dia?</string>
+    <string name="title2_registro">O que fez seu dia assim?</string>
+    <string name="proximo">Proximo</string>
+
 </resources>

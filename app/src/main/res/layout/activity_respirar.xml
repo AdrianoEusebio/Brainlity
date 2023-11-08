@@ -3,65 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/background_degrade"
+    android:background="#A6BFC2"
     android:layout_height="match_parent"
-    tools:context=".Exercicios.RespirarActivity">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="124dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_cronometro"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toStartOf="@+id/textView_cronometro"
-        app:layout_constraintTop_toBottomOf="@+id/textView_cronometro"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+    tools:context=".Exercicios.Respiração.RespirarActivity">
 
     <TextView
         android:id="@+id/textView_cronometro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:background="@drawable/background_item_card"
-        android:fontFamily="monospace"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_cronometro"
+        android:fontFamily="@font/nunito_sans_extrabold"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="00:00"
-        android:textColor="@color/white"
-        android:textSize="48sp"
+        android:textColor="@color/black"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="128dp"
-        android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_width="140dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="104dp"
+        android:backgroundTint="@color/color_2"
+        android:elevation="8dp"
+        android:fontFamily="@font/nunito_sans_extrabold"
+        android:text="@string/button_comeca"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
+        android:contentDescription="@string/arrow_back"
         android:id="@+id/image_rollback_respirar"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:tint="@color/color_1"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,5 +57,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.007"
         app:srcCompat="@drawable/baseline_arrow_back" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_degrade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_cronometro">
+
+        <pl.droidsonroids.gif.GifImageView
+            android:id="@+id/gifImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gif_pause"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_background_layout_login"
+        android:backgroundTint="@color/color_2"
+        android:src="@drawable/baseline_volume_up"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.741"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

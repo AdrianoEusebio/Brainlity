@@ -32,7 +32,6 @@ public class MenuActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RespirarMainActivity.class);
             startActivity(intent);
 
-
         });
 
     }
