@@ -100,14 +100,18 @@ public class LoginActivity extends AppCompatActivity {
             String email = editTextEmail.getText().toString();
             String senha = editTextPassword.getText().toString();
 
-            try {
-                if (!email.equals("") || !senha.equals("")) {
-                    checkUserExist(email, senha, dialog);
-                }
-            } catch (IllegalArgumentException e) {
-                dialog.cancel();
+        try {
+            if (!email.equals("") || !senha.equals("")) {
+                checkUserExist(email, senha, dialog);
+            } else {
                 standard.toast(LoginActivity.this, "Falta preencher alguns campos", 2);
+                dialog.cancel();
             }
+        } catch (IllegalArgumentException e){
+            standard.toast(LoginActivity.this, "Falta preencher alguns campos", 2);
+            dialog.cancel();
+        }
+
         });
     }
 
@@ -139,35 +143,40 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void checkUserExist(String email, String senha, Dialog dialog) {
-        mAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
 
-            CollectionReference usersCollection = db.collection("Users");
-            Query query = usersCollection.whereEqualTo("email", email);
+            mAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(task -> {
 
-            if (task.isSuccessful()) {
-                firestoreSelected(email);
-                query.get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        String nome = documentSnapshot.getString("nome");
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", email);
-                        editor.putString("senha", senha);
-                        editor.putString("nome", nome);
-                        editor.apply();
-                        standard.toast(LoginActivity.this, "Login realizado com sucesso", 1);
+                CollectionReference usersCollection = db.collection("Users");
+                Query query = usersCollection.whereEqualTo("email", email);
+
+                if (task.isSuccessful()) {
+                    firestoreSelected(email);
+                    query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            String nome = documentSnapshot.getString("nome");
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("email", email);
+                            editor.putString("senha", senha);
+                            editor.putString("nome", nome);
+                            editor.apply();
+                            standard.toast(LoginActivity.this, "Login realizado com sucesso", 1);
+                        }
+
+                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                        finish();
+
+                    }).addOnFailureListener(e -> {
+                    });
+                } else {
+                    if(standard.verificacaoCount(LoginActivity.this)){
+                        standard.toast(LoginActivity.this, "Você está offline", 2);
+                    } else {
+                        standard.toast(LoginActivity.this, "Login Invalido", 2);
                     }
-
-                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                    startActivity(intent);
-                    finish();
-
-                }).addOnFailureListener(e -> {
-                });
-            } else {
-                standard.toast(LoginActivity.this, "Login Invalido", 2);
-                dialog.cancel();
-            }
-        });
+                    dialog.cancel();
+                }
+            });
     }
 
     public void firestoreSelected(String email){
