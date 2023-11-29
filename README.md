@@ -5,7 +5,7 @@
 
 <h3 align="left">Conecte-se comigo:</h3>
 <p align="left">
-<a href="https://linkedin .com/in/adriano eusébio" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/ ícones/Social/linked-in-alt.svg" alt="adriano eusébio" height="30" width="40" /></a> <
+<a href="https://linkedin .com/in/adriano eusébio" target="blank"> <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/ ícones/Social/linked-in-alt.svg" alt="adriano eusébio" height="30" width="40" /></a> <
 a href="https://discord.gg/ad.riano " target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg " alt="ad.riano" height="30" width="40" /></a>
 </p>
 
