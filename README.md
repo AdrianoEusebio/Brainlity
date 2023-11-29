@@ -1,4 +1,3 @@
-# Brainlity
 <h1 align="center">Olá 👋, sou Adriano Eusébio</h1>
 <h3 align="center">Um apaixonado desenvolvedor back-end do Brasil</h3>
 
